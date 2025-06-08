@@ -1,5 +1,5 @@
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { 
@@ -13,9 +13,17 @@ import { useTheme } from "@/components/theme-provider";
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [language, setLanguage] = useState("en"); // Default to English
+  const [language, setLanguage] = useState("en");
   const location = useLocation();
   const { theme, setTheme } = useTheme();
+
+  // Load language from localStorage on component mount
+  useEffect(() => {
+    const savedLanguage = localStorage.getItem("language") || "en";
+    setLanguage(savedLanguage);
+    document.documentElement.dir = savedLanguage === "ar" ? "rtl" : "ltr";
+    document.documentElement.lang = savedLanguage;
+  }, []);
 
   const navigation = [
     { name: language === "en" ? "Home" : "الرئيسية", href: "/" },
@@ -30,9 +38,12 @@ const Navigation = () => {
 
   const handleLanguageChange = (lang: string) => {
     setLanguage(lang);
-    // In a real app, you would also update the content language context here
+    localStorage.setItem("language", lang);
     document.documentElement.dir = lang === "ar" ? "rtl" : "ltr";
     document.documentElement.lang = lang;
+    
+    // Trigger a page refresh to update all content
+    window.location.reload();
   };
 
   return (
