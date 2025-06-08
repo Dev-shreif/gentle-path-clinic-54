@@ -526,7 +526,7 @@ const DoctorProfile = () => {
               <Link to="/booking" state={{
               selectedDoctor: getText(doctor.name)
             }}>
-                <Button size="lg" className="gradient-calm text-white hover:opacity-90">
+                <Button size="lg" className="gradient-calm hover:opacity-90 text-slate-900">
                   <Calendar className="h-5 w-5 mr-2" />
                   {language === "ar" ? "احجز جلستك اليوم" : "Book Your Session Today"}
                 </Button>
