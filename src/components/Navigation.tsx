@@ -96,7 +96,7 @@ const Navigation = () => {
 
             {/* Book Appointment Button */}
             <Link to="/booking">
-              <Button className="gradient-calm text-white hover:opacity-90 transition-opacity">
+              <Button className="gradient-calm hover:opacity-90 transition-opacity text-violet-600">
                 <Calendar className="h-4 w-4 mr-2" />
                 {language === "en" ? "Book Appointment" : "احجز موعد"}
               </Button>

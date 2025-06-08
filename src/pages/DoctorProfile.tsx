@@ -430,7 +430,7 @@ const DoctorProfile = () => {
                   <Link to="/booking" state={{
                   selectedDoctor: getText(doctor.name)
                 }}>
-                    <Button className="w-full gradient-calm text-white hover:opacity-90">
+                    <Button className="w-full gradient-calm hover:opacity-90 text-slate-800">
                       <Calendar className="h-4 w-4 mr-2" />
                       {language === "ar" ? "احجز عبر الإنترنت" : "Schedule Online"}
                     </Button>
