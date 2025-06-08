@@ -1,45 +1,43 @@
-
 import { useParams, Link } from "react-router-dom";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Calendar, Award, Clock, MapPin, Phone, Mail, ArrowLeft } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
-
 const DoctorProfile = () => {
-  const { doctorSlug } = useParams();
+  const {
+    doctorSlug
+  } = useParams();
 
   // Mock doctor data - in a real app, this would come from an API
-  const doctorData: { [key: string]: any } = {
+  const doctorData: {
+    [key: string]: any;
+  } = {
     "dr-abdel-rahman-mohsen": {
-      name: { en: "Dr. Abdel Rahman Mohsen", ar: "د. عبد الرحمن محسن" },
-      specialty: { en: "Psychiatrist", ar: "أخصائي الطب النفسي" },
-      title: { en: "M.D., Licensed Psychiatrist", ar: "دكتور في الطب، طبيب نفسي مرخص" },
+      name: {
+        en: "Dr. Abdel Rahman Mohsen",
+        ar: "د. عبد الرحمن محسن"
+      },
+      specialty: {
+        en: "Psychiatrist",
+        ar: "أخصائي الطب النفسي"
+      },
+      title: {
+        en: "M.D., Licensed Psychiatrist",
+        ar: "دكتور في الطب، طبيب نفسي مرخص"
+      },
       image: "/lovable-uploads/56124021-c453-4af0-a73d-55eba7308a31.png",
-      experience: { en: "10+ years", ar: "أكثر من 10 سنوات" },
+      experience: {
+        en: "10+ years",
+        ar: "أكثر من 10 سنوات"
+      },
       education: {
-        en: [
-          "M.D. in Psychiatry - Cairo University",
-          "Residency in Psychiatry - Ain Shams University Hospital",
-          "Fellowship in Clinical Psychology"
-        ],
-        ar: [
-          "دكتوراه في الطب النفسي - جامعة القاهرة",
-          "الإقامة في الطب النفسي - مستشفى جامعة عين شمس",
-          "زمالة في علم النفس السريري"
-        ]
+        en: ["M.D. in Psychiatry - Cairo University", "Residency in Psychiatry - Ain Shams University Hospital", "Fellowship in Clinical Psychology"],
+        ar: ["دكتوراه في الطب النفسي - جامعة القاهرة", "الإقامة في الطب النفسي - مستشفى جامعة عين شمس", "زمالة في علم النفس السريري"]
       },
       licenses: {
-        en: [
-          "Licensed Psychiatrist - Egypt",
-          "Board Certified in Psychiatry",
-          "Certified Clinical Therapist"
-        ],
-        ar: [
-          "طبيب نفسي مرخص - مصر",
-          "معتمد من مجلس الطب النفسي",
-          "معالج نفسي معتمد"
-        ]
+        en: ["Licensed Psychiatrist - Egypt", "Board Certified in Psychiatry", "Certified Clinical Therapist"],
+        ar: ["طبيب نفسي مرخص - مصر", "معتمد من مجلس الطب النفسي", "معالج نفسي معتمد"]
       },
       bio: {
         en: "Dr. Abdel Rahman Mohsen is an experienced psychiatrist dedicated to providing comprehensive mental health care. With over 10 years of experience, he specializes in treating various psychological conditions using evidence-based approaches and personalized treatment plans.",
@@ -58,40 +56,45 @@ const DoctorProfile = () => {
         ar: ["جائزة التميز في الرعاية النفسية", "تقدير أفضل طبيب نفسي", "جائزة الخدمة المجتمعية", "التميز في رعاية المرضى"]
       },
       availability: {
-        days: { en: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday"], ar: ["الأحد", "الاثنين", "الثلاثاء", "الأربعاء", "الخميس"] },
-        hours: { en: "9:00 AM - 7:00 PM", ar: "9:00 صباحاً - 7:00 مساءً" },
-        location: { en: "In-person and Online", ar: "حضوري وعبر الإنترنت" }
+        days: {
+          en: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday"],
+          ar: ["الأحد", "الاثنين", "الثلاثاء", "الأربعاء", "الخميس"]
+        },
+        hours: {
+          en: "9:00 AM - 7:00 PM",
+          ar: "9:00 صباحاً - 7:00 مساءً"
+        },
+        location: {
+          en: "In-person and Online",
+          ar: "حضوري وعبر الإنترنت"
+        }
       }
     },
     "dr-maha-mohsen": {
-      name: { en: "Dr. Maha Mohsen", ar: "د. مها محسن" },
-      specialty: { en: "Psychiatrist & Addiction Treatment", ar: "أخصائي الطب النفسي وعلاج الإدمان" },
-      title: { en: "M.D., Psychiatrist & Addiction Specialist", ar: "دكتورة في الطب، أخصائية الطب النفسي وعلاج الإدمان" },
+      name: {
+        en: "Dr. Maha Mohsen",
+        ar: "د. مها محسن"
+      },
+      specialty: {
+        en: "Psychiatrist & Addiction Treatment",
+        ar: "أخصائي الطب النفسي وعلاج الإدمان"
+      },
+      title: {
+        en: "M.D., Psychiatrist & Addiction Specialist",
+        ar: "دكتورة في الطب، أخصائية الطب النفسي وعلاج الإدمان"
+      },
       image: "/lovable-uploads/cede00fa-ffe6-4d0c-9026-3dbff006bbad.png",
-      experience: { en: "12+ years", ar: "أكثر من 12 سنة" },
+      experience: {
+        en: "12+ years",
+        ar: "أكثر من 12 سنة"
+      },
       education: {
-        en: [
-          "M.D. in Psychiatry - Alexandria University",
-          "Fellowship in Addiction Medicine",
-          "Certificate in Cognitive Behavioral Therapy"
-        ],
-        ar: [
-          "دكتوراه في الطب النفسي - جامعة الإسكندرية",
-          "زمالة في طب الإدمان",
-          "شهادة في العلاج المعرفي السلوكي"
-        ]
+        en: ["M.D. in Psychiatry - Alexandria University", "Fellowship in Addiction Medicine", "Certificate in Cognitive Behavioral Therapy"],
+        ar: ["دكتوراه في الطب النفسي - جامعة الإسكندرية", "زمالة في طب الإدمان", "شهادة في العلاج المعرفي السلوكي"]
       },
       licenses: {
-        en: [
-          "Licensed Psychiatrist - Egypt",
-          "Certified Addiction Specialist",
-          "Board Certified in Psychiatry"
-        ],
-        ar: [
-          "طبيبة نفسية مرخصة - مصر",
-          "أخصائية إدمان معتمدة",
-          "معتمدة من مجلس الطب النفسي"
-        ]
+        en: ["Licensed Psychiatrist - Egypt", "Certified Addiction Specialist", "Board Certified in Psychiatry"],
+        ar: ["طبيبة نفسية مرخصة - مصر", "أخصائية إدمان معتمدة", "معتمدة من مجلس الطب النفسي"]
       },
       bio: {
         en: "Dr. Maha Mohsen is a specialist in psychiatric medicine and addiction treatment with extensive experience in comprehensive mental health care. She focuses on evidence-based treatment approaches for both mental health disorders and substance abuse.",
@@ -110,40 +113,45 @@ const DoctorProfile = () => {
         ar: ["التميز في علاج الإدمان", "جائزة الابتكار في الصحة النفسية", "تقدير الخدمة المجتمعية", "أفضل ممارسة في التشخيص المزدوج"]
       },
       availability: {
-        days: { en: ["Sunday", "Monday", "Wednesday", "Thursday"], ar: ["الأحد", "الاثنين", "الأربعاء", "الخميس"] },
-        hours: { en: "10:00 AM - 6:00 PM", ar: "10:00 صباحاً - 6:00 مساءً" },
-        location: { en: "In-person and Online", ar: "حضوري وعبر الإنترنت" }
+        days: {
+          en: ["Sunday", "Monday", "Wednesday", "Thursday"],
+          ar: ["الأحد", "الاثنين", "الأربعاء", "الخميس"]
+        },
+        hours: {
+          en: "10:00 AM - 6:00 PM",
+          ar: "10:00 صباحاً - 6:00 مساءً"
+        },
+        location: {
+          en: "In-person and Online",
+          ar: "حضوري وعبر الإنترنت"
+        }
       }
     },
     "dr-heba-ahmed-alazab": {
-      name: { en: "Dr. Heba Ahmed Al-Azab", ar: "د. هبة أحمد العزب" },
-      specialty: { en: "Psychiatrist", ar: "طبيبة نفسية" },
-      title: { en: "M.D., Licensed Psychiatrist", ar: "دكتورة في الطب، طبيبة نفسية مرخصة" },
+      name: {
+        en: "Dr. Heba Ahmed Al-Azab",
+        ar: "د. هبة أحمد العزب"
+      },
+      specialty: {
+        en: "Psychiatrist",
+        ar: "طبيبة نفسية"
+      },
+      title: {
+        en: "M.D., Licensed Psychiatrist",
+        ar: "دكتورة في الطب، طبيبة نفسية مرخصة"
+      },
       image: "/lovable-uploads/2f284f11-59ed-4850-9684-375341aae1ba.png",
-      experience: { en: "8+ years", ar: "أكثر من 8 سنوات" },
+      experience: {
+        en: "8+ years",
+        ar: "أكثر من 8 سنوات"
+      },
       education: {
-        en: [
-          "M.D. in Psychiatry - Cairo University",
-          "Residency in Psychiatry - Kasr Al-Ainy Hospital",
-          "Training in Child and Adolescent Psychiatry"
-        ],
-        ar: [
-          "دكتوراه في الطب النفسي - جامعة القاهرة",
-          "الإقامة في الطب النفسي - مستشفى قصر العيني",
-          "تدريب في طب نفس الأطفال والمراهقين"
-        ]
+        en: ["M.D. in Psychiatry - Cairo University", "Residency in Psychiatry - Kasr Al-Ainy Hospital", "Training in Child and Adolescent Psychiatry"],
+        ar: ["دكتوراه في الطب النفسي - جامعة القاهرة", "الإقامة في الطب النفسي - مستشفى قصر العيني", "تدريب في طب نفس الأطفال والمراهقين"]
       },
       licenses: {
-        en: [
-          "Licensed Psychiatrist - Egypt",
-          "Certified in Child Psychiatry",
-          "Board Certified in Psychiatry"
-        ],
-        ar: [
-          "طبيبة نفسية مرخصة - مصر",
-          "معتمدة في طب نفس الأطفال",
-          "معتمدة من مجلس الطب النفسي"
-        ]
+        en: ["Licensed Psychiatrist - Egypt", "Certified in Child Psychiatry", "Board Certified in Psychiatry"],
+        ar: ["طبيبة نفسية مرخصة - مصر", "معتمدة في طب نفس الأطفال", "معتمدة من مجلس الطب النفسي"]
       },
       bio: {
         en: "Dr. Heba Ahmed Al-Azab is a dedicated psychiatrist specializing in comprehensive mental health treatment and patient care. She has particular expertise in treating anxiety disorders, depression, and providing psychological support.",
@@ -162,40 +170,45 @@ const DoctorProfile = () => {
         ar: ["جائزة الطبيب النفسي الشاب", "التميز في رعاية المرضى", "الدفاع عن الصحة النفسية", "خدمة الصحة المجتمعية"]
       },
       availability: {
-        days: { en: ["Sunday", "Tuesday", "Wednesday", "Thursday"], ar: ["الأحد", "الثلاثاء", "الأربعاء", "الخميس"] },
-        hours: { en: "9:00 AM - 5:00 PM", ar: "9:00 صباحاً - 5:00 مساءً" },
-        location: { en: "In-person and Online", ar: "حضوري وعبر الإنترنت" }
+        days: {
+          en: ["Sunday", "Tuesday", "Wednesday", "Thursday"],
+          ar: ["الأحد", "الثلاثاء", "الأربعاء", "الخميس"]
+        },
+        hours: {
+          en: "9:00 AM - 5:00 PM",
+          ar: "9:00 صباحاً - 5:00 مساءً"
+        },
+        location: {
+          en: "In-person and Online",
+          ar: "حضوري وعبر الإنترنت"
+        }
       }
     },
     "dr-nada-alawadi": {
-      name: { en: "Dr. Nada Al-Awadi", ar: "د. ندى العوضي" },
-      specialty: { en: "Psychiatrist & Psychological Treatment", ar: "طبيبة ومعالجة نفسية" },
-      title: { en: "M.D., Psychiatrist & Psychological Therapist", ar: "دكتورة في الطب، طبيبة ومعالجة نفسية" },
+      name: {
+        en: "Dr. Nada Al-Awadi",
+        ar: "د. ندى العوضي"
+      },
+      specialty: {
+        en: "Psychiatrist & Psychological Treatment",
+        ar: "طبيبة ومعالجة نفسية"
+      },
+      title: {
+        en: "M.D., Psychiatrist & Psychological Therapist",
+        ar: "دكتورة في الطب، طبيبة ومعالجة نفسية"
+      },
       image: "/lovable-uploads/5a3488b9-e38f-44f4-90d7-8dce28f0003a.png",
-      experience: { en: "9+ years", ar: "أكثر من 9 سنوات" },
+      experience: {
+        en: "9+ years",
+        ar: "أكثر من 9 سنوات"
+      },
       education: {
-        en: [
-          "M.D. in Psychiatry - Ain Shams University",
-          "Diploma in Psychological Therapy",
-          "Certificate in Family Therapy"
-        ],
-        ar: [
-          "دكتوراه في الطب النفسي - جامعة عين شمس",
-          "دبلوم في العلاج النفسي",
-          "شهادة في العلاج الأسري"
-        ]
+        en: ["M.D. in Psychiatry - Ain Shams University", "Diploma in Psychological Therapy", "Certificate in Family Therapy"],
+        ar: ["دكتوراه في الطب النفسي - جامعة عين شمس", "دبلوم في العلاج النفسي", "شهادة في العلاج الأسري"]
       },
       licenses: {
-        en: [
-          "Licensed Psychiatrist - Egypt",
-          "Certified Psychological Therapist",
-          "Licensed Medical Practitioner"
-        ],
-        ar: [
-          "طبيبة نفسية مرخصة - مصر",
-          "معالجة نفسية معتمدة",
-          "ممارس طبي مرخص"
-        ]
+        en: ["Licensed Psychiatrist - Egypt", "Certified Psychological Therapist", "Licensed Medical Practitioner"],
+        ar: ["طبيبة نفسية مرخصة - مصر", "معالجة نفسية معتمدة", "ممارس طبي مرخص"]
       },
       bio: {
         en: "Dr. Nada Al-Awadi is an expert in psychiatric medicine and psychological treatment with a focus on holistic patient care. She combines medical expertise with therapeutic approaches to provide comprehensive mental health solutions.",
@@ -214,40 +227,45 @@ const DoctorProfile = () => {
         ar: ["بطلة صحة المرأة", "التميز في الرعاية النفسية", "تقدير العلاج الأسري", "جائزة الدفاع عن الصحة النفسية"]
       },
       availability: {
-        days: { en: ["Sunday", "Monday", "Tuesday", "Thursday"], ar: ["الأحد", "الاثنين", "الثلاثاء", "الخميس"] },
-        hours: { en: "10:00 AM - 7:00 PM", ar: "10:00 صباحاً - 7:00 مساءً" },
-        location: { en: "In-person and Online", ar: "حضوري وعبر الإنترنت" }
+        days: {
+          en: ["Sunday", "Monday", "Tuesday", "Thursday"],
+          ar: ["الأحد", "الاثنين", "الثلاثاء", "الخميس"]
+        },
+        hours: {
+          en: "10:00 AM - 7:00 PM",
+          ar: "10:00 صباحاً - 7:00 مساءً"
+        },
+        location: {
+          en: "In-person and Online",
+          ar: "حضوري وعبر الإنترنت"
+        }
       }
     },
     "prof-bahaa-mohammed-sharaf-eldin": {
-      name: { en: "Prof. Bahaa Mohammed Sharaf El-Din", ar: "أ. بهاء محمد شرف الدين" },
-      specialty: { en: "Clinical Psychologist", ar: "أخصائي نفسي إكلينيكي" },
-      title: { en: "Ph.D., Professor of Clinical Psychology", ar: "دكتوراه، أستاذ علم النفس الإكلينيكي" },
+      name: {
+        en: "Prof. Bahaa Mohammed Sharaf El-Din",
+        ar: "أ. بهاء محمد شرف الدين"
+      },
+      specialty: {
+        en: "Clinical Psychologist",
+        ar: "أخصائي نفسي إكلينيكي"
+      },
+      title: {
+        en: "Ph.D., Professor of Clinical Psychology",
+        ar: "دكتوراه، أستاذ علم النفس الإكلينيكي"
+      },
       image: "/lovable-uploads/311b6663-caea-4df5-be65-6d3bbf5e434d.png",
-      experience: { en: "15+ years", ar: "أكثر من 15 سنة" },
+      experience: {
+        en: "15+ years",
+        ar: "أكثر من 15 سنة"
+      },
       education: {
-        en: [
-          "Ph.D. in Clinical Psychology - Cairo University",
-          "Master's in Applied Psychology",
-          "Certification in Cognitive Behavioral Therapy"
-        ],
-        ar: [
-          "دكتوراه في علم النفس الإكلينيكي - جامعة القاهرة",
-          "ماجستير في علم النفس التطبيقي",
-          "شهادة في العلاج المعرفي السلوكي"
-        ]
+        en: ["Ph.D. in Clinical Psychology - Cairo University", "Master's in Applied Psychology", "Certification in Cognitive Behavioral Therapy"],
+        ar: ["دكتوراه في علم النفس الإكلينيكي - جامعة القاهرة", "ماجستير في علم النفس التطبيقي", "شهادة في العلاج المعرفي السلوكي"]
       },
       licenses: {
-        en: [
-          "Licensed Clinical Psychologist - Egypt",
-          "University Professor",
-          "Certified CBT Therapist"
-        ],
-        ar: [
-          "أخصائي نفسي إكلينيكي مرخص - مصر",
-          "أستاذ جامعي",
-          "معالج معرفي سلوكي معتمد"
-        ]
+        en: ["Licensed Clinical Psychologist - Egypt", "University Professor", "Certified CBT Therapist"],
+        ar: ["أخصائي نفسي إكلينيكي مرخص - مصر", "أستاذ جامعي", "معالج معرفي سلوكي معتمد"]
       },
       bio: {
         en: "Professor Bahaa Mohammed Sharaf El-Din is a distinguished clinical psychologist with extensive experience in psychological assessment and therapy. As an academic and practitioner, he brings both theoretical knowledge and practical expertise to patient care.",
@@ -266,40 +284,45 @@ const DoctorProfile = () => {
         ar: ["جائزة التميز الأكاديمي", "البحث في علم النفس الإكلينيكي", "جائزة الأستاذ المتميز", "ابتكار التقييم النفسي"]
       },
       availability: {
-        days: { en: ["Monday", "Tuesday", "Wednesday", "Thursday"], ar: ["الاثنين", "الثلاثاء", "الأربعاء", "الخميس"] },
-        hours: { en: "9:00 AM - 4:00 PM", ar: "9:00 صباحاً - 4:00 مساءً" },
-        location: { en: "In-person and Online", ar: "حضوري وعبر الإنترنت" }
+        days: {
+          en: ["Monday", "Tuesday", "Wednesday", "Thursday"],
+          ar: ["الاثنين", "الثلاثاء", "الأربعاء", "الخميس"]
+        },
+        hours: {
+          en: "9:00 AM - 4:00 PM",
+          ar: "9:00 صباحاً - 4:00 مساءً"
+        },
+        location: {
+          en: "In-person and Online",
+          ar: "حضوري وعبر الإنترنت"
+        }
       }
     },
     "dr-fatima-abdeldin": {
-      name: { en: "Dr. Fatima Abdeldin", ar: "د. فاطمة عابدين" },
-      specialty: { en: "Psychiatrist & Psychological Treatment", ar: "طبيبة ومعالجة نفسية" },
-      title: { en: "M.D., Psychiatrist & Psychological Therapist", ar: "دكتورة في الطب، طبيبة ومعالجة نفسية" },
+      name: {
+        en: "Dr. Fatima Abdeldin",
+        ar: "د. فاطمة عابدين"
+      },
+      specialty: {
+        en: "Psychiatrist & Psychological Treatment",
+        ar: "طبيبة ومعالجة نفسية"
+      },
+      title: {
+        en: "M.D., Psychiatrist & Psychological Therapist",
+        ar: "دكتورة في الطب، طبيبة ومعالجة نفسية"
+      },
       image: "/lovable-uploads/c75597ef-239d-4c00-b646-6e4c3a125dd8.png",
-      experience: { en: "11+ years", ar: "أكثر من 11 سنة" },
+      experience: {
+        en: "11+ years",
+        ar: "أكثر من 11 سنة"
+      },
       education: {
-        en: [
-          "M.D. in Psychiatry - Al-Azhar University",
-          "Fellowship in Psychological Therapy",
-          "Certificate in Mindfulness-Based Therapy"
-        ],
-        ar: [
-          "دكتوراه في الطب النفسي - جامعة الأزهر",
-          "زمالة في العلاج النفسي",
-          "شهادة في العلاج القائم على اليقظة"
-        ]
+        en: ["M.D. in Psychiatry - Al-Azhar University", "Fellowship in Psychological Therapy", "Certificate in Mindfulness-Based Therapy"],
+        ar: ["دكتوراه في الطب النفسي - جامعة الأزهر", "زمالة في العلاج النفسي", "شهادة في العلاج القائم على اليقظة"]
       },
       licenses: {
-        en: [
-          "Licensed Psychiatrist - Egypt",
-          "Certified Psychological Therapist",
-          "Mindfulness Therapy Certified"
-        ],
-        ar: [
-          "طبيبة نفسية مرخصة - مصر",
-          "معالجة نفسية معتمدة",
-          "معتمدة في علاج اليقظة"
-        ]
+        en: ["Licensed Psychiatrist - Egypt", "Certified Psychological Therapist", "Mindfulness Therapy Certified"],
+        ar: ["طبيبة نفسية مرخصة - مصر", "معالجة نفسية معتمدة", "معتمدة في علاج اليقظة"]
       },
       bio: {
         en: "Dr. Fatima Abdeldin is a specialist in psychiatric medicine and psychological treatment with a compassionate approach to patient care. She integrates traditional psychiatric methods with modern therapeutic techniques for comprehensive treatment.",
@@ -318,25 +341,30 @@ const DoctorProfile = () => {
         ar: ["جائزة الرعاية المتفهمة", "الابتكار في الصحة النفسية", "التميز في رضا المرضى", "تقدير علاج اليقظة"]
       },
       availability: {
-        days: { en: ["Sunday", "Monday", "Wednesday", "Friday"], ar: ["الأحد", "الاثنين", "الأربعاء", "الجمعة"] },
-        hours: { en: "10:00 AM - 6:00 PM", ar: "10:00 صباحاً - 6:00 مساءً" },
-        location: { en: "In-person and Online", ar: "حضوري وعبر الإنترنت" }
+        days: {
+          en: ["Sunday", "Monday", "Wednesday", "Friday"],
+          ar: ["الأحد", "الاثنين", "الأربعاء", "الجمعة"]
+        },
+        hours: {
+          en: "10:00 AM - 6:00 PM",
+          ar: "10:00 صباحاً - 6:00 مساءً"
+        },
+        location: {
+          en: "In-person and Online",
+          ar: "حضوري وعبر الإنترنت"
+        }
       }
     }
   };
-
   const doctor = doctorData[doctorSlug || ""] || doctorData["dr-abdel-rahman-mohsen"];
 
   // Get language from localStorage or default to English
-  const language = typeof window !== "undefined" ? (localStorage.getItem("language") || "en") : "en";
+  const language = typeof window !== "undefined" ? localStorage.getItem("language") || "en" : "en";
   const isRTL = language === "ar";
-
   const getText = (textObj: any) => {
     return textObj[language] || textObj.en;
   };
-
-  return (
-    <div className={`min-h-screen pt-24 pb-16 ${isRTL ? 'rtl' : 'ltr'}`} dir={isRTL ? 'rtl' : 'ltr'}>
+  return <div className={`min-h-screen pt-24 pb-16 ${isRTL ? 'rtl' : 'ltr'}`} dir={isRTL ? 'rtl' : 'ltr'}>
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Back Button */}
         <div className="mb-8">
@@ -354,16 +382,10 @@ const DoctorProfile = () => {
             {/* Doctor Card */}
             <Card className="overflow-hidden border-border/50">
               <div className="relative">
-                <img 
-                  src={doctor.image} 
-                  alt={getText(doctor.name)}
-                  className="w-full h-80 object-cover"
-                />
+                <img src={doctor.image} alt={getText(doctor.name)} className="w-full h-80 object-cover" />
                 <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-6">
-                  <h1 className="text-2xl font-semibold text-white mb-1">
-                    {getText(doctor.name)}
-                  </h1>
-                  <p className="text-white/90">{getText(doctor.title)}</p>
+                  
+                  
                 </div>
               </div>
               
@@ -405,7 +427,9 @@ const DoctorProfile = () => {
               <CardContent className="p-6">
                 <h3 className="font-semibold mb-4">{language === "ar" ? "احجز موعد" : "Book an Appointment"}</h3>
                 <div className="space-y-3">
-                  <Link to="/booking" state={{ selectedDoctor: getText(doctor.name) }}>
+                  <Link to="/booking" state={{
+                  selectedDoctor: getText(doctor.name)
+                }}>
                     <Button className="w-full gradient-calm text-white hover:opacity-90">
                       <Calendar className="h-4 w-4 mr-2" />
                       {language === "ar" ? "احجز عبر الإنترنت" : "Schedule Online"}
@@ -442,12 +466,10 @@ const DoctorProfile = () => {
             <div>
               <h3 className="text-2xl font-light mb-6">{language === "ar" ? "مجالات الخبرة" : "Areas of Expertise"}</h3>
               <div className="grid sm:grid-cols-2 gap-4">
-                {getText(doctor.expertise).map((skill: string, index: number) => (
-                  <div key={index} className="flex items-center space-x-3 p-3 bg-muted/30 rounded-lg">
+                {getText(doctor.expertise).map((skill: string, index: number) => <div key={index} className="flex items-center space-x-3 p-3 bg-muted/30 rounded-lg">
                     <div className="w-2 h-2 bg-primary rounded-full"></div>
                     <span className="text-foreground">{skill}</span>
-                  </div>
-                ))}
+                  </div>)}
               </div>
             </div>
 
@@ -455,11 +477,9 @@ const DoctorProfile = () => {
             <div>
               <h3 className="text-2xl font-light mb-6">{language === "ar" ? "الحالات المعالجة" : "Conditions Treated"}</h3>
               <div className="grid sm:grid-cols-2 gap-3">
-                {getText(doctor.conditions).map((condition: string, index: number) => (
-                  <Badge key={index} variant="outline" className="justify-start p-3 text-sm">
+                {getText(doctor.conditions).map((condition: string, index: number) => <Badge key={index} variant="outline" className="justify-start p-3 text-sm">
                     {condition}
-                  </Badge>
-                ))}
+                  </Badge>)}
               </div>
             </div>
 
@@ -468,22 +488,18 @@ const DoctorProfile = () => {
               <div>
                 <h3 className="text-xl font-medium mb-4">{language === "ar" ? "التعليم" : "Education"}</h3>
                 <div className="space-y-3">
-                  {getText(doctor.education).map((edu: string, index: number) => (
-                    <div key={index} className="p-3 bg-card border border-border/50 rounded-lg">
+                  {getText(doctor.education).map((edu: string, index: number) => <div key={index} className="p-3 bg-card border border-border/50 rounded-lg">
                       <p className="text-sm text-foreground">{edu}</p>
-                    </div>
-                  ))}
+                    </div>)}
                 </div>
               </div>
               
               <div>
                 <h3 className="text-xl font-medium mb-4">{language === "ar" ? "التراخيص والشهادات" : "Licenses & Certifications"}</h3>
                 <div className="space-y-3">
-                  {getText(doctor.licenses).map((license: string, index: number) => (
-                    <div key={index} className="p-3 bg-card border border-border/50 rounded-lg">
+                  {getText(doctor.licenses).map((license: string, index: number) => <div key={index} className="p-3 bg-card border border-border/50 rounded-lg">
                       <p className="text-sm text-foreground">{license}</p>
-                    </div>
-                  ))}
+                    </div>)}
                 </div>
               </div>
             </div>
@@ -492,12 +508,10 @@ const DoctorProfile = () => {
             <div>
               <h3 className="text-2xl font-light mb-6">{language === "ar" ? "الجوائز والتقدير" : "Awards & Recognition"}</h3>
               <div className="grid sm:grid-cols-2 gap-4">
-                {getText(doctor.awards).map((award: string, index: number) => (
-                  <div key={index} className="flex items-center space-x-3 p-4 bg-gradient-to-r from-primary/5 to-secondary/5 rounded-lg border border-primary/10">
+                {getText(doctor.awards).map((award: string, index: number) => <div key={index} className="flex items-center space-x-3 p-4 bg-gradient-to-r from-primary/5 to-secondary/5 rounded-lg border border-primary/10">
                     <Award className="h-5 w-5 text-primary flex-shrink-0" />
                     <span className="text-foreground">{award}</span>
-                  </div>
-                ))}
+                  </div>)}
               </div>
             </div>
 
@@ -507,12 +521,11 @@ const DoctorProfile = () => {
                 {language === "ar" ? "مستعد لبدء رحلتك؟" : "Ready to start your journey?"}
               </h3>
               <p className="text-muted-foreground mb-6">
-                {language === "ar" 
-                  ? `اتخذ الخطوة الأولى نحو صحة نفسية أفضل مع ${getText(doctor.name).split(" ")[1]}.`
-                  : `Take the first step towards better mental health with Dr. ${getText(doctor.name).split(" ")[1]}.`
-                }
+                {language === "ar" ? `اتخذ الخطوة الأولى نحو صحة نفسية أفضل مع ${getText(doctor.name).split(" ")[1]}.` : `Take the first step towards better mental health with Dr. ${getText(doctor.name).split(" ")[1]}.`}
               </p>
-              <Link to="/booking" state={{ selectedDoctor: getText(doctor.name) }}>
+              <Link to="/booking" state={{
+              selectedDoctor: getText(doctor.name)
+            }}>
                 <Button size="lg" className="gradient-calm text-white hover:opacity-90">
                   <Calendar className="h-5 w-5 mr-2" />
                   {language === "ar" ? "احجز جلستك اليوم" : "Book Your Session Today"}
@@ -522,8 +535,6 @@ const DoctorProfile = () => {
           </div>
         </div>
       </div>
-    </div>
-  );
+    </div>;
 };
-
 export default DoctorProfile;
