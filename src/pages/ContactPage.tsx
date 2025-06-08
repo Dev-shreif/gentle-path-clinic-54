@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -6,7 +5,6 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { MapPin, Phone, Mail, Clock, MessageCircle } from "lucide-react";
-
 const ContactPage = () => {
   const [formData, setFormData] = useState({
     name: "",
@@ -15,31 +13,27 @@ const ContactPage = () => {
     subject: "",
     message: ""
   });
-
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     console.log("Form submitted:", formData);
     // Handle form submission
   };
-
   const updateForm = (field: string, value: string) => {
-    setFormData(prev => ({ ...prev, [field]: value }));
+    setFormData(prev => ({
+      ...prev,
+      [field]: value
+    }));
   };
-
   const handleWhatsAppClick = () => {
     window.open('https://wa.me/01551521419', '_blank');
   };
-
   const handleCallClick = () => {
     window.open('tel:01551521419', '_self');
   };
-
   const handleLocationClick = () => {
     window.open('https://maps.app.goo.gl/rp6jy8uvB5iHt5vb7', '_blank');
   };
-
-  return (
-    <div className="min-h-screen pt-24 pb-16">
+  return <div className="min-h-screen pt-24 pb-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-16">
@@ -66,16 +60,13 @@ const ContactPage = () => {
                     <MapPin className="h-6 w-6 text-primary" />
                   </div>
                   <div>
-                    <h3 className="font-medium mb-1">Visit Our Clinic</h3>
+                    <h3 className="font-medium mb-1">Visit Our Clinic
+رقم ٤٠٥ - عماره ٨ - عمارات حدائق رامو - طريق النصر- مدينه نصر, </h3>
                     <p className="text-muted-foreground">
                       Mental Health Clinic<br />
                       New Cairo, Egypt<br />
                     </p>
-                    <Button 
-                      variant="link" 
-                      className="p-0 h-auto text-primary hover:text-primary/80"
-                      onClick={handleLocationClick}
-                    >
+                    <Button variant="link" className="p-0 h-auto text-primary hover:text-primary/80" onClick={handleLocationClick}>
                       View on Map →
                     </Button>
                   </div>
@@ -88,10 +79,7 @@ const ContactPage = () => {
                   <div>
                     <h3 className="font-medium mb-1">Call Us</h3>
                     <p className="text-muted-foreground">
-                      <button 
-                        onClick={handleCallClick}
-                        className="hover:text-primary transition-colors"
-                      >
+                      <button onClick={handleCallClick} className="hover:text-primary transition-colors">
                         015 51521419
                       </button>
                     </p>
@@ -116,12 +104,11 @@ const ContactPage = () => {
                     <Clock className="h-6 w-6 text-primary" />
                   </div>
                   <div>
-                    <h3 className="font-medium mb-1">Office Hours</h3>
-                    <p className="text-muted-foreground">
-                      Saturday - Thursday: 10:00 AM - 8:00 PM<br />
-                      Friday: 2:00 PM - 8:00 PM<br />
-                      Emergency consultations available
-                    </p>
+                    <h3 className="font-medium mb-1">Office Hours
+
+
+Here for you every day, 10 AM – 10 PM</h3>
+                    
                   </div>
                 </div>
               </div>
@@ -131,18 +118,11 @@ const ContactPage = () => {
             <div>
               <h3 className="text-lg font-medium mb-4">Quick Contact</h3>
               <div className="grid gap-4">
-                <Button 
-                  className="gradient-calm text-white hover:opacity-90 justify-start"
-                  onClick={handleWhatsAppClick}
-                >
+                <Button className="gradient-calm text-white hover:opacity-90 justify-start" onClick={handleWhatsAppClick}>
                   <MessageCircle className="h-4 w-4 mr-2" />
                   WhatsApp: 015 51521419
                 </Button>
-                <Button 
-                  variant="outline" 
-                  className="border-primary/20 hover:bg-primary/5 justify-start"
-                  onClick={handleCallClick}
-                >
+                <Button variant="outline" className="border-primary/20 hover:bg-primary/5 justify-start" onClick={handleCallClick}>
                   <Phone className="h-4 w-4 mr-2" />
                   Call: 015 51521419
                 </Button>
@@ -152,10 +132,7 @@ const ContactPage = () => {
             {/* Interactive Map */}
             <div>
               <h3 className="text-lg font-medium mb-4">Find Us</h3>
-              <div 
-                className="bg-gradient-to-br from-primary/5 to-secondary/5 rounded-lg h-64 flex items-center justify-center border border-border/50 cursor-pointer hover:from-primary/10 hover:to-secondary/10 transition-all duration-300"
-                onClick={handleLocationClick}
-              >
+              <div className="bg-gradient-to-br from-primary/5 to-secondary/5 rounded-lg h-64 flex items-center justify-center border border-border/50 cursor-pointer hover:from-primary/10 hover:to-secondary/10 transition-all duration-300" onClick={handleLocationClick}>
                 <div className="text-center">
                   <MapPin className="h-16 w-16 text-primary mx-auto mb-4" />
                   <p className="text-lg font-medium text-foreground mb-2">Our Location</p>
@@ -182,60 +159,28 @@ const ContactPage = () => {
                   <div className="grid md:grid-cols-2 gap-4">
                     <div>
                       <Label htmlFor="name">Full Name</Label>
-                      <Input 
-                        id="name"
-                        value={formData.name}
-                        onChange={(e) => updateForm("name", e.target.value)}
-                        placeholder="Enter your full name"
-                        required
-                      />
+                      <Input id="name" value={formData.name} onChange={e => updateForm("name", e.target.value)} placeholder="Enter your full name" required />
                     </div>
                     <div>
                       <Label htmlFor="email">Email Address</Label>
-                      <Input 
-                        id="email"
-                        type="email"
-                        value={formData.email}
-                        onChange={(e) => updateForm("email", e.target.value)}
-                        placeholder="your.email@example.com"
-                        required
-                      />
+                      <Input id="email" type="email" value={formData.email} onChange={e => updateForm("email", e.target.value)} placeholder="your.email@example.com" required />
                     </div>
                   </div>
 
                   <div className="grid md:grid-cols-2 gap-4">
                     <div>
                       <Label htmlFor="phone">Phone Number</Label>
-                      <Input 
-                        id="phone"
-                        type="tel"
-                        value={formData.phone}
-                        onChange={(e) => updateForm("phone", e.target.value)}
-                        placeholder="015 12345678"
-                      />
+                      <Input id="phone" type="tel" value={formData.phone} onChange={e => updateForm("phone", e.target.value)} placeholder="015 12345678" />
                     </div>
                     <div>
                       <Label htmlFor="subject">Subject</Label>
-                      <Input 
-                        id="subject"
-                        value={formData.subject}
-                        onChange={(e) => updateForm("subject", e.target.value)}
-                        placeholder="How can we help you?"
-                        required
-                      />
+                      <Input id="subject" value={formData.subject} onChange={e => updateForm("subject", e.target.value)} placeholder="How can we help you?" required />
                     </div>
                   </div>
 
                   <div>
                     <Label htmlFor="message">Message</Label>
-                    <Textarea 
-                      id="message"
-                      value={formData.message}
-                      onChange={(e) => updateForm("message", e.target.value)}
-                      placeholder="Tell us about your needs or questions..."
-                      rows={6}
-                      required
-                    />
+                    <Textarea id="message" value={formData.message} onChange={e => updateForm("message", e.target.value)} placeholder="Tell us about your needs or questions..." rows={6} required />
                   </div>
 
                   <Button type="submit" className="w-full gradient-calm text-white hover:opacity-90">
@@ -259,17 +204,10 @@ const ContactPage = () => {
                 Get immediate help.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button 
-                  variant="destructive"
-                  onClick={handleCallClick}
-                >
+                <Button variant="destructive" onClick={handleCallClick}>
                   Call Now: 015 51521419
                 </Button>
-                <Button 
-                  variant="outline" 
-                  className="border-red-300 text-red-700 hover:bg-red-50"
-                  onClick={handleWhatsAppClick}
-                >
+                <Button variant="outline" className="border-red-300 text-red-700 hover:bg-red-50" onClick={handleWhatsAppClick}>
                   WhatsApp Emergency
                 </Button>
               </div>
@@ -277,8 +215,6 @@ const ContactPage = () => {
           </Card>
         </div>
       </div>
-    </div>
-  );
+    </div>;
 };
-
 export default ContactPage;
