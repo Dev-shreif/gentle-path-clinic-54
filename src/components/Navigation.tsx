@@ -1,21 +1,17 @@
-
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { 
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { Menu, X, Calendar, Moon, Sun, Globe } from "lucide-react";
 import { useTheme } from "@/components/theme-provider";
-
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [language, setLanguage] = useState("en");
   const location = useLocation();
-  const { theme, setTheme } = useTheme();
+  const {
+    theme,
+    setTheme
+  } = useTheme();
 
   // Load language from localStorage on component mount
   useEffect(() => {
@@ -24,39 +20,41 @@ const Navigation = () => {
     document.documentElement.dir = savedLanguage === "ar" ? "rtl" : "ltr";
     document.documentElement.lang = savedLanguage;
   }, []);
-
-  const navigation = [
-    { name: language === "en" ? "Home" : "الرئيسية", href: "/" },
-    { name: language === "en" ? "Doctors" : "الأطباء", href: "/doctors" },
-    { name: language === "en" ? "Services" : "الخدمات", href: "/services" },
-    { name: language === "en" ? "Blog" : "المقالات", href: "/blog" },
-    { name: language === "en" ? "About" : "من نحن", href: "/about" },
-    { name: language === "en" ? "Contact" : "اتصل بنا", href: "/contact" }
-  ];
-
+  const navigation = [{
+    name: language === "en" ? "Home" : "الرئيسية",
+    href: "/"
+  }, {
+    name: language === "en" ? "Doctors" : "الأطباء",
+    href: "/doctors"
+  }, {
+    name: language === "en" ? "Services" : "الخدمات",
+    href: "/services"
+  }, {
+    name: language === "en" ? "Blog" : "المقالات",
+    href: "/blog"
+  }, {
+    name: language === "en" ? "About" : "من نحن",
+    href: "/about"
+  }, {
+    name: language === "en" ? "Contact" : "اتصل بنا",
+    href: "/contact"
+  }];
   const isActive = (path: string) => location.pathname === path;
-
   const handleLanguageChange = (lang: string) => {
     setLanguage(lang);
     localStorage.setItem("language", lang);
     document.documentElement.dir = lang === "ar" ? "rtl" : "ltr";
     document.documentElement.lang = lang;
-    
+
     // Trigger a page refresh to update all content
     window.location.reload();
   };
-
-  return (
-    <nav className="fixed top-0 w-full z-50 bg-background/80 backdrop-blur-lg border-b border-border/50">
+  return <nav className="fixed top-0 w-full z-50 bg-background/80 backdrop-blur-lg border-b border-border/50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-2">
-            <img 
-              src="/lovable-uploads/36a42d1e-c23b-434f-bd19-8934d8c3eccc.png" 
-              alt="Journey Mental Health Clinic" 
-              className="w-10 h-10 object-contain"
-            />
+            <div className="w-8 h-8 bg-gradient-to-br from-primary to-secondary rounded-full breathe object-scale-down"></div>
             <span className="text-xl font-semibold text-foreground">
               {language === "en" ? "Journey" : "رحلة"}
             </span>
@@ -64,19 +62,9 @@ const Navigation = () => {
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
-            {navigation.map((item) => (
-              <Link
-                key={item.name}
-                to={item.href}
-                className={`text-sm font-medium transition-colors duration-200 hover:text-primary ${
-                  isActive(item.href)
-                    ? "text-primary border-b-2 border-primary pb-1"
-                    : "text-muted-foreground"
-                }`}
-              >
+            {navigation.map(item => <Link key={item.name} to={item.href} className={`text-sm font-medium transition-colors duration-200 hover:text-primary ${isActive(item.href) ? "text-primary border-b-2 border-primary pb-1" : "text-muted-foreground"}`}>
                 {item.name}
-              </Link>
-            ))}
+              </Link>)}
           </div>
 
           {/* Desktop Actions */}
@@ -92,28 +80,17 @@ const Navigation = () => {
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end">
-                <DropdownMenuItem 
-                  onClick={() => handleLanguageChange("en")}
-                  className={language === "en" ? "bg-primary/10" : ""}
-                >
+                <DropdownMenuItem onClick={() => handleLanguageChange("en")} className={language === "en" ? "bg-primary/10" : ""}>
                   English
                 </DropdownMenuItem>
-                <DropdownMenuItem 
-                  onClick={() => handleLanguageChange("ar")}
-                  className={language === "ar" ? "bg-primary/10" : ""}
-                >
+                <DropdownMenuItem onClick={() => handleLanguageChange("ar")} className={language === "ar" ? "bg-primary/10" : ""}>
                   العربية
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
 
             {/* Theme Switcher */}
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={() => setTheme(theme === "light" ? "dark" : "light")}
-              className="p-2"
-            >
+            <Button variant="ghost" size="sm" onClick={() => setTheme(theme === "light" ? "dark" : "light")} className="p-2">
               {theme === "light" ? <Moon className="h-4 w-4" /> : <Sun className="h-4 w-4" />}
             </Button>
 
@@ -128,35 +105,18 @@ const Navigation = () => {
 
           {/* Mobile menu button */}
           <div className="md:hidden">
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={() => setIsOpen(!isOpen)}
-              className="p-2"
-            >
+            <Button variant="ghost" size="sm" onClick={() => setIsOpen(!isOpen)} className="p-2">
               {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
             </Button>
           </div>
         </div>
 
         {/* Mobile Navigation */}
-        {isOpen && (
-          <div className="md:hidden">
+        {isOpen && <div className="md:hidden">
             <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-card/95 backdrop-blur-lg rounded-lg mt-2 border border-border/50">
-              {navigation.map((item) => (
-                <Link
-                  key={item.name}
-                  to={item.href}
-                  className={`block px-3 py-2 text-base font-medium rounded-md transition-colors duration-200 ${
-                    isActive(item.href)
-                      ? "text-primary bg-primary/10"
-                      : "text-muted-foreground hover:text-primary hover:bg-primary/5"
-                  }`}
-                  onClick={() => setIsOpen(false)}
-                >
+              {navigation.map(item => <Link key={item.name} to={item.href} className={`block px-3 py-2 text-base font-medium rounded-md transition-colors duration-200 ${isActive(item.href) ? "text-primary bg-primary/10" : "text-muted-foreground hover:text-primary hover:bg-primary/5"}`} onClick={() => setIsOpen(false)}>
                   {item.name}
-                </Link>
-              ))}
+                </Link>)}
               
               <div className="pt-4 flex items-center justify-between">
                 {/* Mobile Language Switcher */}
@@ -170,31 +130,20 @@ const Navigation = () => {
                     </Button>
                   </DropdownMenuTrigger>
                   <DropdownMenuContent align="end">
-                    <DropdownMenuItem 
-                      onClick={() => handleLanguageChange("en")}
-                      className={language === "en" ? "bg-primary/10" : ""}
-                    >
+                    <DropdownMenuItem onClick={() => handleLanguageChange("en")} className={language === "en" ? "bg-primary/10" : ""}>
                       English
                     </DropdownMenuItem>
-                    <DropdownMenuItem 
-                      onClick={() => handleLanguageChange("ar")}
-                      className={language === "ar" ? "bg-primary/10" : ""}
-                    >
+                    <DropdownMenuItem onClick={() => handleLanguageChange("ar")} className={language === "ar" ? "bg-primary/10" : ""}>
                       العربية
                     </DropdownMenuItem>
                   </DropdownMenuContent>
                 </DropdownMenu>
 
                 {/* Mobile Theme Switcher */}
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  onClick={() => setTheme(theme === "light" ? "dark" : "light")}
-                  className="p-2"
-                >
+                <Button variant="ghost" size="sm" onClick={() => setTheme(theme === "light" ? "dark" : "light")} className="p-2">
                   {theme === "light" ? <Moon className="h-4 w-4" /> : <Sun className="h-4 w-4" />}
                   <span className="ml-2">
-                    {theme === "light" ? (language === "en" ? "Dark" : "داكن") : (language === "en" ? "Light" : "فاتح")} Mode
+                    {theme === "light" ? language === "en" ? "Dark" : "داكن" : language === "en" ? "Light" : "فاتح"} Mode
                   </span>
                 </Button>
               </div>
@@ -208,11 +157,8 @@ const Navigation = () => {
                 </Link>
               </div>
             </div>
-          </div>
-        )}
+          </div>}
       </div>
-    </nav>
-  );
+    </nav>;
 };
-
 export default Navigation;
