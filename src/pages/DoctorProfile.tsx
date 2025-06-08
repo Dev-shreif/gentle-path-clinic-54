@@ -1,3 +1,4 @@
+
 import { useParams, Link } from "react-router-dom";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -62,315 +63,263 @@ const DoctorProfile = () => {
         location: { en: "In-person and Online", ar: "حضوري وعبر الإنترنت" }
       }
     },
-    "dr-sarah-mitchell": {
-      name: { en: "Dr. Sarah Mitchell", ar: "د. سارة ميتشل" },
-      specialty: { en: "Clinical Psychology", ar: "علم النفس السريري" },
-      title: { en: "Ph.D., Licensed Clinical Psychologist", ar: "دكتوراه، أخصائي نفسي سريري مرخص" },
-      image: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
-      experience: { en: "15+ years", ar: "أكثر من 15 سنة" },
-      education: {
-        en: [
-          "Ph.D. in Clinical Psychology - Stanford University",
-          "M.A. in Psychology - University of California, Berkeley",
-          "B.A. in Psychology - Harvard University"
-        ],
-        ar: [
-          "دكتوراه في علم النفس السريري - جامعة ستانفورد",
-          "ماجستير في علم النفس - جامعة كاليفورنيا، بيركلي",
-          "بكالوريوس في علم النفس - جامعة هارفارد"
-        ]
-      },
-      licenses: {
-        en: [
-          "Licensed Clinical Psychologist - California",
-          "Certified CBT Therapist",
-          "EMDR Certified Therapist"
-        ],
-        ar: [
-          "أخصائي نفسي سريري مرخص - كاليفورنيا",
-          "معالج معرفي سلوكي معتمد",
-          "معالج EMDR معتمد"
-        ]
-      },
-      bio: {
-        en: "Dr. Sarah Mitchell is a compassionate clinical psychologist with over 15 years of experience helping individuals overcome anxiety, depression, and trauma. She specializes in cognitive-behavioral therapy and has helped hundreds of patients develop healthy coping mechanisms and achieve lasting mental wellness.",
-        ar: "د. سارة ميتشل هي أخصائية نفسية سريرية متفهمة مع أكثر من 15 عامًا من الخبرة في مساعدة الأفراد على التغلب على القلق والاكتئاب والصدمات. تتخصص في العلاج المعرفي السلوكي وساعدت المئات من المرضى على تطوير آليات التأقلم الصحية وتحقيق العافية النفسية الدائمة."
-      },
-      expertise: {
-        en: ["Anxiety Disorders", "Cognitive Behavioral Therapy (CBT)", "Trauma Therapy", "Depression", "PTSD", "Panic Disorders", "Stress Management", "Mindfulness-Based Therapy"],
-        ar: ["اضطرابات القلق", "العلاج المعرفي السلوكي", "علاج الصدمات", "الاكتئاب", "اضطراب ما بعد الصدمة", "اضطرابات الهلع", "إدارة التوتر", "العلاج القائم على اليقظة"]
-      },
-      conditions: {
-        en: ["Generalized Anxiety Disorder", "Social Anxiety", "Depression", "Post-Traumatic Stress Disorder", "Panic Disorder", "Obsessive-Compulsive Disorder", "Adjustment Disorders", "Chronic Stress"],
-        ar: ["اضطراب القلق العام", "القلق الاجتماعي", "الاكتئاب", "اضطراب ما بعد الصدمة", "اضطراب الهلع", "اضطراب الوسواس القهري", "اضطرابات التكيف", "التوتر المزمن"]
-      },
-      awards: {
-        en: ["Excellence in Mental Health Care Award 2023", "Top Psychologist - Bay Area Mental Health Association", "Distinguished Service Award - California Psychological Association", "Research Excellence Award - Stanford University"],
-        ar: ["جائزة التميز في الرعاية النفسية 2023", "أفضل أخصائي نفسي - جمعية الصحة النفسية في منطقة الخليج", "جائزة الخدمة المتميزة - جمعية علم النفس في كاليفورنيا", "جائزة التميز البحثي - جامعة ستانفورد"]
-      },
-      availability: {
-        days: { en: ["Monday", "Tuesday", "Wednesday", "Friday"], ar: ["الاثنين", "الثلاثاء", "الأربعاء", "الجمعة"] },
-        hours: { en: "9:00 AM - 6:00 PM", ar: "9:00 صباحاً - 6:00 مساءً" },
-        location: { en: "In-person and Online", ar: "حضوري وعبر الإنترنت" }
-      }
-    },
-    "dr-michael-rodriguez": {
-      name: { en: "Dr. Michael Rodriguez", ar: "د. مايكل رودريجيز" },
-      specialty: { en: "Psychiatrist", ar: "طبيب نفسي" },
-      title: { en: "M.D., Board Certified Psychiatrist", ar: "دكتور في الطب، طبيب نفسي معتمد" },
-      image: "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+    "dr-maha-mohsen": {
+      name: { en: "Dr. Maha Mohsen", ar: "د. مها محسن" },
+      specialty: { en: "Psychiatrist & Addiction Treatment", ar: "أخصائي الطب النفسي وعلاج الإدمان" },
+      title: { en: "M.D., Psychiatrist & Addiction Specialist", ar: "دكتورة في الطب، أخصائية الطب النفسي وعلاج الإدمان" },
+      image: "/lovable-uploads/cede00fa-ffe6-4d0c-9026-3dbff006bbad.png",
       experience: { en: "12+ years", ar: "أكثر من 12 سنة" },
       education: {
         en: [
-          "M.D. - Johns Hopkins School of Medicine",
-          "Psychiatry Residency - Mayo Clinic",
-          "B.S. in Neuroscience - UCLA"
+          "M.D. in Psychiatry - Alexandria University",
+          "Fellowship in Addiction Medicine",
+          "Certificate in Cognitive Behavioral Therapy"
         ],
         ar: [
-          "دكتوراه في الطب - كلية الطب بجامعة جونز هوبكنز",
-          "الإقامة النفسية - Mayo كلينيك",
-          "بكالوريوس علوم في علم الأعصاب - جامعة كاليفورنيا"
+          "دكتوراه في الطب النفسي - جامعة الإسكندرية",
+          "زمالة في طب الإدمان",
+          "شهادة في العلاج المعرفي السلوكي"
         ]
       },
       licenses: {
         en: [
-          "Board Certified Psychiatrist",
-          "Licensed Medical Doctor - California",
-          "Certified in Addiction Medicine"
+          "Licensed Psychiatrist - Egypt",
+          "Certified Addiction Specialist",
+          "Board Certified in Psychiatry"
         ],
         ar: [
-          "طبيب نفسي معتمد",
-          "طبيب مرخص - كاليفورنيا",
-          "معتمد في طب الإدمان"
+          "طبيبة نفسية مرخصة - مصر",
+          "أخصائية إدمان معتمدة",
+          "معتمدة من مجلس الطب النفسي"
         ]
       },
       bio: {
-        en: "Dr. Michael Rodriguez is an expert in mood disorders and medication management, helping patients achieve optimal mental health through comprehensive treatment approaches.",
-        ar: "د. مايكل رودريجيز خبير في اضطرابات المزاج وإدارة الأدوية، يساعد المرضى على تحقيق الصحة النفسية المثلى من خلال مناهج العلاج الشاملة."
+        en: "Dr. Maha Mohsen is a specialist in psychiatric medicine and addiction treatment with extensive experience in comprehensive mental health care. She focuses on evidence-based treatment approaches for both mental health disorders and substance abuse.",
+        ar: "د. مها محسن أخصائية في الطب النفسي وعلاج الإدمان مع خبرة واسعة في الرعاية الشاملة للصحة النفسية. تركز على مناهج العلاج القائمة على الأدلة لكل من اضطرابات الصحة النفسية وتعاطي المواد المخدرة."
       },
       expertise: {
-        en: ["Depression", "Bipolar Disorder", "Medication Management", "Anxiety Disorders", "Schizophrenia", "ADHD", "Substance Abuse", "Mood Disorders"],
-        ar: ["الاكتئاب", "اضطراب ثنائي القطب", "إدارة الأدوية", "اضطرابات القلق", "الفصام", "اضطراب نقص الانتباه", "تعاطي المواد المخدرة", "اضطرابات المزاج"]
+        en: ["Psychiatry", "Addiction Treatment", "Mental Health", "Substance Abuse", "Dual Diagnosis", "Relapse Prevention", "Family Therapy", "Group Therapy"],
+        ar: ["الطب النفسي", "علاج الإدمان", "الصحة النفسية", "تعاطي المواد المخدرة", "التشخيص المزدوج", "منع الانتكاس", "العلاج الأسري", "العلاج الجماعي"]
       },
       conditions: {
-        en: ["Major Depression", "Bipolar I & II", "Generalized Anxiety", "Panic Disorder", "ADHD", "Schizophrenia", "Substance Use Disorders", "Personality Disorders"],
-        ar: ["الاكتئاب الشديد", "ثنائي القطب الأول والثاني", "القلق العام", "اضطراب الهلع", "نقص الانتباه", "الفصام", "اضطرابات تعاطي المواد", "اضطرابات الشخصية"]
+        en: ["Depression with Substance Use", "Anxiety Disorders", "Alcohol Addiction", "Drug Addiction", "Bipolar Disorder", "PTSD with Addiction", "Dual Diagnosis", "Behavioral Addictions"],
+        ar: ["الاكتئاب مع تعاطي المواد", "اضطرابات القلق", "إدمان الكحول", "إدمان المخدرات", "اضطراب ثنائي القطب", "اضطراب ما بعد الصدمة مع الإدمان", "التشخيص المزدوج", "الإدمان السلوكي"]
       },
       awards: {
-        en: ["Outstanding Psychiatrist Award 2022", "Excellence in Patient Care", "Research Publication Award", "Community Mental Health Recognition"],
-        ar: ["جائزة الطبيب النفسي المتميز 2022", "التميز في رعاية المرضى", "جائزة النشر البحثي", "تقدير الصحة النفسية المجتمعية"]
+        en: ["Excellence in Addiction Treatment", "Mental Health Innovation Award", "Community Service Recognition", "Best Practice in Dual Diagnosis"],
+        ar: ["التميز في علاج الإدمان", "جائزة الابتكار في الصحة النفسية", "تقدير الخدمة المجتمعية", "أفضل ممارسة في التشخيص المزدوج"]
       },
       availability: {
-        days: { en: ["Monday", "Tuesday", "Thursday", "Friday"], ar: ["الاثنين", "الثلاثاء", "الخميس", "الجمعة"] },
-        hours: { en: "8:00 AM - 5:00 PM", ar: "8:00 صباحاً - 5:00 مساءً" },
+        days: { en: ["Sunday", "Monday", "Wednesday", "Thursday"], ar: ["الأحد", "الاثنين", "الأربعاء", "الخميس"] },
+        hours: { en: "10:00 AM - 6:00 PM", ar: "10:00 صباحاً - 6:00 مساءً" },
         location: { en: "In-person and Online", ar: "حضوري وعبر الإنترنت" }
       }
     },
-    "dr-emily-chen": {
-      name: { en: "Dr. Emily Chen", ar: "د. إيميلي تشين" },
-      specialty: { en: "Child Psychology", ar: "علم نفس الأطفال" },
-      title: { en: "Ph.D., Child & Adolescent Psychologist", ar: "دكتوراه، أخصائي نفسي للأطفال والمراهقين" },
-      image: "https://images.unsplash.com/photo-1594824709602-7b0c7b2e0c2e?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
-      experience: { en: "10+ years", ar: "أكثر من 10 سنوات" },
+    "dr-heba-ahmed-alazab": {
+      name: { en: "Dr. Heba Ahmed Al-Azab", ar: "د. هبة أحمد العزب" },
+      specialty: { en: "Psychiatrist", ar: "طبيبة نفسية" },
+      title: { en: "M.D., Licensed Psychiatrist", ar: "دكتورة في الطب، طبيبة نفسية مرخصة" },
+      image: "/lovable-uploads/2f284f11-59ed-4850-9684-375341aae1ba.png",
+      experience: { en: "8+ years", ar: "أكثر من 8 سنوات" },
       education: {
         en: [
-          "Ph.D. in Child Psychology - University of Michigan",
-          "M.A. in Developmental Psychology - Northwestern University",
-          "B.A. in Psychology - University of Chicago"
+          "M.D. in Psychiatry - Cairo University",
+          "Residency in Psychiatry - Kasr Al-Ainy Hospital",
+          "Training in Child and Adolescent Psychiatry"
         ],
         ar: [
-          "دكتوراه في علم نفس الأطفال - جامعة ميشيغان",
-          "ماجستير في علم النفس التنموي - جامعة نورث وسترن",
-          "بكالوريوس في علم النفس - جامعة شيكاغو"
+          "دكتوراه في الطب النفسي - جامعة القاهرة",
+          "الإقامة في الطب النفسي - مستشفى قصر العيني",
+          "تدريب في طب نفس الأطفال والمراهقين"
         ]
       },
       licenses: {
         en: [
-          "Licensed Child Psychologist",
-          "Certified Play Therapist",
-          "ADHD Specialist Certification"
+          "Licensed Psychiatrist - Egypt",
+          "Certified in Child Psychiatry",
+          "Board Certified in Psychiatry"
         ],
         ar: [
-          "أخصائي نفسي للأطفال مرخص",
-          "معالج باللعب معتمد",
-          "شهادة أخصائي اضطراب نقص الانتباه"
+          "طبيبة نفسية مرخصة - مصر",
+          "معتمدة في طب نفس الأطفال",
+          "معتمدة من مجلس الطب النفسي"
         ]
       },
       bio: {
-        en: "Dr. Emily Chen is dedicated to helping children and adolescents navigate emotional and behavioral challenges through evidence-based therapeutic approaches tailored for young minds.",
-        ar: "د. إيميلي تشين مكرسة لمساعدة الأطفال والمراهقين على التنقل في التحديات العاطفية والسلوكية من خلال المناهج العلاجية القائمة على الأدلة المصممة للعقول الشابة."
+        en: "Dr. Heba Ahmed Al-Azab is a dedicated psychiatrist specializing in comprehensive mental health treatment and patient care. She has particular expertise in treating anxiety disorders, depression, and providing psychological support.",
+        ar: "د. هبة أحمد العزب طبيبة نفسية مكرسة متخصصة في العلاج الشامل للصحة النفسية ورعاية المرضى. لديها خبرة خاصة في علاج اضطرابات القلق والاكتئاب وتقديم الدعم النفسي."
       },
       expertise: {
-        en: ["Child Psychology", "ADHD", "Family Therapy", "Play Therapy", "Autism Spectrum", "Learning Disabilities", "Behavioral Issues", "Teen Counseling"],
-        ar: ["علم نفس الأطفال", "اضطراب نقص الانتباه", "العلاج الأسري", "العلاج باللعب", "طيف التوحد", "صعوبات التعلم", "المشاكل السلوكية", "استشارات المراهقين"]
+        en: ["Psychiatry", "Mental Health Treatment", "Patient Care", "Anxiety Disorders", "Depression", "Stress Management", "Psychological Support", "Mood Disorders"],
+        ar: ["الطب النفسي", "علاج الصحة النفسية", "رعاية المرضى", "اضطرابات القلق", "الاكتئاب", "إدارة التوتر", "الدعم النفسي", "اضطرابات المزاج"]
       },
       conditions: {
-        en: ["ADHD", "Autism Spectrum Disorder", "Learning Disabilities", "Behavioral Disorders", "Anxiety in Children", "Depression in Teens", "Family Conflicts", "School-related Issues"],
-        ar: ["اضطراب نقص الانتباه", "اضطراب طيف التوحد", "صعوبات التعلم", "الاضطرابات السلوكية", "القلق عند الأطفال", "الاكتئاب عند المراهقين", "الصراعات الأسرية", "المشاكل المدرسية"]
+        en: ["Generalized Anxiety Disorder", "Major Depression", "Panic Disorder", "Social Anxiety", "Mood Disorders", "Stress-related Disorders", "Adjustment Disorders", "Sleep Disorders"],
+        ar: ["اضطراب القلق العام", "الاكتئاب الشديد", "اضطراب الهلع", "القلق الاجتماعي", "اضطرابات المزاج", "الاضطرابات المرتبطة بالتوتر", "اضطرابات التكيف", "اضطرابات النوم"]
       },
       awards: {
-        en: ["Child Advocate Award 2023", "Excellence in Child Mental Health", "Family Therapy Recognition", "Youth Development Award"],
-        ar: ["جائزة مدافع عن الأطفال 2023", "التميز في الصحة النفسية للأطفال", "تقدير العلاج الأسري", "جائزة تنمية الشباب"]
+        en: ["Young Psychiatrist Award", "Excellence in Patient Care", "Mental Health Advocacy", "Community Health Service"],
+        ar: ["جائزة الطبيب النفسي الشاب", "التميز في رعاية المرضى", "الدفاع عن الصحة النفسية", "خدمة الصحة المجتمعية"]
       },
       availability: {
-        days: { en: ["Monday", "Wednesday", "Thursday", "Saturday"], ar: ["الاثنين", "الأربعاء", "الخميس", "السبت"] },
+        days: { en: ["Sunday", "Tuesday", "Wednesday", "Thursday"], ar: ["الأحد", "الثلاثاء", "الأربعاء", "الخميس"] },
+        hours: { en: "9:00 AM - 5:00 PM", ar: "9:00 صباحاً - 5:00 مساءً" },
+        location: { en: "In-person and Online", ar: "حضوري وعبر الإنترنت" }
+      }
+    },
+    "dr-nada-alawadi": {
+      name: { en: "Dr. Nada Al-Awadi", ar: "د. ندى العوضي" },
+      specialty: { en: "Psychiatrist & Psychological Treatment", ar: "طبيبة ومعالجة نفسية" },
+      title: { en: "M.D., Psychiatrist & Psychological Therapist", ar: "دكتورة في الطب، طبيبة ومعالجة نفسية" },
+      image: "/lovable-uploads/5a3488b9-e38f-44f4-90d7-8dce28f0003a.png",
+      experience: { en: "9+ years", ar: "أكثر من 9 سنوات" },
+      education: {
+        en: [
+          "M.D. in Psychiatry - Ain Shams University",
+          "Diploma in Psychological Therapy",
+          "Certificate in Family Therapy"
+        ],
+        ar: [
+          "دكتوراه في الطب النفسي - جامعة عين شمس",
+          "دبلوم في العلاج النفسي",
+          "شهادة في العلاج الأسري"
+        ]
+      },
+      licenses: {
+        en: [
+          "Licensed Psychiatrist - Egypt",
+          "Certified Psychological Therapist",
+          "Licensed Medical Practitioner"
+        ],
+        ar: [
+          "طبيبة نفسية مرخصة - مصر",
+          "معالجة نفسية معتمدة",
+          "ممارس طبي مرخص"
+        ]
+      },
+      bio: {
+        en: "Dr. Nada Al-Awadi is an expert in psychiatric medicine and psychological treatment with a focus on holistic patient care. She combines medical expertise with therapeutic approaches to provide comprehensive mental health solutions.",
+        ar: "د. ندى العوضي خبيرة في الطب النفسي والعلاج النفسي مع التركيز على الرعاية الشاملة للمرضى. تجمع بين الخبرة الطبية والمناهج العلاجية لتقديم حلول شاملة للصحة النفسية."
+      },
+      expertise: {
+        en: ["Psychiatry", "Psychological Treatment", "Therapy", "Holistic Care", "Women's Mental Health", "Postpartum Depression", "Anxiety Management", "Family Counseling"],
+        ar: ["الطب النفسي", "العلاج النفسي", "العلاج", "الرعاية الشاملة", "الصحة النفسية للمرأة", "اكتئاب ما بعد الولادة", "إدارة القلق", "الاستشارة الأسرية"]
+      },
+      conditions: {
+        en: ["Women's Mental Health Issues", "Postpartum Depression", "Anxiety Disorders", "Depression", "Relationship Issues", "Family Conflicts", "Stress Management", "Mood Disorders"],
+        ar: ["قضايا الصحة النفسية للمرأة", "اكتئاب ما بعد الولادة", "اضطرابات القلق", "الاكتئاب", "مشاكل العلاقات", "الصراعات الأسرية", "إدارة التوتر", "اضطرابات المزاج"]
+      },
+      awards: {
+        en: ["Women's Health Champion", "Excellence in Psychological Care", "Family Therapy Recognition", "Mental Health Advocacy Award"],
+        ar: ["بطلة صحة المرأة", "التميز في الرعاية النفسية", "تقدير العلاج الأسري", "جائزة الدفاع عن الصحة النفسية"]
+      },
+      availability: {
+        days: { en: ["Sunday", "Monday", "Tuesday", "Thursday"], ar: ["الأحد", "الاثنين", "الثلاثاء", "الخميس"] },
         hours: { en: "10:00 AM - 7:00 PM", ar: "10:00 صباحاً - 7:00 مساءً" },
         location: { en: "In-person and Online", ar: "حضوري وعبر الإنترنت" }
       }
     },
-    "dr-james-thompson": {
-      name: { en: "Dr. James Thompson", ar: "د. جيمس طومسون" },
-      specialty: { en: "Trauma Specialist", ar: "أخصائي الصدمات" },
-      title: { en: "Ph.D., Trauma & PTSD Specialist", ar: "دكتوراه، أخصائي الصدمات واضطراب ما بعد الصدمة" },
-      image: "https://images.unsplash.com/photo-1582750433449-648ed127bb54?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
-      experience: { en: "18+ years", ar: "أكثر من 18 سنة" },
+    "prof-bahaa-mohammed-sharaf-eldin": {
+      name: { en: "Prof. Bahaa Mohammed Sharaf El-Din", ar: "أ. بهاء محمد شرف الدين" },
+      specialty: { en: "Clinical Psychologist", ar: "أخصائي نفسي إكلينيكي" },
+      title: { en: "Ph.D., Professor of Clinical Psychology", ar: "دكتوراه، أستاذ علم النفس الإكلينيكي" },
+      image: "/lovable-uploads/311b6663-caea-4df5-be65-6d3bbf5e434d.png",
+      experience: { en: "15+ years", ar: "أكثر من 15 سنة" },
       education: {
         en: [
-          "Ph.D. in Clinical Psychology - University of Pennsylvania",
-          "Trauma Therapy Specialization - Harvard Medical School",
-          "B.A. in Psychology - Yale University"
+          "Ph.D. in Clinical Psychology - Cairo University",
+          "Master's in Applied Psychology",
+          "Certification in Cognitive Behavioral Therapy"
         ],
         ar: [
-          "دكتوراه في علم النفس السريري - جامعة بنسلفانيا",
-          "تخصص علاج الصدمات - كلية الطب بجامعة هارفارد",
-          "بكالوريوس في علم النفس - جامعة ييل"
+          "دكتوراه في علم النفس الإكلينيكي - جامعة القاهرة",
+          "ماجستير في علم النفس التطبيقي",
+          "شهادة في العلاج المعرفي السلوكي"
         ]
       },
       licenses: {
         en: [
-          "Licensed Clinical Psychologist",
-          "EMDR Certified Therapist",
-          "Trauma-Informed Care Specialist"
+          "Licensed Clinical Psychologist - Egypt",
+          "University Professor",
+          "Certified CBT Therapist"
         ],
         ar: [
-          "أخصائي نفسي سريري مرخص",
-          "معالج EMDR معتمد",
-          "أخصائي الرعاية الواعية بالصدمات"
+          "أخصائي نفسي إكلينيكي مرخص - مصر",
+          "أستاذ جامعي",
+          "معالج معرفي سلوكي معتمد"
         ]
       },
       bio: {
-        en: "Dr. James Thompson specializes in PTSD treatment and trauma recovery using evidence-based therapeutic approaches, helping individuals heal from their most difficult experiences.",
-        ar: "د. جيمس طومسون يتخصص في علاج اضطراب ما بعد الصدمة وتعافي الصدمات باستخدام المناهج العلاجية القائمة على الأدلة، مساعدة الأفراد على التعافي من أصعب تجاربهم."
+        en: "Professor Bahaa Mohammed Sharaf El-Din is a distinguished clinical psychologist with extensive experience in psychological assessment and therapy. As an academic and practitioner, he brings both theoretical knowledge and practical expertise to patient care.",
+        ar: "الأستاذ بهاء محمد شرف الدين أخصائي نفسي إكلينيكي متميز مع خبرة واسعة في التقييم النفسي والعلاج. كأكاديمي وممارس، يجلب المعرفة النظرية والخبرة العملية لرعاية المرضى."
       },
       expertise: {
-        en: ["PTSD", "Trauma Recovery", "EMDR", "Combat Trauma", "Sexual Trauma", "Childhood Trauma", "Complex PTSD", "Crisis Intervention"],
-        ar: ["اضطراب ما بعد الصدمة", "تعافي الصدمات", "EMDR", "صدمة القتال", "الصدمة الجنسية", "صدمة الطفولة", "اضطراب ما بعد الصدمة المعقد", "التدخل في الأزمات"]
+        en: ["Clinical Psychology", "Psychological Assessment", "Therapy", "Research", "Academic Psychology", "Cognitive Behavioral Therapy", "Personality Disorders", "Psychological Testing"],
+        ar: ["علم النفس الإكلينيكي", "التقييم النفسي", "العلاج", "البحث", "علم النفس الأكاديمي", "العلاج المعرفي السلوكي", "اضطرابات الشخصية", "الاختبارات النفسية"]
       },
       conditions: {
-        en: ["PTSD", "Complex Trauma", "Acute Stress Disorder", "Dissociative Disorders", "Combat-related PTSD", "Sexual Assault Recovery", "Childhood Abuse Recovery", "Survivor Guilt"],
-        ar: ["اضطراب ما بعد الصدمة", "الصدمة المعقدة", "اضطراب الإجهاد الحاد", "الاضطرابات التفككية", "اضطراب ما بعد الصدمة المرتبط بالقتال", "تعافي الاعتداء الجنسي", "تعافي إساءة معاملة الأطفال", "ذنب الناجي"]
+        en: ["Personality Disorders", "Anxiety Disorders", "Depression", "Psychological Trauma", "Behavioral Issues", "Learning Difficulties", "Psychological Assessment Needs", "Academic Stress"],
+        ar: ["اضطرابات الشخصية", "اضطرابات القلق", "الاكتئاب", "الصدمة النفسية", "المشاكل السلوكية", "صعوبات التعلم", "احتياجات التقييم النفسي", "التوتر الأكاديمي"]
       },
       awards: {
-        en: ["Trauma Treatment Excellence Award", "PTSD Research Recognition", "Military Service Appreciation", "Community Crisis Response Award"],
-        ar: ["جائزة التميز في علاج الصدمات", "تقدير بحوث اضطراب ما بعد الصدمة", "تقدير الخدمة العسكرية", "جائزة الاستجابة للأزمات المجتمعية"]
-      },
-      availability: {
-        days: { en: ["Tuesday", "Wednesday", "Thursday", "Friday"], ar: ["الثلاثاء", "الأربعاء", "الخميس", "الجمعة"] },
-        hours: { en: "9:00 AM - 6:00 PM", ar: "9:00 صباحاً - 6:00 مساءً" },
-        location: { en: "In-person and Online", ar: "حضوري وعبر الإنترنت" }
-      }
-    },
-    "dr-lisa-park": {
-      name: { en: "Dr. Lisa Park", ar: "د. ليزا بارك" },
-      specialty: { en: "Addiction Counselor", ar: "مستشار الإدمان" },
-      title: { en: "Ph.D., Addiction & Recovery Specialist", ar: "دكتوراه، أخصائي الإدمان والتعافي" },
-      image: "https://images.unsplash.com/photo-1551601651-2a8555f1a136?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
-      experience: { en: "14+ years", ar: "أكثر من 14 سنة" },
-      education: {
-        en: [
-          "Ph.D. in Addiction Psychology - University of Washington",
-          "M.A. in Counseling Psychology - Seattle University",
-          "B.A. in Social Work - University of Oregon"
-        ],
-        ar: [
-          "دكتوراه في علم نفس الإدمان - جامعة واشنطن",
-          "ماجستير في علم النفس الإرشادي - جامعة سياتل",
-          "بكالوريوس في العمل الاجتماعي - جامعة أوريغون"
-        ]
-      },
-      licenses: {
-        en: [
-          "Licensed Addiction Counselor",
-          "Certified Substance Abuse Counselor",
-          "Group Therapy Specialist"
-        ],
-        ar: [
-          "مستشار إدمان مرخص",
-          "مستشار تعاطي المواد المخدرة معتمد",
-          "أخصائي العلاج الجماعي"
-        ]
-      },
-      bio: {
-        en: "Dr. Lisa Park provides compassionate care for addiction recovery and substance abuse treatment programs, helping individuals reclaim their lives through evidence-based recovery approaches.",
-        ar: "د. ليزا بارك تقدم رعاية متفهمة لتعافي الإدمان وبرامج علاج تعاطي المواد المخدرة، مساعدة الأفراد على استعادة حياتهم من خلال مناهج التعافي القائمة على الأدلة."
-      },
-      expertise: {
-        en: ["Addiction Recovery", "Substance Abuse", "Group Therapy", "12-Step Programs", "Relapse Prevention", "Dual Diagnosis", "Family Addiction Counseling", "Motivational Interviewing"],
-        ar: ["تعافي الإدمان", "تعاطي المواد المخدرة", "العلاج الجماعي", "برامج الخطوات الاثني عشر", "منع الانتكاس", "التشخيص المزدوج", "استشارات إدمان الأسرة", "المقابلة التحفيزية"]
-      },
-      conditions: {
-        en: ["Alcohol Addiction", "Drug Addiction", "Gambling Addiction", "Behavioral Addictions", "Co-occurring Disorders", "Prescription Drug Abuse", "Nicotine Addiction", "Internet Addiction"],
-        ar: ["إدمان الكحول", "إدمان المخدرات", "إدمان القمار", "الإدمان السلوكي", "الاضطرابات المتزامنة", "إساءة استخدام الأدوية الموصوفة", "إدمان النيكوتين", "إدمان الإنترنت"]
-      },
-      awards: {
-        en: ["Addiction Recovery Excellence Award", "Community Service Recognition", "Research in Addiction Treatment", "Family Support Program Award"],
-        ar: ["جائزة التميز في تعافي الإدمان", "تقدير الخدمة المجتمعية", "البحث في علاج الإدمان", "جائزة برنامج دعم الأسرة"]
+        en: ["Academic Excellence Award", "Research in Clinical Psychology", "Outstanding Professor Award", "Psychological Assessment Innovation"],
+        ar: ["جائزة التميز الأكاديمي", "البحث في علم النفس الإكلينيكي", "جائزة الأستاذ المتميز", "ابتكار التقييم النفسي"]
       },
       availability: {
         days: { en: ["Monday", "Tuesday", "Wednesday", "Thursday"], ar: ["الاثنين", "الثلاثاء", "الأربعاء", "الخميس"] },
-        hours: { en: "8:00 AM - 7:00 PM", ar: "8:00 صباحاً - 7:00 مساءً" },
+        hours: { en: "9:00 AM - 4:00 PM", ar: "9:00 صباحاً - 4:00 مساءً" },
         location: { en: "In-person and Online", ar: "حضوري وعبر الإنترنت" }
       }
     },
-    "dr-david-wilson": {
-      name: { en: "Dr. David Wilson", ar: "د. ديفيد ويلسون" },
-      specialty: { en: "Couples Therapy", ar: "علاج الأزواج" },
-      title: { en: "Ph.D., Marriage & Family Therapist", ar: "دكتوراه، معالج الزواج والأسرة" },
-      image: "https://images.unsplash.com/photo-1607990281513-2c110a25bd8c?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
-      experience: { en: "16+ years", ar: "أكثر من 16 سنة" },
+    "dr-fatima-abdeldin": {
+      name: { en: "Dr. Fatima Abdeldin", ar: "د. فاطمة عابدين" },
+      specialty: { en: "Psychiatrist & Psychological Treatment", ar: "طبيبة ومعالجة نفسية" },
+      title: { en: "M.D., Psychiatrist & Psychological Therapist", ar: "دكتورة في الطب، طبيبة ومعالجة نفسية" },
+      image: "/lovable-uploads/c75597ef-239d-4c00-b646-6e4c3a125dd8.png",
+      experience: { en: "11+ years", ar: "أكثر من 11 سنة" },
       education: {
         en: [
-          "Ph.D. in Marriage & Family Therapy - University of Southern California",
-          "M.A. in Counseling Psychology - Pepperdine University",
-          "B.A. in Psychology - UCLA"
+          "M.D. in Psychiatry - Al-Azhar University",
+          "Fellowship in Psychological Therapy",
+          "Certificate in Mindfulness-Based Therapy"
         ],
         ar: [
-          "دكتوراه في علاج الزواج والأسرة - جامعة جنوب كاليفورنيا",
-          "ماجستير في علم النفس الإرشادي - جامعة بيبردين",
-          "بكالوريوس في علم النفس - جامعة كاليفورنيا"
+          "دكتوراه في الطب النفسي - جامعة الأزهر",
+          "زمالة في العلاج النفسي",
+          "شهادة في العلاج القائم على اليقظة"
         ]
       },
       licenses: {
         en: [
-          "Licensed Marriage & Family Therapist",
-          "Certified Gottman Couples Therapist",
-          "Emotionally Focused Therapy (EFT) Certified"
+          "Licensed Psychiatrist - Egypt",
+          "Certified Psychological Therapist",
+          "Mindfulness Therapy Certified"
         ],
         ar: [
-          "معالج زواج وأسرة مرخص",
-          "معالج أزواج جوتمان معتمد",
-          "معتمد في العلاج المركز على المشاعر"
+          "طبيبة نفسية مرخصة - مصر",
+          "معالجة نفسية معتمدة",
+          "معتمدة في علاج اليقظة"
         ]
       },
       bio: {
-        en: "Dr. David Wilson helps couples strengthen relationships and improve communication through therapeutic intervention, specializing in evidence-based approaches to relationship healing and growth.",
-        ar: "د. ديفيد ويلسون يساعد الأزواج على تقوية العلاقات وتحسين التواصل من خلال التدخل العلاجي، متخصص في المناهج القائمة على الأدلة لشفاء ونمو العلاقات."
+        en: "Dr. Fatima Abdeldin is a specialist in psychiatric medicine and psychological treatment with a compassionate approach to patient care. She integrates traditional psychiatric methods with modern therapeutic techniques for comprehensive treatment.",
+        ar: "د. فاطمة عابدين متخصصة في الطب النفسي والعلاج النفسي مع نهج متفهم في رعاية المرضى. تدمج الطرق النفسية التقليدية مع التقنيات العلاجية الحديثة للعلاج الشامل."
       },
       expertise: {
-        en: ["Couples Therapy", "Marriage Counseling", "Communication", "Relationship Building", "Conflict Resolution", "Intimacy Issues", "Pre-marital Counseling", "Divorce Mediation"],
-        ar: ["علاج الأزواج", "استشارات الزواج", "التواصل", "بناء العلاقات", "حل النزاعات", "مشاكل الحميمية", "الاستشارة قبل الزواج", "وساطة الطلاق"]
+        en: ["Psychiatry", "Psychological Treatment", "Mental Health", "Mindfulness Therapy", "Stress Management", "Depression Treatment", "Anxiety Management", "Holistic Therapy"],
+        ar: ["الطب النفسي", "العلاج النفسي", "الصحة النفسية", "علاج اليقظة", "إدارة التوتر", "علاج الاكتئاب", "إدارة القلق", "العلاج الشامل"]
       },
       conditions: {
-        en: ["Relationship Conflicts", "Communication Problems", "Trust Issues", "Infidelity Recovery", "Sexual Intimacy Issues", "Parenting Conflicts", "Blended Family Issues", "Separation/Divorce"],
-        ar: ["صراعات العلاقات", "مشاكل التواصل", "قضايا الثقة", "تعافي الخيانة", "مشاكل الحميمية الجنسية", "صراعات الأبوة والأمومة", "مشاكل الأسرة المختلطة", "الانفصال/الطلاق"]
+        en: ["Depression", "Anxiety Disorders", "Stress-related Disorders", "Panic Disorder", "Mood Disorders", "Sleep Disorders", "Chronic Stress", "Emotional Regulation Issues"],
+        ar: ["الاكتئاب", "اضطرابات القلق", "الاضطرابات المرتبطة بالتوتر", "اضطراب الهلع", "اضطرابات المزاج", "اضطرابات النوم", "التوتر المزمن", "مشاكل تنظيم المشاعر"]
       },
       awards: {
-        en: ["Excellence in Couples Therapy", "Relationship Counseling Recognition", "Family Therapy Innovation Award", "Community Marriage Support Award"],
-        ar: ["التميز في علاج الأزواج", "تقدير استشارات العلاقات", "جائزة الابتكار في العلاج الأسري", "جائزة دعم الزواج المجتمعي"]
+        en: ["Compassionate Care Award", "Innovation in Mental Health", "Patient Satisfaction Excellence", "Mindfulness Therapy Recognition"],
+        ar: ["جائزة الرعاية المتفهمة", "الابتكار في الصحة النفسية", "التميز في رضا المرضى", "تقدير علاج اليقظة"]
       },
       availability: {
-        days: { en: ["Monday", "Wednesday", "Friday", "Saturday"], ar: ["الاثنين", "الأربعاء", "الجمعة", "السبت"] },
-        hours: { en: "10:00 AM - 8:00 PM", ar: "10:00 صباحاً - 8:00 مساءً" },
+        days: { en: ["Sunday", "Monday", "Wednesday", "Friday"], ar: ["الأحد", "الاثنين", "الأربعاء", "الجمعة"] },
+        hours: { en: "10:00 AM - 6:00 PM", ar: "10:00 صباحاً - 6:00 مساءً" },
         location: { en: "In-person and Online", ar: "حضوري وعبر الإنترنت" }
       }
     }

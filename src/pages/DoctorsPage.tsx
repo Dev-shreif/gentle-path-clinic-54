@@ -29,83 +29,83 @@ const DoctorsPage = () => {
     },
     {
       id: 2,
-      name: { en: "Dr. Michael Rodriguez", ar: "د. مايكل رودريجيز" },
-      slug: "dr-michael-rodriguez",
-      specialty: { en: "Psychiatrist", ar: "طبيب نفسي" },
-      image: "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+      name: { en: "Dr. Maha Mohsen", ar: "د. مها محسن" },
+      slug: "dr-maha-mohsen",
+      specialty: { en: "Psychiatrist & Addiction Treatment", ar: "أخصائي الطب النفسي وعلاج الإدمان" },
+      image: "/lovable-uploads/cede00fa-ffe6-4d0c-9026-3dbff006bbad.png",
       description: { 
-        en: "Expert in mood disorders and medication management, helping patients achieve optimal mental health.",
-        ar: "خبير في اضطرابات المزاج وإدارة الأدوية، يساعد المرضى على تحقيق الصحة النفسية المثلى."
+        en: "Specialist in psychiatric medicine and addiction treatment with extensive experience in comprehensive mental health care.",
+        ar: "أخصائية في الطب النفسي وعلاج الإدمان مع خبرة واسعة في الرعاية الشاملة للصحة النفسية."
       },
       expertise: {
-        en: ["Depression", "Bipolar Disorder", "Medication Management"],
-        ar: ["الاكتئاب", "اضطراب ثنائي القطب", "إدارة الأدوية"]
+        en: ["Psychiatry", "Addiction Treatment", "Mental Health"],
+        ar: ["الطب النفسي", "علاج الإدمان", "الصحة النفسية"]
       },
       experience: { en: "12+ years", ar: "أكثر من 12 سنة" }
     },
     {
       id: 3,
-      name: { en: "Dr. Emily Chen", ar: "د. إيميلي تشين" },
-      slug: "dr-emily-chen",
-      specialty: { en: "Child Psychology", ar: "علم نفس الأطفال" },
-      image: "https://images.unsplash.com/photo-1594824709602-7b0c7b2e0c2e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+      name: { en: "Dr. Heba Ahmed Al-Azab", ar: "د. هبة أحمد العزب" },
+      slug: "dr-heba-ahmed-alazab",
+      specialty: { en: "Psychiatrist", ar: "طبيبة نفسية" },
+      image: "/lovable-uploads/2f284f11-59ed-4850-9684-375341aae1ba.png",
       description: { 
-        en: "Dedicated to helping children and adolescents navigate emotional and behavioral challenges.",
-        ar: "مكرسة لمساعدة الأطفال والمراهقين على التنقل في التحديات العاطفية والسلوكية."
+        en: "Dedicated psychiatrist specializing in comprehensive mental health treatment and patient care.",
+        ar: "طبيبة نفسية مكرسة متخصصة في العلاج الشامل للصحة النفسية ورعاية المرضى."
       },
       expertise: {
-        en: ["Child Psychology", "ADHD", "Family Therapy"],
-        ar: ["علم نفس الأطفال", "اضطراب نقص الانتباه", "العلاج الأسري"]
+        en: ["Psychiatry", "Mental Health Treatment", "Patient Care"],
+        ar: ["الطب النفسي", "علاج الصحة النفسية", "رعاية المرضى"]
       },
-      experience: { en: "10+ years", ar: "أكثر من 10 سنوات" }
+      experience: { en: "8+ years", ar: "أكثر من 8 سنوات" }
     },
     {
       id: 4,
-      name: { en: "Dr. James Thompson", ar: "د. جيمس طومسون" },
-      slug: "dr-james-thompson",
-      specialty: { en: "Trauma Specialist", ar: "أخصائي الصدمات" },
-      image: "https://images.unsplash.com/photo-1582750433449-648ed127bb54?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+      name: { en: "Dr. Nada Al-Awadi", ar: "د. ندى العوضي" },
+      slug: "dr-nada-alawadi",
+      specialty: { en: "Psychiatrist & Psychological Treatment", ar: "طبيبة ومعالجة نفسية" },
+      image: "/lovable-uploads/5a3488b9-e38f-44f4-90d7-8dce28f0003a.png",
       description: { 
-        en: "Specialized in PTSD treatment and trauma recovery using evidence-based therapeutic approaches.",
-        ar: "متخصص في علاج اضطراب ما بعد الصدمة وتعافي الصدمات باستخدام المناهج العلاجية القائمة على الأدلة."
+        en: "Expert in psychiatric medicine and psychological treatment with a focus on holistic patient care.",
+        ar: "خبيرة في الطب النفسي والعلاج النفسي مع التركيز على الرعاية الشاملة للمرضى."
       },
       expertise: {
-        en: ["PTSD", "Trauma Recovery", "EMDR"],
-        ar: ["اضطراب ما بعد الصدمة", "تعافي الصدمات", "EMDR"]
+        en: ["Psychiatry", "Psychological Treatment", "Therapy"],
+        ar: ["الطب النفسي", "العلاج النفسي", "العلاج"]
       },
-      experience: { en: "18+ years", ar: "أكثر من 18 سنة" }
+      experience: { en: "9+ years", ar: "أكثر من 9 سنوات" }
     },
     {
       id: 5,
-      name: { en: "Dr. Lisa Park", ar: "د. ليزا بارك" },
-      slug: "dr-lisa-park",
-      specialty: { en: "Addiction Counselor", ar: "مستشار الإدمان" },
-      image: "https://images.unsplash.com/photo-1551601651-2a8555f1a136?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+      name: { en: "Prof. Bahaa Mohammed Sharaf El-Din", ar: "أ. بهاء محمد شرف الدين" },
+      slug: "prof-bahaa-mohammed-sharaf-eldin",
+      specialty: { en: "Clinical Psychologist", ar: "أخصائي نفسي إكلينيكي" },
+      image: "/lovable-uploads/311b6663-caea-4df5-be65-6d3bbf5e434d.png",
       description: { 
-        en: "Compassionate care for addiction recovery and substance abuse treatment programs.",
-        ar: "رعاية متفهمة لتعافي الإدمان وبرامج علاج تعاطي المواد المخدرة."
+        en: "Professor and clinical psychologist with extensive experience in psychological assessment and therapy.",
+        ar: "أستاذ وأخصائي نفسي إكلينيكي مع خبرة واسعة في التقييم النفسي والعلاج."
       },
       expertise: {
-        en: ["Addiction Recovery", "Substance Abuse", "Group Therapy"],
-        ar: ["تعافي الإدمان", "تعاطي المواد المخدرة", "العلاج الجماعي"]
+        en: ["Clinical Psychology", "Psychological Assessment", "Therapy"],
+        ar: ["علم النفس الإكلينيكي", "التقييم النفسي", "العلاج"]
       },
-      experience: { en: "14+ years", ar: "أكثر من 14 سنة" }
+      experience: { en: "15+ years", ar: "أكثر من 15 سنة" }
     },
     {
       id: 6,
-      name: { en: "Dr. David Wilson", ar: "د. ديفيد ويلسون" },
-      slug: "dr-david-wilson",
-      specialty: { en: "Couples Therapy", ar: "علاج الأزواج" },
-      image: "https://images.unsplash.com/photo-1607990281513-2c110a25bd8c?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+      name: { en: "Dr. Fatima Abdeldin", ar: "د. فاطمة عابدين" },
+      slug: "dr-fatima-abdeldin",
+      specialty: { en: "Psychiatrist & Psychological Treatment", ar: "طبيبة ومعالجة نفسية" },
+      image: "/lovable-uploads/c75597ef-239d-4c00-b646-6e4c3a125dd8.png",
       description: { 
-        en: "Helping couples strengthen relationships and improve communication through therapeutic intervention.",
-        ar: "مساعدة الأزواج على تقوية العلاقات وتحسين التواصل من خلال التدخل العلاجي."
+        en: "Specialist in psychiatric medicine and psychological treatment with a compassionate approach to patient care.",
+        ar: "متخصصة في الطب النفسي والعلاج النفسي مع نهج متفهم في رعاية المرضى."
       },
       expertise: {
-        en: ["Couples Therapy", "Marriage Counseling", "Communication"],
-        ar: ["علاج الأزواج", "استشارات الزواج", "التواصل"]
+        en: ["Psychiatry", "Psychological Treatment", "Mental Health"],
+        ar: ["الطب النفسي", "العلاج النفسي", "الصحة النفسية"]
       },
-      experience: { en: "16+ years", ar: "أكثر من 16 سنة" }
+      experience: { en: "11+ years", ar: "أكثر من 11 سنة" }
     }
   ];
 
