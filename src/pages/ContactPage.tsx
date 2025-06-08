@@ -1,0 +1,248 @@
+
+import { useState } from "react";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
+import { MapPin, Phone, Mail, Clock, MessageCircle } from "lucide-react";
+
+const ContactPage = () => {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    subject: "",
+    message: ""
+  });
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    console.log("Form submitted:", formData);
+    // Handle form submission
+  };
+
+  const updateForm = (field: string, value: string) => {
+    setFormData(prev => ({ ...prev, [field]: value }));
+  };
+
+  return (
+    <div className="min-h-screen pt-24 pb-16">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Header */}
+        <div className="text-center mb-16">
+          <h1 className="text-4xl md:text-5xl font-light text-balance mb-6">
+            Get in{" "}
+            <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent font-medium">
+              Touch
+            </span>
+          </h1>
+          <p className="text-xl text-muted-foreground max-w-3xl mx-auto text-balance">
+            We're here to answer your questions and help you take the first step 
+            toward better mental health.
+          </p>
+        </div>
+
+        <div className="grid lg:grid-cols-2 gap-12">
+          {/* Contact Information */}
+          <div className="space-y-8">
+            <div>
+              <h2 className="text-2xl font-light mb-6">Contact Information</h2>
+              <div className="space-y-6">
+                <div className="flex items-start space-x-4">
+                  <div className="bg-primary/10 p-3 rounded-xl">
+                    <MapPin className="h-6 w-6 text-primary" />
+                  </div>
+                  <div>
+                    <h3 className="font-medium mb-1">Visit Our Clinic</h3>
+                    <p className="text-muted-foreground">
+                      123 Wellness Boulevard<br />
+                      Peaceful Gardens, CA 90210<br />
+                      United States
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex items-start space-x-4">
+                  <div className="bg-primary/10 p-3 rounded-xl">
+                    <Phone className="h-6 w-6 text-primary" />
+                  </div>
+                  <div>
+                    <h3 className="font-medium mb-1">Call Us</h3>
+                    <p className="text-muted-foreground">
+                      Main: (555) 123-4567<br />
+                      Emergency: (555) 123-4568<br />
+                      Fax: (555) 123-4569
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex items-start space-x-4">
+                  <div className="bg-primary/10 p-3 rounded-xl">
+                    <Mail className="h-6 w-6 text-primary" />
+                  </div>
+                  <div>
+                    <h3 className="font-medium mb-1">Email Us</h3>
+                    <p className="text-muted-foreground">
+                      info@serenityclinic.com<br />
+                      appointments@serenityclinic.com<br />
+                      support@serenityclinic.com
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex items-start space-x-4">
+                  <div className="bg-primary/10 p-3 rounded-xl">
+                    <Clock className="h-6 w-6 text-primary" />
+                  </div>
+                  <div>
+                    <h3 className="font-medium mb-1">Office Hours</h3>
+                    <p className="text-muted-foreground">
+                      Monday - Friday: 8:00 AM - 7:00 PM<br />
+                      Saturday: 9:00 AM - 5:00 PM<br />
+                      Sunday: Emergency Only
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Quick Actions */}
+            <div>
+              <h3 className="text-lg font-medium mb-4">Quick Actions</h3>
+              <div className="grid gap-4">
+                <Button className="gradient-calm text-white hover:opacity-90 justify-start">
+                  <MessageCircle className="h-4 w-4 mr-2" />
+                  Chat with WhatsApp
+                </Button>
+                <Button variant="outline" className="border-primary/20 hover:bg-primary/5 justify-start">
+                  <Phone className="h-4 w-4 mr-2" />
+                  Schedule Phone Call
+                </Button>
+                <Button variant="outline" className="border-primary/20 hover:bg-primary/5 justify-start">
+                  <Mail className="h-4 w-4 mr-2" />
+                  Send Direct Email
+                </Button>
+              </div>
+            </div>
+
+            {/* Map Placeholder */}
+            <div>
+              <h3 className="text-lg font-medium mb-4">Find Us</h3>
+              <div className="bg-muted/30 rounded-lg h-64 flex items-center justify-center border border-border/50">
+                <div className="text-center">
+                  <MapPin className="h-12 w-12 text-muted-foreground mx-auto mb-2" />
+                  <p className="text-muted-foreground">Interactive Map</p>
+                  <p className="text-sm text-muted-foreground">Coming Soon</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Contact Form */}
+          <div>
+            <Card className="border-border/50 shadow-xl">
+              <CardHeader>
+                <CardTitle className="text-2xl font-light">Send Us a Message</CardTitle>
+                <p className="text-muted-foreground">
+                  Fill out the form below and we'll get back to you within 24 hours.
+                </p>
+              </CardHeader>
+              <CardContent>
+                <form onSubmit={handleSubmit} className="space-y-6">
+                  <div className="grid md:grid-cols-2 gap-4">
+                    <div>
+                      <Label htmlFor="name">Full Name</Label>
+                      <Input 
+                        id="name"
+                        value={formData.name}
+                        onChange={(e) => updateForm("name", e.target.value)}
+                        placeholder="Enter your full name"
+                        required
+                      />
+                    </div>
+                    <div>
+                      <Label htmlFor="email">Email Address</Label>
+                      <Input 
+                        id="email"
+                        type="email"
+                        value={formData.email}
+                        onChange={(e) => updateForm("email", e.target.value)}
+                        placeholder="your.email@example.com"
+                        required
+                      />
+                    </div>
+                  </div>
+
+                  <div className="grid md:grid-cols-2 gap-4">
+                    <div>
+                      <Label htmlFor="phone">Phone Number</Label>
+                      <Input 
+                        id="phone"
+                        type="tel"
+                        value={formData.phone}
+                        onChange={(e) => updateForm("phone", e.target.value)}
+                        placeholder="(555) 123-4567"
+                      />
+                    </div>
+                    <div>
+                      <Label htmlFor="subject">Subject</Label>
+                      <Input 
+                        id="subject"
+                        value={formData.subject}
+                        onChange={(e) => updateForm("subject", e.target.value)}
+                        placeholder="How can we help you?"
+                        required
+                      />
+                    </div>
+                  </div>
+
+                  <div>
+                    <Label htmlFor="message">Message</Label>
+                    <Textarea 
+                      id="message"
+                      value={formData.message}
+                      onChange={(e) => updateForm("message", e.target.value)}
+                      placeholder="Tell us about your needs or questions..."
+                      rows={6}
+                      required
+                    />
+                  </div>
+
+                  <Button type="submit" className="w-full gradient-calm text-white hover:opacity-90">
+                    Send Message
+                  </Button>
+                </form>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+
+        {/* Emergency Notice */}
+        <div className="mt-16">
+          <Card className="bg-red-50 border-red-200 dark:bg-red-950 dark:border-red-800">
+            <CardContent className="p-6 text-center">
+              <h3 className="text-lg font-semibold text-red-800 dark:text-red-200 mb-2">
+                Mental Health Emergency?
+              </h3>
+              <p className="text-red-700 dark:text-red-300 mb-4">
+                If you're experiencing a mental health crisis, please don't wait. 
+                Get immediate help.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <Button variant="destructive">
+                  Call 911
+                </Button>
+                <Button variant="outline" className="border-red-300 text-red-700 hover:bg-red-50">
+                  Crisis Hotline: 988
+                </Button>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default ContactPage;
