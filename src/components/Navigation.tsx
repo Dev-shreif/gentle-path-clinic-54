@@ -52,7 +52,11 @@ const Navigation = () => {
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-2">
-            <div className="w-8 h-8 bg-gradient-to-br from-primary to-secondary rounded-full breathe"></div>
+            <img 
+              src="/lovable-uploads/36a42d1e-c23b-434f-bd19-8934d8c3eccc.png" 
+              alt="Journey Mental Health Clinic" 
+              className="w-10 h-10 object-contain"
+            />
             <span className="text-xl font-semibold text-foreground">
               {language === "en" ? "Journey" : "رحلة"}
             </span>

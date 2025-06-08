@@ -1,4 +1,3 @@
-
 import { useParams, Link } from "react-router-dom";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -11,6 +10,58 @@ const DoctorProfile = () => {
 
   // Mock doctor data - in a real app, this would come from an API
   const doctorData: { [key: string]: any } = {
+    "dr-abdel-rahman-mohsen": {
+      name: { en: "Dr. Abdel Rahman Mohsen", ar: "د. عبد الرحمن محسن" },
+      specialty: { en: "Psychiatrist", ar: "أخصائي الطب النفسي" },
+      title: { en: "M.D., Licensed Psychiatrist", ar: "دكتور في الطب، طبيب نفسي مرخص" },
+      image: "/lovable-uploads/56124021-c453-4af0-a73d-55eba7308a31.png",
+      experience: { en: "10+ years", ar: "أكثر من 10 سنوات" },
+      education: {
+        en: [
+          "M.D. in Psychiatry - Cairo University",
+          "Residency in Psychiatry - Ain Shams University Hospital",
+          "Fellowship in Clinical Psychology"
+        ],
+        ar: [
+          "دكتوراه في الطب النفسي - جامعة القاهرة",
+          "الإقامة في الطب النفسي - مستشفى جامعة عين شمس",
+          "زمالة في علم النفس السريري"
+        ]
+      },
+      licenses: {
+        en: [
+          "Licensed Psychiatrist - Egypt",
+          "Board Certified in Psychiatry",
+          "Certified Clinical Therapist"
+        ],
+        ar: [
+          "طبيب نفسي مرخص - مصر",
+          "معتمد من مجلس الطب النفسي",
+          "معالج نفسي معتمد"
+        ]
+      },
+      bio: {
+        en: "Dr. Abdel Rahman Mohsen is an experienced psychiatrist dedicated to providing comprehensive mental health care. With over 10 years of experience, he specializes in treating various psychological conditions using evidence-based approaches and personalized treatment plans.",
+        ar: "د. عبد الرحمن محسن طبيب نفسي ذو خبرة مكرس لتقديم رعاية شاملة للصحة النفسية. مع أكثر من 10 سنوات من الخبرة، يتخصص في علاج الحالات النفسية المختلفة باستخدام الأساليب القائمة على الأدلة وخطط العلاج الشخصية."
+      },
+      expertise: {
+        en: ["Depression", "Anxiety Disorders", "Psychological Therapy", "Stress Management", "PTSD", "Bipolar Disorder", "Panic Disorders", "Family Counseling"],
+        ar: ["الاكتئاب", "اضطرابات القلق", "العلاج النفسي", "إدارة التوتر", "اضطراب ما بعد الصدمة", "اضطراب ثنائي القطب", "اضطرابات الهلع", "الاستشارة الأسرية"]
+      },
+      conditions: {
+        en: ["Major Depression", "Generalized Anxiety Disorder", "Post-Traumatic Stress Disorder", "Bipolar Disorder", "Panic Disorder", "Social Anxiety", "Adjustment Disorders", "Chronic Stress"],
+        ar: ["الاكتئاب الشديد", "اضطراب القلق العام", "اضطراب ما بعد الصدمة", "اضطراب ثنائي القطب", "اضطراب الهلع", "القلق الاجتماعي", "اضطرابات التكيف", "التوتر المزمن"]
+      },
+      awards: {
+        en: ["Excellence in Mental Health Care Award", "Best Psychiatrist Recognition", "Community Service Award", "Patient Care Excellence"],
+        ar: ["جائزة التميز في الرعاية النفسية", "تقدير أفضل طبيب نفسي", "جائزة الخدمة المجتمعية", "التميز في رعاية المرضى"]
+      },
+      availability: {
+        days: { en: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday"], ar: ["الأحد", "الاثنين", "الثلاثاء", "الأربعاء", "الخميس"] },
+        hours: { en: "9:00 AM - 7:00 PM", ar: "9:00 صباحاً - 7:00 مساءً" },
+        location: { en: "In-person and Online", ar: "حضوري وعبر الإنترنت" }
+      }
+    },
     "dr-sarah-mitchell": {
       name: { en: "Dr. Sarah Mitchell", ar: "د. سارة ميتشل" },
       specialty: { en: "Clinical Psychology", ar: "علم النفس السريري" },
@@ -77,7 +128,7 @@ const DoctorProfile = () => {
         ],
         ar: [
           "دكتوراه في الطب - كلية الطب بجامعة جونز هوبكنز",
-          "الإقامة النفسية - مايو كلينيك",
+          "الإقامة النفسية - Mayo كلينيك",
           "بكالوريوس علوم في علم الأعصاب - جامعة كاليفورنيا"
         ]
       },
@@ -325,7 +376,7 @@ const DoctorProfile = () => {
     }
   };
 
-  const doctor = doctorData[doctorSlug || ""] || doctorData["dr-sarah-mitchell"];
+  const doctor = doctorData[doctorSlug || ""] || doctorData["dr-abdel-rahman-mohsen"];
 
   // Get language from localStorage or default to English
   const language = typeof window !== "undefined" ? (localStorage.getItem("language") || "en") : "en";

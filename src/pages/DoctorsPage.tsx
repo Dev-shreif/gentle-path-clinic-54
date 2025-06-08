@@ -13,19 +13,19 @@ const DoctorsPage = () => {
   const doctors = [
     {
       id: 1,
-      name: { en: "Dr. Sarah Mitchell", ar: "د. سارة ميتشل" },
-      slug: "dr-sarah-mitchell",
-      specialty: { en: "Clinical Psychology", ar: "علم النفس السريري" },
-      image: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+      name: { en: "Dr. Abdel Rahman Mohsen", ar: "د. عبد الرحمن محسن" },
+      slug: "dr-abdel-rahman-mohsen",
+      specialty: { en: "Psychiatrist", ar: "أخصائي الطب النفسي" },
+      image: "/lovable-uploads/56124021-c453-4af0-a73d-55eba7308a31.png",
       description: { 
-        en: "Specializing in anxiety disorders and cognitive behavioral therapy with over 15 years of experience.",
-        ar: "متخصصة في اضطرابات القلق والعلاج المعرفي السلوكي مع أكثر من 15 سنة من الخبرة."
+        en: "Experienced psychiatrist specializing in mental health treatment and psychological therapy with a focus on comprehensive patient care.",
+        ar: "طبيب نفسي ذو خبرة متخصص في علاج الصحة النفسية والعلاج النفسي مع التركيز على الرعاية الشاملة للمرضى."
       },
       expertise: {
-        en: ["Anxiety Disorders", "CBT", "Trauma Therapy"],
-        ar: ["اضطرابات القلق", "العلاج المعرفي السلوكي", "علاج الصدمات"]
+        en: ["Depression", "Anxiety Disorders", "Psychological Therapy"],
+        ar: ["الاكتئاب", "اضطرابات القلق", "العلاج النفسي"]
       },
-      experience: { en: "15+ years", ar: "أكثر من 15 سنة" }
+      experience: { en: "10+ years", ar: "أكثر من 10 سنوات" }
     },
     {
       id: 2,
