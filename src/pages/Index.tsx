@@ -84,10 +84,10 @@ const Index = () => {
             <div className="relative lg:justify-self-end">
               <div className="relative w-full max-w-md mx-auto">
                 <img src="https://images.unsplash.com/photo-1649972904349-6e44c42644a7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Peaceful therapy session" className="rounded-3xl shadow-2xl w-full h-96 object-cover breathe" />
-                <div className="absolute -bottom-6 -left-6 bg-white/90 backdrop-blur-sm rounded-2xl p-4 shadow-lg">
+                <div className="absolute -bottom-6 -left-6 backdrop-blur-sm rounded-2xl p-4 shadow-lg bg-slate-200">
                   <div className="flex items-center space-x-3">
                     <div className="w-3 h-3 bg-green-500 rounded-full"></div>
-                    <span className="text-sm font-medium">Available Today</span>
+                    <span className="text-sm font-medium text-slate-900">Available Today</span>
                   </div>
                 </div>
               </div>
