@@ -26,6 +26,18 @@ const ContactPage = () => {
     setFormData(prev => ({ ...prev, [field]: value }));
   };
 
+  const handleWhatsAppClick = () => {
+    window.open('https://wa.me/01551521419', '_blank');
+  };
+
+  const handleCallClick = () => {
+    window.open('tel:01551521419', '_self');
+  };
+
+  const handleLocationClick = () => {
+    window.open('https://maps.app.goo.gl/rp6jy8uvB5iHt5vb7', '_blank');
+  };
+
   return (
     <div className="min-h-screen pt-24 pb-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -56,10 +68,16 @@ const ContactPage = () => {
                   <div>
                     <h3 className="font-medium mb-1">Visit Our Clinic</h3>
                     <p className="text-muted-foreground">
-                      123 Wellness Boulevard<br />
-                      Peaceful Gardens, CA 90210<br />
-                      United States
+                      Mental Health Clinic<br />
+                      New Cairo, Egypt<br />
                     </p>
+                    <Button 
+                      variant="link" 
+                      className="p-0 h-auto text-primary hover:text-primary/80"
+                      onClick={handleLocationClick}
+                    >
+                      View on Map →
+                    </Button>
                   </div>
                 </div>
 
@@ -70,9 +88,12 @@ const ContactPage = () => {
                   <div>
                     <h3 className="font-medium mb-1">Call Us</h3>
                     <p className="text-muted-foreground">
-                      Main: (555) 123-4567<br />
-                      Emergency: (555) 123-4568<br />
-                      Fax: (555) 123-4569
+                      <button 
+                        onClick={handleCallClick}
+                        className="hover:text-primary transition-colors"
+                      >
+                        015 51521419
+                      </button>
                     </p>
                   </div>
                 </div>
@@ -85,8 +106,7 @@ const ContactPage = () => {
                     <h3 className="font-medium mb-1">Email Us</h3>
                     <p className="text-muted-foreground">
                       info@serenityclinic.com<br />
-                      appointments@serenityclinic.com<br />
-                      support@serenityclinic.com
+                      appointments@serenityclinic.com
                     </p>
                   </div>
                 </div>
@@ -98,9 +118,9 @@ const ContactPage = () => {
                   <div>
                     <h3 className="font-medium mb-1">Office Hours</h3>
                     <p className="text-muted-foreground">
-                      Monday - Friday: 8:00 AM - 7:00 PM<br />
-                      Saturday: 9:00 AM - 5:00 PM<br />
-                      Sunday: Emergency Only
+                      Saturday - Thursday: 10:00 AM - 8:00 PM<br />
+                      Friday: 2:00 PM - 8:00 PM<br />
+                      Emergency consultations available
                     </p>
                   </div>
                 </div>
@@ -109,31 +129,40 @@ const ContactPage = () => {
 
             {/* Quick Actions */}
             <div>
-              <h3 className="text-lg font-medium mb-4">Quick Actions</h3>
+              <h3 className="text-lg font-medium mb-4">Quick Contact</h3>
               <div className="grid gap-4">
-                <Button className="gradient-calm text-white hover:opacity-90 justify-start">
+                <Button 
+                  className="gradient-calm text-white hover:opacity-90 justify-start"
+                  onClick={handleWhatsAppClick}
+                >
                   <MessageCircle className="h-4 w-4 mr-2" />
-                  Chat with WhatsApp
+                  WhatsApp: 015 51521419
                 </Button>
-                <Button variant="outline" className="border-primary/20 hover:bg-primary/5 justify-start">
+                <Button 
+                  variant="outline" 
+                  className="border-primary/20 hover:bg-primary/5 justify-start"
+                  onClick={handleCallClick}
+                >
                   <Phone className="h-4 w-4 mr-2" />
-                  Schedule Phone Call
-                </Button>
-                <Button variant="outline" className="border-primary/20 hover:bg-primary/5 justify-start">
-                  <Mail className="h-4 w-4 mr-2" />
-                  Send Direct Email
+                  Call: 015 51521419
                 </Button>
               </div>
             </div>
 
-            {/* Map Placeholder */}
+            {/* Interactive Map */}
             <div>
               <h3 className="text-lg font-medium mb-4">Find Us</h3>
-              <div className="bg-muted/30 rounded-lg h-64 flex items-center justify-center border border-border/50">
+              <div 
+                className="bg-gradient-to-br from-primary/5 to-secondary/5 rounded-lg h-64 flex items-center justify-center border border-border/50 cursor-pointer hover:from-primary/10 hover:to-secondary/10 transition-all duration-300"
+                onClick={handleLocationClick}
+              >
                 <div className="text-center">
-                  <MapPin className="h-12 w-12 text-muted-foreground mx-auto mb-2" />
-                  <p className="text-muted-foreground">Interactive Map</p>
-                  <p className="text-sm text-muted-foreground">Coming Soon</p>
+                  <MapPin className="h-16 w-16 text-primary mx-auto mb-4" />
+                  <p className="text-lg font-medium text-foreground mb-2">Our Location</p>
+                  <p className="text-sm text-muted-foreground mb-4">New Cairo, Egypt</p>
+                  <Button variant="outline" className="border-primary/20">
+                    Open in Maps
+                  </Button>
                 </div>
               </div>
             </div>
@@ -182,7 +211,7 @@ const ContactPage = () => {
                         type="tel"
                         value={formData.phone}
                         onChange={(e) => updateForm("phone", e.target.value)}
-                        placeholder="(555) 123-4567"
+                        placeholder="015 12345678"
                       />
                     </div>
                     <div>
@@ -230,11 +259,18 @@ const ContactPage = () => {
                 Get immediate help.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button variant="destructive">
-                  Call 911
+                <Button 
+                  variant="destructive"
+                  onClick={handleCallClick}
+                >
+                  Call Now: 015 51521419
                 </Button>
-                <Button variant="outline" className="border-red-300 text-red-700 hover:bg-red-50">
-                  Crisis Hotline: 988
+                <Button 
+                  variant="outline" 
+                  className="border-red-300 text-red-700 hover:bg-red-50"
+                  onClick={handleWhatsAppClick}
+                >
+                  WhatsApp Emergency
                 </Button>
               </div>
             </CardContent>
