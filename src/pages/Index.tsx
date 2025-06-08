@@ -1,73 +1,49 @@
-
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Calendar, Heart, User, Check, ArrowRight, Search } from "lucide-react";
-
 const Index = () => {
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
-
-  const testimonials = [
-    {
-      name: "Sarah Johnson",
-      text: "The care I received here transformed my life. The doctors truly listen and understand.",
-      role: "Patient since 2023"
-    },
-    {
-      name: "Michael Chen",
-      text: "Professional, compassionate, and effective treatment. I finally found the help I needed.",
-      role: "Patient since 2022"
-    },
-    {
-      name: "Emma Davis",
-      text: "The calming environment and expert care made all the difference in my recovery journey.",
-      role: "Patient since 2024"
-    }
-  ];
-
-  const services = [
-    {
-      title: "Individual Therapy",
-      description: "One-on-one sessions tailored to your unique needs",
-      icon: User
-    },
-    {
-      title: "Anxiety Treatment",
-      description: "Evidence-based approaches to manage anxiety disorders",
-      icon: Heart
-    },
-    {
-      title: "Depression Care",
-      description: "Comprehensive treatment for mood disorders",
-      icon: Heart
-    },
-    {
-      title: "Trauma Therapy",
-      description: "Specialized care for trauma and PTSD recovery",
-      icon: User
-    }
-  ];
-
-  const conditions = [
-    "Depression & Mood Disorders",
-    "Anxiety & Panic Disorders", 
-    "PTSD & Trauma",
-    "Bipolar Disorder",
-    "OCD & Related Disorders",
-    "ADHD & Focus Issues"
-  ];
-
+  const testimonials = [{
+    name: "Sarah Johnson",
+    text: "The care I received here transformed my life. The doctors truly listen and understand.",
+    role: "Patient since 2023"
+  }, {
+    name: "Michael Chen",
+    text: "Professional, compassionate, and effective treatment. I finally found the help I needed.",
+    role: "Patient since 2022"
+  }, {
+    name: "Emma Davis",
+    text: "The calming environment and expert care made all the difference in my recovery journey.",
+    role: "Patient since 2024"
+  }];
+  const services = [{
+    title: "Individual Therapy",
+    description: "One-on-one sessions tailored to your unique needs",
+    icon: User
+  }, {
+    title: "Anxiety Treatment",
+    description: "Evidence-based approaches to manage anxiety disorders",
+    icon: Heart
+  }, {
+    title: "Depression Care",
+    description: "Comprehensive treatment for mood disorders",
+    icon: Heart
+  }, {
+    title: "Trauma Therapy",
+    description: "Specialized care for trauma and PTSD recovery",
+    icon: User
+  }];
+  const conditions = ["Depression & Mood Disorders", "Anxiety & Panic Disorders", "PTSD & Trauma", "Bipolar Disorder", "OCD & Related Disorders", "ADHD & Focus Issues"];
   useEffect(() => {
     const timer = setInterval(() => {
-      setCurrentTestimonial((prev) => (prev + 1) % testimonials.length);
+      setCurrentTestimonial(prev => (prev + 1) % testimonials.length);
     }, 4000);
     return () => clearInterval(timer);
   }, [testimonials.length]);
-
-  return (
-    <div className="min-h-screen">
+  return <div className="min-h-screen">
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-16">
         <div className="absolute inset-0 gradient-calm opacity-30"></div>
@@ -107,11 +83,7 @@ const Index = () => {
             
             <div className="relative lg:justify-self-end">
               <div className="relative w-full max-w-md mx-auto">
-                <img 
-                  src="https://images.unsplash.com/photo-1649972904349-6e44c42644a7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-                  alt="Peaceful therapy session"
-                  className="rounded-3xl shadow-2xl w-full h-96 object-cover breathe"
-                />
+                <img src="https://images.unsplash.com/photo-1649972904349-6e44c42644a7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Peaceful therapy session" className="rounded-3xl shadow-2xl w-full h-96 object-cover breathe" />
                 <div className="absolute -bottom-6 -left-6 bg-white/90 backdrop-blur-sm rounded-2xl p-4 shadow-lg">
                   <div className="flex items-center space-x-3">
                     <div className="w-3 h-3 bg-green-500 rounded-full"></div>
@@ -143,8 +115,7 @@ const Index = () => {
             <div className="space-y-6">
               <h3 className="text-2xl font-medium text-center lg:text-left mb-8">Our Services</h3>
               <div className="grid gap-6">
-                {services.map((service, index) => (
-                  <Card key={index} className="group hover:shadow-lg transition-all duration-300 hover:-translate-y-1 border-border/50">
+                {services.map((service, index) => <Card key={index} className="group hover:shadow-lg transition-all duration-300 hover:-translate-y-1 border-border/50">
                     <CardContent className="p-6">
                       <div className="flex items-start space-x-4">
                         <div className="bg-primary/10 p-3 rounded-xl group-hover:bg-primary/20 transition-colors">
@@ -156,8 +127,7 @@ const Index = () => {
                         </div>
                       </div>
                     </CardContent>
-                  </Card>
-                ))}
+                  </Card>)}
               </div>
               <div className="text-center lg:text-left pt-4">
                 <Link to="/services">
@@ -174,16 +144,14 @@ const Index = () => {
               <h3 className="text-2xl font-medium text-center lg:text-left mb-8">Conditions We Treat</h3>
               <div className="bg-card/50 backdrop-blur-sm rounded-2xl p-8 border border-border/50">
                 <div className="grid gap-4">
-                  {conditions.map((condition, index) => (
-                    <div key={index} className="flex items-center space-x-3 group cursor-pointer">
+                  {conditions.map((condition, index) => <div key={index} className="flex items-center space-x-3 group cursor-pointer">
                       <div className="bg-secondary/20 p-2 rounded-lg group-hover:bg-secondary/30 transition-colors">
                         <Check className="h-4 w-4 text-secondary" />
                       </div>
                       <span className="text-foreground group-hover:text-primary transition-colors">
                         {condition}
                       </span>
-                    </div>
-                  ))}
+                    </div>)}
                 </div>
                 <div className="mt-8 text-center">
                   <Badge variant="secondary" className="px-4 py-2">
@@ -201,16 +169,16 @@ const Index = () => {
       <section className="relative py-24 overflow-hidden">
         <div className="absolute inset-0 gradient-lavender curve-bottom"></div>
         <div className="relative z-10 max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl md:text-4xl font-light text-white mb-6 text-balance">
+          <h2 className="text-3xl md:text-4xl mb-6 text-balance font-normal text-slate-900">
             Ready to Begin Your{" "}
             <span className="font-medium">Healing Journey?</span>
           </h2>
-          <p className="text-xl text-white/90 mb-8 text-balance">
+          <p className="text-xl mb-8 text-balance font-normal text-slate-950">
             Take the first step towards better mental health. Our experienced team is here to support you.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link to="/booking">
-              <Button size="lg" variant="secondary" className="bg-white text-primary hover:bg-white/90 w-full sm:w-auto">
+              <Button size="lg" variant="secondary" className="text-primary w-full sm:w-auto bg-slate-950 hover:bg-slate-800">
                 <Calendar className="h-5 w-5 mr-2" />
                 Schedule Consultation
               </Button>
@@ -253,15 +221,7 @@ const Index = () => {
             
             {/* Testimonial Indicators */}
             <div className="flex justify-center space-x-2 mt-6">
-              {testimonials.map((_, index) => (
-                <button
-                  key={index}
-                  onClick={() => setCurrentTestimonial(index)}
-                  className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                    index === currentTestimonial ? "bg-primary" : "bg-primary/20"
-                  }`}
-                />
-              ))}
+              {testimonials.map((_, index) => <button key={index} onClick={() => setCurrentTestimonial(index)} className={`w-3 h-3 rounded-full transition-all duration-300 ${index === currentTestimonial ? "bg-primary" : "bg-primary/20"}`} />)}
             </div>
           </div>
           
@@ -275,8 +235,6 @@ const Index = () => {
           </div>
         </div>
       </section>
-    </div>
-  );
+    </div>;
 };
-
 export default Index;
