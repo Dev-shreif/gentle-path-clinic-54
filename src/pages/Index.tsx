@@ -67,7 +67,7 @@ const Index = () => {
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
                 <Link to="/booking">
-                  <Button size="lg" className="gradient-calm text-white hover:opacity-90 transition-opacity w-full sm:w-auto">
+                  <Button size="lg" className="gradient-calm hover:opacity-90 transition-opacity w-full sm:w-auto text-zinc-950">
                     <Calendar className="h-5 w-5 mr-2" />
                     Book Your Session
                   </Button>
