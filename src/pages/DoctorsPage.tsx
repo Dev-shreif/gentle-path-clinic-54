@@ -1,4 +1,3 @@
-
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { useState, useMemo } from "react";
@@ -173,6 +172,198 @@ const DoctorsPage = () => {
       languages: ["Arabic", "English", "French"],
       tags: ["couples", "depression"],
       nextAvailable: "Today 6:00 PM",
+      onlineConsultation: true
+    },
+    {
+      id: 7,
+      name: { en: "Dr. Heba Mohamed", ar: "د. هبة الله محمد" },
+      slug: "dr-heba-mohamed",
+      specialty: { en: "Psychiatrist", ar: "أخصائي الطب النفسي" },
+      image: "/lovable-uploads/c2e8c79b-fd10-4434-a3eb-19f4871f2a77.png",
+      description: { 
+        en: "Dedicated psychiatrist with extensive experience in treating various mental health conditions with compassionate care.",
+        ar: "طبيبة نفسية مكرسة مع خبرة واسعة في علاج حالات الصحة النفسية المختلفة برعاية متفهمة."
+      },
+      expertise: {
+        en: ["Psychiatry", "Anxiety Treatment", "Depression"],
+        ar: ["الطب النفسي", "علاج القلق", "الاكتئاب"]
+      },
+      experience: { en: "7+ years", ar: "أكثر من 7 سنوات" },
+      rating: 4.6,
+      availableNow: true,
+      category: "psychiatrist",
+      gender: "female",
+      languages: ["Arabic", "English"],
+      tags: ["anxiety", "depression", "therapy"],
+      nextAvailable: "Today 3:00 PM",
+      onlineConsultation: true
+    },
+    {
+      id: 8,
+      name: { en: "Dr. Esraa Abdul Latif", ar: "د. إسراء عبد اللطيف" },
+      slug: "dr-esraa-abdul-latif",
+      specialty: { en: "Psychiatrist & Addiction Treatment", ar: "طبيب نفسي وعلاج الإدمان بالزمالة المصرية" },
+      image: "/lovable-uploads/afbd437d-18ad-4d76-b691-8064750c08e9.png",
+      description: { 
+        en: "Specialist in psychiatry and addiction treatment with Egyptian fellowship credentials and comprehensive approach to mental health.",
+        ar: "متخصصة في الطب النفسي وعلاج الإدمان بالزمالة المصرية مع نهج شامل للصحة النفسية."
+      },
+      expertise: {
+        en: ["Psychiatry", "Addiction Treatment", "Mental Health Recovery"],
+        ar: ["الطب النفسي", "علاج الإدمان", "التعافي من الصحة النفسية"]
+      },
+      experience: { en: "9+ years", ar: "أكثر من 9 سنوات" },
+      rating: 4.7,
+      availableNow: false,
+      category: "psychiatrist",
+      gender: "female",
+      languages: ["Arabic", "English"],
+      tags: ["addiction", "depression", "therapy"],
+      nextAvailable: "Tomorrow 11:00 AM",
+      onlineConsultation: true
+    },
+    {
+      id: 9,
+      name: { en: "Dr. Nabil Ali Nasr", ar: "د. نبيل علي نصر" },
+      slug: "dr-nabil-ali-nasr",
+      specialty: { en: "Psychiatrist", ar: "أخصائي الطب النفسي" },
+      image: "/lovable-uploads/018e99c6-68ad-48b7-9937-83e492f96b14.png",
+      description: { 
+        en: "Experienced psychiatrist specializing in comprehensive mental health treatment with a focus on evidence-based care.",
+        ar: "طبيب نفسي ذو خبرة متخصص في العلاج الشامل للصحة النفسية مع التركيز على الرعاية القائمة على الأدلة."
+      },
+      expertise: {
+        en: ["Psychiatry", "Mental Health", "Therapeutic Interventions"],
+        ar: ["الطب النفسي", "الصحة النفسية", "التدخلات العلاجية"]
+      },
+      experience: { en: "12+ years", ar: "أكثر من 12 سنة" },
+      rating: 4.8,
+      availableNow: true,
+      category: "psychiatrist",
+      gender: "male",
+      languages: ["Arabic", "English"],
+      tags: ["anxiety", "couples", "therapy"],
+      nextAvailable: "Today 5:00 PM",
+      onlineConsultation: false
+    },
+    {
+      id: 10,
+      name: { en: "Dr. Peter Nabil", ar: "د. بيتر نبيل" },
+      slug: "dr-peter-nabil",
+      specialty: { en: "Psychiatric Consultant & Addiction Treatment", ar: "استشاري الطب النفسي وعلاج الإدمان" },
+      image: "/lovable-uploads/eb6484dd-175a-40d4-a7a2-670eb167cab4.png",
+      description: { 
+        en: "Senior psychiatric consultant specializing in addiction treatment and mental health disorders with comprehensive care approach.",
+        ar: "استشاري طب نفسي أول متخصص في علاج الإدمان واضطرابات الصحة النفسية مع نهج رعاية شامل."
+      },
+      expertise: {
+        en: ["Psychiatric Consultation", "Addiction Treatment", "Mental Health"],
+        ar: ["الاستشارة النفسية", "علاج الإدمان", "الصحة النفسية"]
+      },
+      experience: { en: "14+ years", ar: "أكثر من 14 سنة" },
+      rating: 4.9,
+      availableNow: false,
+      category: "psychiatrist",
+      gender: "male",
+      languages: ["Arabic", "English"],
+      tags: ["addiction", "couples", "therapy"],
+      nextAvailable: "Monday 2:00 PM",
+      onlineConsultation: true
+    },
+    {
+      id: 11,
+      name: { en: "Dr. Amira Ayed Hashem", ar: "د. أميرة عياد هاشم" },
+      slug: "dr-amira-ayed-hashem",
+      specialty: { en: "Clinical Psychologist", ar: "طبيبة تخاطب" },
+      image: "/lovable-uploads/b1aa3700-f12e-4ad8-807e-9c0024774168.png",
+      description: { 
+        en: "Clinical psychologist specializing in speech therapy and communication disorders with focus on holistic patient care.",
+        ar: "طبيبة نفسية إكلينيكية متخصصة في علاج التخاطب واضطرابات التواصل مع التركيز على الرعاية الشاملة للمرضى."
+      },
+      expertise: {
+        en: ["Speech Therapy", "Communication Disorders", "Clinical Psychology"],
+        ar: ["علاج التخاطب", "اضطرابات التواصل", "علم النفس الإكلينيكي"]
+      },
+      experience: { en: "6+ years", ar: "أكثر من 6 سنوات" },
+      rating: 4.5,
+      availableNow: true,
+      category: "psychologist",
+      gender: "female",
+      languages: ["Arabic"],
+      tags: ["teens", "therapy"],
+      nextAvailable: "Today 4:00 PM",
+      onlineConsultation: false
+    },
+    {
+      id: 12,
+      name: { en: "Dr. Menna Raafat", ar: "د. منة رأفت" },
+      slug: "dr-menna-raafat",
+      specialty: { en: "Physician & Psychological Treatment", ar: "طبيبة ومعالجة نفسية" },
+      image: "/lovable-uploads/1a654861-711e-493c-98eb-ad59c14480ea.png",
+      description: { 
+        en: "Medical doctor and psychological therapist providing integrated mental health care with emphasis on patient wellbeing.",
+        ar: "طبيبة ومعالجة نفسية تقدم رعاية متكاملة للصحة النفسية مع التركيز على رفاهية المرضى."
+      },
+      expertise: {
+        en: ["Medical Psychology", "Psychological Treatment", "Mental Wellness"],
+        ar: ["علم النفس الطبي", "العلاج النفسي", "العافية النفسية"]
+      },
+      experience: { en: "5+ years", ar: "أكثر من 5 سنوات" },
+      rating: 4.4,
+      availableNow: false,
+      category: "psychologist",
+      gender: "female",
+      languages: ["Arabic", "English"],
+      tags: ["anxiety", "depression"],
+      nextAvailable: "Tomorrow 3:00 PM",
+      onlineConsultation: true
+    },
+    {
+      id: 13,
+      name: { en: "Dr. Asmaa Saeed", ar: "د. أسماء سعيد" },
+      slug: "dr-asmaa-saeed",
+      specialty: { en: "Psychiatrist", ar: "أخصائي الطب النفسي" },
+      image: "/lovable-uploads/220aca75-8577-44e0-bcca-ea15e8b64b21.png",
+      description: { 
+        en: "Dedicated psychiatrist with expertise in treating various mental health conditions with compassionate and professional care.",
+        ar: "طبيبة نفسية مكرسة مع خبرة في علاج حالات الصحة النفسية المختلفة برعاية متفهمة ومهنية."
+      },
+      expertise: {
+        en: ["Psychiatry", "Mental Health Treatment", "Patient Care"],
+        ar: ["الطب النفسي", "علاج الصحة النفسية", "رعاية المرضى"]
+      },
+      experience: { en: "8+ years", ar: "أكثر من 8 سنوات" },
+      rating: 4.6,
+      availableNow: true,
+      category: "psychiatrist",
+      gender: "female",
+      languages: ["Arabic"],
+      tags: ["anxiety", "therapy"],
+      nextAvailable: "Today 2:30 PM",
+      onlineConsultation: true
+    },
+    {
+      id: 14,
+      name: { en: "Dr. Dalia Al-Laithi", ar: "د. داليا الليثي" },
+      slug: "dr-dalia-allaithi",
+      specialty: { en: "Psychiatrist", ar: "أخصائي الطب النفسي" },
+      image: "/lovable-uploads/228fee0a-017e-489c-8d64-3965417d0d9b.png",
+      description: { 
+        en: "Professional psychiatrist offering comprehensive mental health services with focus on individualized treatment plans.",
+        ar: "طبيبة نفسية محترفة تقدم خدمات شاملة للصحة النفسية مع التركيز على خطط العلاج الفردية."
+      },
+      expertise: {
+        en: ["Psychiatry", "Individual Treatment", "Mental Health"],
+        ar: ["الطب النفسي", "العلاج الفردي", "الصحة النفسية"]
+      },
+      experience: { en: "7+ years", ar: "أكثر من 7 سنوات" },
+      rating: 4.5,
+      availableNow: false,
+      category: "psychiatrist",
+      gender: "female",
+      languages: ["Arabic", "English"],
+      tags: ["depression", "therapy"],
+      nextAvailable: "Tomorrow 1:00 PM",
       onlineConsultation: true
     }
   ];

@@ -91,10 +91,10 @@ const DoctorFilters = ({
   };
 
   const toggleTag = (tag: string) => {
-    setSelectedTags(prev => 
-      prev.includes(tag) 
-        ? prev.filter(t => t !== tag)
-        : [...prev, tag]
+    setSelectedTags(
+      selectedTags.includes(tag) 
+        ? selectedTags.filter(t => t !== tag)
+        : [...selectedTags, tag]
     );
   };
 
