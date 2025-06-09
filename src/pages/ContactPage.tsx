@@ -557,7 +557,7 @@ const ContactPage = () => {
           <Card className="bg-red-50 border-red-200 dark:bg-red-950 dark:border-red-800">
             <CardContent className="p-6 text-center">
               <motion.div
-                animate={{ pulse: [1, 1.05, 1] }}
+                animate={{ scale: [1, 1.05, 1] }}
                 transition={{ duration: 2, repeat: Infinity }}
               >
                 <h3 className="text-lg font-semibold text-red-800 dark:text-red-200 mb-2">

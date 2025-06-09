@@ -10,6 +10,7 @@ const DoctorsPage = () => {
   // Get language from localStorage or default to English
   const language = typeof window !== "undefined" ? (localStorage.getItem("language") || "en") : "en";
   const isRTL = language === "ar";
+  const [selectedSpecialty, setSelectedSpecialty] = useState("all");
 
   const doctors = [
     {

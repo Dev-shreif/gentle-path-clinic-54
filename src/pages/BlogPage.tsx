@@ -1,9 +1,10 @@
+
 import { Link } from "react-router-dom";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Calendar, Clock, User, ArrowRight } from "lucide-react";
-import { motion, useMousePosition } from "framer-motion";
+import { motion } from "framer-motion";
 import { useState, useRef } from "react";
 
 const BlogPage = () => {
