@@ -579,7 +579,7 @@ const Index = () => {
               </Button>
             </Link>
             <Link to="/contact">
-              <Button size="lg" variant="outline" className="border-white/30 hover:bg-white/10 transition-all duration-300 hover:scale-105 text-gray-950 font-extrabold text-lg">
+              <Button size="lg" variant="outline" className="border-white/30 transition-all duration-300 hover:scale-105 font-extrabold text-lg text-violet-500 bg-zinc-950 hover:bg-zinc-800">
                 {language === "en" ? "Contact Us" : "اتصل بنا"}
               </Button>
             </Link>
