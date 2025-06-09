@@ -1,27 +1,31 @@
 
 import { Link } from "react-router-dom";
-import { Card, CardContent } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { Calendar, Search, Star, Clock, MessageCircle, Video, Users } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { useState, useMemo } from "react";
-import { Input } from "@/components/ui/input";
-import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
+import { MessageCircle, Users } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import DoctorFilters from "@/components/doctors/DoctorFilters";
+import DoctorCard from "@/components/doctors/DoctorCard";
 
 const DoctorsPage = () => {
   // Get language from localStorage or default to English
   const language = typeof window !== "undefined" ? (localStorage.getItem("language") || "en") : "en";
   const isRTL = language === "ar";
-  const [selectedSpecialty, setSelectedSpecialty] = useState("all");
+  
+  // Filter states
   const [searchQuery, setSearchQuery] = useState("");
+  const [selectedSpecialty, setSelectedSpecialty] = useState("all");
+  const [selectedGender, setSelectedGender] = useState("all");
+  const [selectedLanguage, setSelectedLanguage] = useState("all");
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
-  const [hoveredDoctor, setHoveredDoctor] = useState<number | null>(null);
+  const [onlineOnly, setOnlineOnly] = useState(false);
+  
+  // Pagination states
   const [visibleSections, setVisibleSections] = useState({
+    male: 6,
+    female: 6,
     topRated: 4,
-    availableNow: 4,
-    psychiatrists: 4,
-    psychologists: 4
+    availableNow: 4
   });
 
   const doctors = [
@@ -43,7 +47,9 @@ const DoctorsPage = () => {
       rating: 4.9,
       availableNow: true,
       category: "psychiatrist",
-      tags: ["anxiety", "depression", "arabic-speaking"],
+      gender: "male",
+      languages: ["Arabic", "English"],
+      tags: ["anxiety", "depression", "therapy"],
       nextAvailable: "Today 2:00 PM",
       onlineConsultation: true,
       size: "large"
@@ -66,6 +72,8 @@ const DoctorsPage = () => {
       rating: 4.8,
       availableNow: false,
       category: "psychiatrist",
+      gender: "female",
+      languages: ["Arabic", "English"],
       tags: ["addiction", "psychiatry", "couples"],
       nextAvailable: "Tomorrow 10:00 AM",
       onlineConsultation: true,
@@ -89,7 +97,9 @@ const DoctorsPage = () => {
       rating: 4.7,
       availableNow: true,
       category: "psychiatrist",
-      tags: ["teens", "anxiety", "arabic-speaking"],
+      gender: "female",
+      languages: ["Arabic"],
+      tags: ["teens", "anxiety", "therapy"],
       nextAvailable: "Today 4:30 PM",
       onlineConsultation: false
     },
@@ -111,6 +121,8 @@ const DoctorsPage = () => {
       rating: 4.9,
       availableNow: true,
       category: "psychiatrist",
+      gender: "female",
+      languages: ["Arabic", "English"],
       tags: ["couples", "anxiety", "therapy"],
       nextAvailable: "Today 1:00 PM",
       onlineConsultation: true
@@ -133,7 +145,9 @@ const DoctorsPage = () => {
       rating: 5.0,
       availableNow: false,
       category: "psychologist",
-      tags: ["teens", "assessment", "therapy"],
+      gender: "male",
+      languages: ["Arabic", "English"],
+      tags: ["teens", "therapy"],
       nextAvailable: "Monday 9:00 AM",
       onlineConsultation: true
     },
@@ -155,38 +169,22 @@ const DoctorsPage = () => {
       rating: 4.8,
       availableNow: true,
       category: "psychologist",
-      tags: ["arabic-speaking", "couples", "depression"],
+      gender: "female",
+      languages: ["Arabic", "English", "French"],
+      tags: ["couples", "depression"],
       nextAvailable: "Today 6:00 PM",
       onlineConsultation: true
     }
   ];
 
-  const specialties = [
-    { key: "all", name: { en: "All", ar: "الكل" } },
-    { key: "psychiatrist", name: { en: "Psychiatry", ar: "طب نفسي" } },
-    { key: "psychologist", name: { en: "Psychology", ar: "علم النفس" } },
-    { key: "online", name: { en: "Online", ar: "عبر الإنترنت" } },
-  ];
-
-  const tags = [
-    { key: "anxiety", name: { en: "Anxiety", ar: "القلق" } },
-    { key: "depression", name: { en: "Depression", ar: "الاكتئاب" } },
-    { key: "couples", name: { en: "Couples", ar: "الأزواج" } },
-    { key: "teens", name: { en: "Teens", ar: "المراهقين" } },
-    { key: "arabic-speaking", name: { en: "Arabic Speaking", ar: "يتحدث العربية" } },
-    { key: "addiction", name: { en: "Addiction", ar: "الإدمان" } },
-    { key: "therapy", name: { en: "Therapy", ar: "العلاج" } }
-  ];
-
-  const getText = (textObj: any) => {
-    return textObj[language] || textObj.en;
-  };
+  const getText = (textObj: any) => textObj[language] || textObj.en;
 
   const filteredDoctors = useMemo(() => {
     return doctors.filter(doctor => {
-      const matchesSpecialty = selectedSpecialty === "all" || 
-        doctor.category === selectedSpecialty || 
-        (selectedSpecialty === "online" && doctor.onlineConsultation);
+      const matchesSpecialty = selectedSpecialty === "all" || doctor.category === selectedSpecialty;
+      const matchesGender = selectedGender === "all" || doctor.gender === selectedGender;
+      const matchesLanguage = selectedLanguage === "all" || doctor.languages?.includes(selectedLanguage);
+      const matchesOnline = !onlineOnly || doctor.onlineConsultation;
       
       const matchesSearch = searchQuery === "" || 
         getText(doctor.name).toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -195,177 +193,37 @@ const DoctorsPage = () => {
       const matchesTags = selectedTags.length === 0 || 
         selectedTags.some(tag => doctor.tags.includes(tag));
       
-      return matchesSpecialty && matchesSearch && matchesTags;
+      return matchesSpecialty && matchesGender && matchesLanguage && matchesOnline && matchesSearch && matchesTags;
     });
-  }, [selectedSpecialty, searchQuery, selectedTags, language]);
+  }, [selectedSpecialty, selectedGender, selectedLanguage, onlineOnly, searchQuery, selectedTags, language]);
 
-  const getFilterCount = (key: string) => {
-    if (key === "all") return doctors.length;
-    if (key === "online") return doctors.filter(d => d.onlineConsultation).length;
-    return doctors.filter(d => d.category === key).length;
-  };
-
-  const topRatedDoctors = doctors.filter(d => d.rating >= 4.8).sort((a, b) => b.rating - a.rating);
-  const availableNowDoctors = doctors.filter(d => d.availableNow);
-  const psychiatrists = doctors.filter(d => d.category === "psychiatrist");
-  const psychologists = doctors.filter(d => d.category === "psychologist");
-
-  const toggleTag = (tag: string) => {
-    setSelectedTags(prev => 
-      prev.includes(tag) 
-        ? prev.filter(t => t !== tag)
-        : [...prev, tag]
-    );
-  };
+  // Group doctors by gender
+  const maleDoctors = filteredDoctors.filter(d => d.gender === "male");
+  const femaleDoctors = filteredDoctors.filter(d => d.gender === "female");
+  const topRatedDoctors = filteredDoctors.filter(d => d.rating >= 4.8).sort((a, b) => b.rating - a.rating);
+  const availableNowDoctors = filteredDoctors.filter(d => d.availableNow);
 
   const loadMore = (section: keyof typeof visibleSections) => {
     setVisibleSections(prev => ({
       ...prev,
-      [section]: prev[section] + 4
+      [section]: prev[section] + 6
     }));
   };
-
-  const DoctorCard = ({ doctor, index }: { doctor: any, index: number }) => (
-    <motion.div
-      layout
-      initial={{ opacity: 0, y: 50 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5, delay: index * 0.1 }}
-      whileHover={{ scale: 1.02, rotateY: 2 }}
-      className="relative group"
-      onHoverStart={() => setHoveredDoctor(doctor.id)}
-      onHoverEnd={() => setHoveredDoctor(null)}
-    >
-      <Card className="h-full overflow-hidden border-border/50 bg-card/80 backdrop-blur-sm hover:border-primary/30 transition-all duration-500 hover:shadow-2xl">
-        <div className="relative h-48 overflow-hidden">
-          <img 
-            src={doctor.image} 
-            alt={getText(doctor.name)}
-            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-          
-          {doctor.availableNow && (
-            <Badge className="absolute top-3 right-3 bg-green-500 text-white">
-              <Clock className="w-3 h-3 mr-1" />
-              {language === "ar" ? "متاح الآن" : "Available Now"}
-            </Badge>
-          )}
-          
-          {doctor.onlineConsultation && (
-            <Badge className="absolute top-3 left-3 bg-blue-500 text-white">
-              <Video className="w-3 h-3 mr-1" />
-              {language === "ar" ? "أونلاين" : "Online"}
-            </Badge>
-          )}
-          
-          <div className="absolute bottom-4 left-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-            <Link to={`/doctors/${doctor.slug}`}>
-              <Button className="w-full bg-white/90 text-primary hover:bg-white shadow-lg">
-                {language === "ar" ? "عرض الملف الشخصي" : "View Profile"}
-              </Button>
-            </Link>
-          </div>
-        </div>
-        
-        <CardContent className="p-6">
-          <div className="flex items-start justify-between mb-3">
-            <div>
-              <h3 className="text-lg font-semibold mb-1 group-hover:text-primary transition-colors">
-                {getText(doctor.name)}
-              </h3>
-              <Badge variant="secondary" className="text-xs">
-                {getText(doctor.specialty)}
-              </Badge>
-            </div>
-            <div className="flex items-center gap-1">
-              <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
-              <span className="text-sm font-medium">{doctor.rating}</span>
-            </div>
-          </div>
-          
-          <p className="text-muted-foreground text-sm line-clamp-2 mb-4">
-            {getText(doctor.description)}
-          </p>
-          
-          <div className="space-y-3">
-            <div className="flex flex-wrap gap-1">
-              {doctor.tags.slice(0, 3).map((tag) => (
-                <Badge key={tag} variant="outline" className="text-xs">
-                  #{tag}
-                </Badge>
-              ))}
-            </div>
-            
-            <div className="flex items-center justify-between text-sm">
-              <span className="text-muted-foreground flex items-center gap-1">
-                <Clock className="w-3 h-3" />
-                {doctor.nextAvailable}
-              </span>
-              <Link to="/booking" state={{ selectedDoctor: getText(doctor.name) }}>
-                <Button size="sm" className="bg-primary hover:bg-primary/90">
-                  <Calendar className="w-3 h-3 mr-1" />
-                  {language === "ar" ? "احجز" : "Book"}
-                </Button>
-              </Link>
-            </div>
-          </div>
-        </CardContent>
-      </Card>
-      
-      {/* Quick Profile Preview */}
-      <AnimatePresence>
-        {hoveredDoctor === doctor.id && (
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8, y: 10 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.8, y: 10 }}
-            className="absolute -top-20 left-1/2 transform -translate-x-1/2 z-50 bg-white dark:bg-gray-800 rounded-lg shadow-2xl p-4 min-w-64 border"
-          >
-            <div className="flex items-center gap-3 mb-2">
-              <Avatar className="w-12 h-12">
-                <AvatarImage src={doctor.image} alt={getText(doctor.name)} />
-                <AvatarFallback>{getText(doctor.name).charAt(0)}</AvatarFallback>
-              </Avatar>
-              <div>
-                <h4 className="font-semibold text-sm">{getText(doctor.name)}</h4>
-                <p className="text-xs text-muted-foreground">{getText(doctor.specialty)}</p>
-              </div>
-            </div>
-            <div className="space-y-1 text-xs">
-              <div className="flex items-center gap-2">
-                <Star className="w-3 h-3 text-yellow-400" />
-                <span>{doctor.rating}/5.0 • {getText(doctor.experience)}</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <Clock className="w-3 h-3 text-green-500" />
-                <span>{doctor.nextAvailable}</span>
-              </div>
-              {doctor.onlineConsultation && (
-                <div className="flex items-center gap-2">
-                  <Video className="w-3 h-3 text-blue-500" />
-                  <span>{language === "ar" ? "استشارة أونلاين متاحة" : "Online consultation available"}</span>
-                </div>
-              )}
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </motion.div>
-  );
 
   const DoctorSection = ({ 
     title, 
     doctors: sectionDoctors, 
     visible, 
     onLoadMore, 
-    sectionKey 
+    sectionKey,
+    useGrid = true 
   }: { 
     title: string, 
     doctors: any[], 
     visible: number, 
     onLoadMore: () => void,
-    sectionKey: string 
+    sectionKey: string,
+    useGrid?: boolean
   }) => (
     <motion.section 
       className="mb-16"
@@ -381,9 +239,19 @@ const DoctorsPage = () => {
         </span>
       </div>
       
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+      <div className={`${useGrid 
+        ? "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 auto-rows-fr" 
+        : "flex overflow-x-auto gap-6 pb-4"
+      } mb-8`}>
         {sectionDoctors.slice(0, visible).map((doctor, index) => (
-          <DoctorCard key={doctor.id} doctor={doctor} index={index} />
+          <div key={doctor.id} className={useGrid ? "" : "flex-shrink-0 w-80"}>
+            <DoctorCard 
+              doctor={doctor} 
+              index={index} 
+              language={language}
+              size={index === 0 && sectionKey === 'topRated' ? 'large' : 'medium'}
+            />
+          </div>
         ))}
       </div>
       
@@ -394,7 +262,8 @@ const DoctorsPage = () => {
             variant="outline" 
             className="border-primary/20 hover:bg-primary/5"
           >
-            {language === "ar" ? `عرض المزيد من ${title}` : `Show More ${title}`}
+            {language === "ar" ? `عرض المزيد` : `Show More`} 
+            ({sectionDoctors.length - visible} {language === "ar" ? "متبقي" : "remaining"})
           </Button>
         </div>
       )}
@@ -425,101 +294,119 @@ const DoctorsPage = () => {
           </p>
         </motion.div>
 
-        {/* Search Bar */}
-        <motion.div 
-          className="mb-8"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-        >
-          <div className="relative max-w-md mx-auto">
-            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-4 h-4" />
-            <Input
-              placeholder={language === "ar" ? "ابحث عن طبيب..." : "Search for a doctor..."}
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              className="pl-10"
-            />
-          </div>
-        </motion.div>
+        {/* Smart Filters */}
+        <DoctorFilters
+          searchQuery={searchQuery}
+          setSearchQuery={setSearchQuery}
+          selectedSpecialty={selectedSpecialty}
+          setSelectedSpecialty={setSelectedSpecialty}
+          selectedGender={selectedGender}
+          setSelectedGender={setSelectedGender}
+          selectedLanguage={selectedLanguage}
+          setSelectedLanguage={setSelectedLanguage}
+          selectedTags={selectedTags}
+          setSelectedTags={setSelectedTags}
+          onlineOnly={onlineOnly}
+          setOnlineOnly={setOnlineOnly}
+          language={language}
+          doctors={doctors}
+        />
 
-        {/* Sticky Smart Filters */}
+        {/* Results Count */}
         <motion.div 
-          className="sticky top-20 z-40 bg-background/95 backdrop-blur-sm border-b border-border/50 -mx-4 px-4 py-4 mb-8"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.3 }}
+          className="mb-8 text-center"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.4 }}
         >
-          <div className="flex flex-wrap gap-3 justify-center mb-4">
-            {specialties.map((specialty) => (
-              <motion.button
-                key={specialty.key}
-                onClick={() => setSelectedSpecialty(specialty.key)}
-                className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
-                  selectedSpecialty === specialty.key 
-                    ? 'bg-primary text-primary-foreground shadow-lg' 
-                    : 'bg-muted hover:bg-muted/80 border border-border'
-                }`}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                {getText(specialty.name)} ({getFilterCount(specialty.key)})
-              </motion.button>
-            ))}
-          </div>
-          
-          {/* Tags Filter */}
-          <div className="flex flex-wrap gap-2 justify-center">
-            {tags.map((tag) => (
-              <motion.button
-                key={tag.key}
-                onClick={() => toggleTag(tag.key)}
-                className={`px-3 py-1 rounded-full text-xs transition-all duration-300 ${
-                  selectedTags.includes(tag.key)
-                    ? 'bg-primary/20 text-primary border border-primary/30'
-                    : 'bg-background border border-border hover:bg-muted'
-                }`}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                #{getText(tag.name)}
-              </motion.button>
-            ))}
-          </div>
+          <p className="text-muted-foreground">
+            {language === "ar" 
+              ? `تم العثور على ${filteredDoctors.length} طبيب`
+              : `Found ${filteredDoctors.length} doctors`
+            }
+          </p>
         </motion.div>
 
         {/* Doctor Sections */}
-        <DoctorSection
-          title={language === "ar" ? "⭐ الأطباء الأعلى تقييماً" : "⭐ Top Rated Doctors"}
-          doctors={topRatedDoctors}
-          visible={visibleSections.topRated}
-          onLoadMore={() => loadMore('topRated')}
-          sectionKey="topRated"
-        />
-        
-        <DoctorSection
-          title={language === "ar" ? "🔄 متاحون الآن" : "🔄 Available Now"}
-          doctors={availableNowDoctors}
-          visible={visibleSections.availableNow}
-          onLoadMore={() => loadMore('availableNow')}
-          sectionKey="availableNow"
-        />
-        
-        <DoctorSection
-          title={language === "ar" ? "🧠 أطباء نفسيون" : "🧠 Psychiatrists"}
-          doctors={psychiatrists}
-          visible={visibleSections.psychiatrists}
-          onLoadMore={() => loadMore('psychiatrists')}
-          sectionKey="psychiatrists"
-        />
-        
-        <DoctorSection
-          title={language === "ar" ? "👩‍⚕️ أخصائيو علم النفس" : "👩‍⚕️ Psychologists"}
-          doctors={psychologists}
-          visible={visibleSections.psychologists}
-          onLoadMore={() => loadMore('psychologists')}
-          sectionKey="psychologists"
-        />
+        {filteredDoctors.length > 0 ? (
+          <>
+            {/* Top Rated Section */}
+            {topRatedDoctors.length > 0 && (
+              <DoctorSection
+                title={language === "ar" ? "⭐ الأطباء الأعلى تقييماً" : "⭐ Top Rated Doctors"}
+                doctors={topRatedDoctors}
+                visible={visibleSections.topRated}
+                onLoadMore={() => loadMore('topRated')}
+                sectionKey="topRated"
+              />
+            )}
+            
+            {/* Available Now Section */}
+            {availableNowDoctors.length > 0 && (
+              <DoctorSection
+                title={language === "ar" ? "🔄 متاحون الآن" : "🔄 Available Now"}
+                doctors={availableNowDoctors}
+                visible={visibleSections.availableNow}
+                onLoadMore={() => loadMore('availableNow')}
+                sectionKey="availableNow"
+              />
+            )}
+            
+            {/* Male Doctors Section */}
+            {maleDoctors.length > 0 && (
+              <DoctorSection
+                title={language === "ar" ? "👨‍⚕️ الأطباء الذكور" : "👨‍⚕️ Male Doctors"}
+                doctors={maleDoctors}
+                visible={visibleSections.male}
+                onLoadMore={() => loadMore('male')}
+                sectionKey="male"
+              />
+            )}
+            
+            {/* Female Doctors Section */}
+            {femaleDoctors.length > 0 && (
+              <DoctorSection
+                title={language === "ar" ? "👩‍⚕️ الطبيبات" : "👩‍⚕️ Female Doctors"}
+                doctors={femaleDoctors}
+                visible={visibleSections.female}
+                onLoadMore={() => loadMore('female')}
+                sectionKey="female"
+              />
+            )}
+          </>
+        ) : (
+          /* No Results */
+          <motion.div 
+            className="text-center py-16"
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.6 }}
+          >
+            <div className="text-6xl mb-4">🔍</div>
+            <h3 className="text-2xl font-semibold mb-4">
+              {language === "ar" ? "لم يتم العثور على أطباء" : "No doctors found"}
+            </h3>
+            <p className="text-muted-foreground mb-6">
+              {language === "ar" 
+                ? "حاول تغيير الفلاتر أو البحث عن شيء آخر"
+                : "Try changing your filters or search for something else"
+              }
+            </p>
+            <Button 
+              onClick={() => {
+                setSearchQuery('');
+                setSelectedSpecialty('all');
+                setSelectedGender('all');
+                setSelectedLanguage('all');
+                setSelectedTags([]);
+                setOnlineOnly(false);
+              }}
+              className="bg-primary hover:bg-primary/90"
+            >
+              {language === "ar" ? "مسح جميع الفلاتر" : "Clear All Filters"}
+            </Button>
+          </motion.div>
+        )}
 
         {/* CTA Section */}
         <motion.div 
