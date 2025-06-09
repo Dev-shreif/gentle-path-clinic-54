@@ -1,4 +1,3 @@
-
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Star, Clock, Video, Calendar, Users, MapPin } from "lucide-react";
@@ -6,72 +5,62 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
-
 interface DoctorCardProps {
   doctor: any;
   index: number;
   language: string;
   size?: 'small' | 'medium' | 'large';
 }
-
-const DoctorCard = ({ doctor, index, language, size = 'medium' }: DoctorCardProps) => {
+const DoctorCard = ({
+  doctor,
+  index,
+  language,
+  size = 'medium'
+}: DoctorCardProps) => {
   const getText = (textObj: any) => textObj[language] || textObj.en;
-  
   const sizeClasses = {
     small: 'h-80',
     medium: 'h-96',
     large: 'h-[450px]'
   };
-
   const cardClass = sizeClasses[size] || sizeClasses.medium;
-
-  return (
-    <motion.div
-      layout
-      initial={{ opacity: 0, y: 50 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5, delay: index * 0.1 }}
-      whileHover={{ 
-        scale: 1.02, 
-        rotateY: 2,
-        boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.25)"
-      }}
-      className="relative group"
-    >
+  return <motion.div layout initial={{
+    opacity: 0,
+    y: 50
+  }} animate={{
+    opacity: 1,
+    y: 0
+  }} transition={{
+    duration: 0.5,
+    delay: index * 0.1
+  }} whileHover={{
+    scale: 1.02,
+    rotateY: 2,
+    boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.25)"
+  }} className="relative group">
       <Card className={`${cardClass} overflow-hidden border-border/50 bg-card/80 backdrop-blur-sm hover:border-primary/30 transition-all duration-500`}>
         {/* Doctor Image Section */}
         <div className="relative h-48 overflow-hidden">
-          <img 
-            src={doctor.image} 
-            alt={getText(doctor.name)}
-            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-          />
+          <img src={doctor.image} alt={getText(doctor.name)} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
           
           {/* Status Badges */}
           <div className="absolute top-3 right-3 flex flex-col gap-2">
-            {doctor.availableNow && (
-              <Badge className="bg-green-500 text-white text-xs">
+            {doctor.availableNow && <Badge className="bg-green-500 text-white text-xs">
                 <Clock className="w-3 h-3 mr-1" />
                 {language === "ar" ? "متاح الآن" : "Available Now"}
-              </Badge>
-            )}
+              </Badge>}
             
-            {doctor.onlineConsultation && (
-              <Badge className="bg-blue-500 text-white text-xs">
+            {doctor.onlineConsultation && <Badge className="bg-blue-500 text-white text-xs">
                 <Video className="w-3 h-3 mr-1" />
                 {language === "ar" ? "أونلاين" : "Online"}
-              </Badge>
-            )}
+              </Badge>}
           </div>
           
           {/* Gender Badge */}
           <Badge className="absolute top-3 left-3 bg-white/90 text-gray-700 text-xs">
             <Users className="w-3 h-3 mr-1" />
-            {doctor.gender === 'female' 
-              ? (language === "ar" ? "دكتورة" : "Dr. (F)")
-              : (language === "ar" ? "دكتور" : "Dr. (M)")
-            }
+            {doctor.gender === 'female' ? language === "ar" ? "دكتورة" : "Dr. (F)" : language === "ar" ? "دكتور" : "Dr. (M)"}
           </Badge>
           
           {/* Quick Action Button */}
@@ -82,7 +71,9 @@ const DoctorCard = ({ doctor, index, language, size = 'medium' }: DoctorCardProp
                   {language === "ar" ? "عرض الملف" : "View Profile"}
                 </Button>
               </Link>
-              <Link to="/booking" state={{ selectedDoctor: getText(doctor.name) }}>
+              <Link to="/booking" state={{
+              selectedDoctor: getText(doctor.name)
+            }}>
                 <Button size="sm" className="bg-primary hover:bg-primary/90 shadow-lg">
                   <Calendar className="w-3 h-3" />
                 </Button>
@@ -92,7 +83,7 @@ const DoctorCard = ({ doctor, index, language, size = 'medium' }: DoctorCardProp
         </div>
         
         {/* Card Content */}
-        <CardContent className="p-4 flex-1 flex flex-col">
+        <CardContent className="p-4 flex-1 flex flex-col py-0 px-[13px] my-0 mx-0">
           {/* Doctor Info */}
           <div className="flex items-start justify-between mb-3">
             <div className="flex-1">
@@ -104,12 +95,10 @@ const DoctorCard = ({ doctor, index, language, size = 'medium' }: DoctorCardProp
               </Badge>
               
               {/* Languages */}
-              {doctor.languages && (
-                <div className="flex items-center gap-1 text-xs text-muted-foreground">
+              {doctor.languages && <div className="flex items-center gap-1 text-xs text-muted-foreground">
                   <MapPin className="w-3 h-3" />
                   {doctor.languages.join(', ')}
-                </div>
-              )}
+                </div>}
             </div>
             
             {/* Rating */}
@@ -125,17 +114,13 @@ const DoctorCard = ({ doctor, index, language, size = 'medium' }: DoctorCardProp
           </p>
           
           {/* Tags */}
-          <div className="flex flex-wrap gap-1 mb-3">
-            {doctor.tags.slice(0, 3).map((tag) => (
-              <Badge key={tag} variant="outline" className="text-xs">
+          <div className="flex flex-wrap gap-1 mb-3 py-0 px-0 mx-0 my-0 rounded-none">
+            {doctor.tags.slice(0, 3).map(tag => <Badge key={tag} variant="outline" className="text-xs">
                 #{tag}
-              </Badge>
-            ))}
-            {doctor.tags.length > 3 && (
-              <Badge variant="outline" className="text-xs">
+              </Badge>)}
+            {doctor.tags.length > 3 && <Badge variant="outline" className="text-xs">
                 +{doctor.tags.length - 3}
-              </Badge>
-            )}
+              </Badge>}
           </div>
           
           {/* Footer */}
@@ -153,8 +138,6 @@ const DoctorCard = ({ doctor, index, language, size = 'medium' }: DoctorCardProp
           </div>
         </CardContent>
       </Card>
-    </motion.div>
-  );
+    </motion.div>;
 };
-
 export default DoctorCard;
