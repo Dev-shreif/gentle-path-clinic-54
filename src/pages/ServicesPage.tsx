@@ -1,307 +1,246 @@
 
-import { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
-import { ChevronDown, Heart, User, Calendar } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Brain, Heart, Users, Shield, Sparkles, Zap } from "lucide-react";
 import { Link } from "react-router-dom";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef } from "react";
 
 const ServicesPage = () => {
-  const [openService, setOpenService] = useState<string | null>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const { scrollXProgress } = useScroll({ container: containerRef });
+  const backgroundX = useTransform(scrollXProgress, [0, 1], ["0%", "-50%"]);
 
   const services = [
     {
-      id: "individual-therapy",
+      id: 1,
+      icon: Brain,
       title: "Individual Therapy",
-      icon: User,
-      shortDescription: "One-on-one personalized therapy sessions",
-      price: "Starting at $150/session",
+      tagline: "Personalized one-on-one sessions",
+      description: "Confidential, personalized therapy sessions designed to address your unique mental health needs and goals.",
+      features: ["Cognitive Behavioral Therapy", "Psychodynamic Therapy", "Mindfulness-Based Approaches"],
       duration: "50 minutes",
-      fullDescription: "Individual therapy provides a safe, confidential space for you to explore your thoughts, feelings, and behaviors with a trained mental health professional. Our therapists use evidence-based approaches tailored to your specific needs and goals.",
-      benefits: [
-        "Personalized treatment approach",
-        "Confidential and safe environment",
-        "Evidence-based therapeutic techniques",
-        "Flexible scheduling options",
-        "Progress tracking and goal setting"
-      ],
-      approaches: [
-        "Cognitive Behavioral Therapy (CBT)",
-        "Dialectical Behavior Therapy (DBT)",
-        "Psychodynamic Therapy",
-        "Mindfulness-Based Therapy",
-        "Solution-Focused Therapy"
-      ]
+      price: "Starting from $120",
+      color: "from-blue-500/20 to-purple-500/20"
     },
     {
-      id: "couples-therapy",
-      title: "Couples Therapy",
-      icon: Heart,
-      shortDescription: "Relationship counseling for couples",
-      price: "Starting at $200/session",
-      duration: "75 minutes",
-      fullDescription: "Couples therapy helps partners improve communication, resolve conflicts, and strengthen their relationship. Our experienced therapists provide a neutral space for both partners to express their feelings and work toward common goals.",
-      benefits: [
-        "Improved communication skills",
-        "Conflict resolution strategies",
-        "Strengthened emotional connection",
-        "Better understanding of each other",
-        "Tools for ongoing relationship health"
-      ],
-      approaches: [
-        "Emotionally Focused Therapy (EFT)",
-        "Gottman Method",
-        "Imago Relationship Therapy",
-        "Communication Skills Training",
-        "Attachment-Based Therapy"
-      ]
-    },
-    {
-      id: "group-therapy",
+      id: 2,
+      icon: Users,
       title: "Group Therapy",
-      icon: User,
-      shortDescription: "Therapeutic groups for shared experiences",
-      price: "Starting at $80/session",
+      tagline: "Healing together in community",
+      description: "Connect with others facing similar challenges in a supportive, therapeutic group environment.",
+      features: ["Anxiety Support Groups", "Depression Recovery", "Trauma Healing Circles"],
       duration: "90 minutes",
-      fullDescription: "Group therapy provides a supportive environment where individuals with similar challenges can share experiences, learn from each other, and develop coping strategies together under professional guidance.",
-      benefits: [
-        "Peer support and understanding",
-        "Cost-effective treatment option",
-        "Social skills development",
-        "Reduced feelings of isolation",
-        "Multiple perspectives on challenges"
-      ],
-      approaches: [
-        "Process Groups",
-        "Skills-Based Groups",
-        "Support Groups",
-        "Psychoeducational Groups",
-        "Specialty Focus Groups"
-      ]
+      price: "Starting from $60",
+      color: "from-green-500/20 to-teal-500/20"
     },
     {
-      id: "psychiatric-evaluation",
-      title: "Psychiatric Evaluation",
+      id: 3,
       icon: Heart,
-      shortDescription: "Comprehensive mental health assessment",
-      price: "Starting at $300/session",
-      duration: "90-120 minutes",
-      fullDescription: "A thorough psychiatric evaluation helps determine the most appropriate treatment plan for your mental health needs. This comprehensive assessment includes medical history, symptom evaluation, and treatment recommendations.",
-      benefits: [
-        "Accurate diagnosis and assessment",
-        "Personalized treatment planning",
-        "Medication evaluation if needed",
-        "Comprehensive mental health review",
-        "Coordination with other providers"
-      ],
-      approaches: [
-        "Clinical Interview",
-        "Psychological Testing",
-        "Medical History Review",
-        "Symptom Assessment",
-        "Treatment Planning"
-      ]
+      title: "Couples Counseling",
+      tagline: "Strengthen your relationship",
+      description: "Professional guidance to improve communication, resolve conflicts, and deepen your connection.",
+      features: ["Communication Skills", "Conflict Resolution", "Intimacy Building"],
+      duration: "60 minutes",
+      price: "Starting from $150",
+      color: "from-pink-500/20 to-rose-500/20"
     },
     {
-      id: "teletherapy",
-      title: "Online Therapy",
-      icon: Calendar,
-      shortDescription: "Convenient therapy from home",
-      price: "Starting at $120/session",
-      duration: "50 minutes",
-      fullDescription: "Online therapy provides the same quality care as in-person sessions with the added convenience of accessing treatment from the comfort of your own home. Perfect for those with busy schedules or mobility constraints.",
-      benefits: [
-        "Convenient access from home",
-        "Flexible scheduling options",
-        "Same quality as in-person care",
-        "Reduced travel time and costs",
-        "Comfortable familiar environment"
-      ],
-      approaches: [
-        "Video Conferencing",
-        "Secure Messaging",
-        "Digital Worksheets",
-        "Online Assessment Tools",
-        "Virtual Reality Therapy"
-      ]
+      id: 4,
+      icon: Shield,
+      title: "Trauma Treatment",
+      tagline: "Healing from past wounds",
+      description: "Specialized approaches to help you process and heal from traumatic experiences safely.",
+      features: ["EMDR Therapy", "Trauma-Focused CBT", "Somatic Experiencing"],
+      duration: "60 minutes",
+      price: "Starting from $140",
+      color: "from-orange-500/20 to-red-500/20"
     },
     {
-      id: "crisis-intervention",
+      id: 5,
+      icon: Sparkles,
+      title: "Mindfulness Training",
+      tagline: "Present moment awareness",
+      description: "Learn practical mindfulness techniques to reduce stress and enhance overall well-being.",
+      features: ["Meditation Training", "Breathing Techniques", "Body Awareness"],
+      duration: "45 minutes",
+      price: "Starting from $80",
+      color: "from-purple-500/20 to-indigo-500/20"
+    },
+    {
+      id: 6,
+      icon: Zap,
       title: "Crisis Intervention",
-      icon: Heart,
-      shortDescription: "Immediate support during mental health crises",
+      tagline: "Immediate support when needed",
+      description: "24/7 emergency mental health support for acute psychological distress and crisis situations.",
+      features: ["24/7 Availability", "Emergency Assessment", "Safety Planning"],
+      duration: "As needed",
       price: "Contact for pricing",
-      duration: "Variable",
-      fullDescription: "Crisis intervention provides immediate, short-term assistance for individuals experiencing acute mental health emergencies. Our trained professionals offer rapid assessment and stabilization services.",
-      benefits: [
-        "24/7 emergency support",
-        "Rapid assessment and stabilization",
-        "Safety planning and risk assessment",
-        "Connection to ongoing care",
-        "Family and support system involvement"
-      ],
-      approaches: [
-        "Crisis Assessment",
-        "Safety Planning",
-        "Emergency Stabilization",
-        "Resource Coordination",
-        "Follow-up Care Planning"
-      ]
+      color: "from-yellow-500/20 to-orange-500/20"
     }
   ];
 
-  const toggleService = (serviceId: string) => {
-    setOpenService(openService === serviceId ? null : serviceId);
-  };
-
   return (
-    <div className="min-h-screen pt-24 pb-16">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen pt-24 pb-16 overflow-hidden">
+      {/* Background Gradient with Parallax */}
+      <motion.div 
+        className="fixed inset-0 bg-gradient-to-r from-primary/5 via-secondary/5 to-primary/5 -z-10"
+        style={{ x: backgroundX }}
+      />
+      
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <div className="text-center mb-16">
+        <motion.div 
+          className="text-center mb-16"
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+        >
           <h1 className="text-4xl md:text-5xl font-light text-balance mb-6">
-            Our{" "}
+            Our Mental Health{" "}
             <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent font-medium">
               Services
             </span>
           </h1>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto text-balance">
-            Comprehensive mental health services designed to support your journey toward 
-            wellness and personal growth.
+            Comprehensive mental health care tailored to your unique needs and journey toward wellness.
           </p>
-        </div>
+        </motion.div>
 
-        {/* Services Grid */}
-        <div className="space-y-6">
-          {services.map((service, index) => (
-            <Card 
-              key={service.id} 
-              className="border-border/50 hover:shadow-lg transition-all duration-300"
-            >
-              <Collapsible open={openService === service.id}>
-                <CollapsibleTrigger
-                  onClick={() => toggleService(service.id)}
-                  className="w-full"
-                >
-                  <CardHeader className="hover:bg-muted/20 transition-colors">
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center space-x-4">
-                        <div className="bg-primary/10 p-3 rounded-xl">
-                          <service.icon className="h-6 w-6 text-primary" />
-                        </div>
-                        <div className="text-left">
-                          <CardTitle className="text-xl mb-2">{service.title}</CardTitle>
-                          <p className="text-muted-foreground text-sm">
-                            {service.shortDescription}
-                          </p>
-                        </div>
-                      </div>
-                      <div className="flex items-center space-x-4">
-                        <div className="text-right hidden sm:block">
-                          <Badge variant="secondary" className="mb-1">
-                            {service.duration}
-                          </Badge>
-                          <p className="text-sm text-muted-foreground">
-                            {service.price}
-                          </p>
-                        </div>
-                        <ChevronDown 
-                          className={`h-5 w-5 text-muted-foreground transition-transform ${
-                            openService === service.id ? 'rotate-180' : ''
-                          }`} 
-                        />
-                      </div>
-                    </div>
+        {/* Horizontal Scroll Services */}
+        <div className="relative">
+          <motion.div 
+            ref={containerRef}
+            className="flex gap-8 overflow-x-auto scrollbar-hide pb-8 snap-x snap-mandatory"
+            style={{ scrollBehavior: 'smooth' }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+          >
+            {services.map((service, index) => (
+              <motion.div
+                key={service.id}
+                className="flex-shrink-0 w-96 snap-center"
+                initial={{ opacity: 0, x: 100 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ 
+                  duration: 0.8, 
+                  delay: index * 0.1,
+                  type: "spring",
+                  stiffness: 100 
+                }}
+                viewport={{ once: true }}
+              >
+                <Card className="h-full border-border/50 bg-card/80 backdrop-blur-sm hover:shadow-2xl transition-all duration-500 group">
+                  <motion.div 
+                    className={`h-2 bg-gradient-to-r ${service.color} rounded-t-lg`}
+                    initial={{ scaleX: 0 }}
+                    whileInView={{ scaleX: 1 }}
+                    transition={{ duration: 0.8, delay: 0.2 }}
+                  />
+                  
+                  <CardHeader className="pb-4">
+                    <motion.div
+                      initial={{ scale: 0, rotate: -180 }}
+                      whileInView={{ scale: 1, rotate: 0 }}
+                      transition={{ duration: 0.6, delay: 0.3, type: "spring" }}
+                      className="w-16 h-16 rounded-full bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300"
+                    >
+                      <service.icon className="h-8 w-8 text-primary" />
+                    </motion.div>
+                    <CardTitle className="text-xl mb-2 group-hover:text-primary transition-colors">
+                      {service.title}
+                    </CardTitle>
+                    <p className="text-sm text-muted-foreground font-medium">
+                      {service.tagline}
+                    </p>
                   </CardHeader>
-                </CollapsibleTrigger>
-                
-                <CollapsibleContent>
-                  <CardContent className="pt-0 pb-6">
-                    <div className="grid md:grid-cols-2 gap-8">
-                      <div>
-                        <h4 className="font-semibold mb-3">About This Service</h4>
-                        <p className="text-muted-foreground mb-6 leading-relaxed">
-                          {service.fullDescription}
-                        </p>
-                        
-                        <h4 className="font-semibold mb-3">Key Benefits</h4>
-                        <ul className="space-y-2">
-                          {service.benefits.map((benefit, idx) => (
-                            <li key={idx} className="flex items-start space-x-2">
-                              <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
-                              <span className="text-muted-foreground">{benefit}</span>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                      
-                      <div>
-                        <h4 className="font-semibold mb-3">Treatment Approaches</h4>
-                        <div className="space-y-2 mb-6">
-                          {service.approaches.map((approach, idx) => (
-                            <Badge key={idx} variant="outline" className="mr-2 mb-2">
-                              {approach}
-                            </Badge>
-                          ))}
-                        </div>
-                        
-                        <div className="bg-muted/30 rounded-lg p-4 space-y-3">
-                          <div className="flex justify-between items-center">
-                            <span className="font-medium">Duration:</span>
-                            <span className="text-muted-foreground">{service.duration}</span>
-                          </div>
-                          <div className="flex justify-between items-center">
-                            <span className="font-medium">Pricing:</span>
-                            <span className="text-muted-foreground">{service.price}</span>
-                          </div>
-                        </div>
-                        
-                        <div className="mt-6 space-y-3">
-                          <Link to="/booking" state={{ selectedService: service.title }}>
-                            <Button className="w-full gradient-calm text-white hover:opacity-90">
-                              <Calendar className="h-4 w-4 mr-2" />
-                              Book This Service
-                            </Button>
-                          </Link>
-                          <Link to="/doctors">
-                            <Button variant="outline" className="w-full border-primary/20 hover:bg-primary/5">
-                              Meet Our Specialists
-                            </Button>
-                          </Link>
-                        </div>
+                  
+                  <CardContent className="space-y-6">
+                    <p className="text-muted-foreground leading-relaxed">
+                      {service.description}
+                    </p>
+                    
+                    <div>
+                      <h4 className="font-medium mb-3 text-sm uppercase tracking-wide">Features</h4>
+                      <div className="space-y-2">
+                        {service.features.map((feature, idx) => (
+                          <motion.div
+                            key={idx}
+                            initial={{ opacity: 0, x: -20 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            transition={{ duration: 0.4, delay: 0.5 + idx * 0.1 }}
+                            className="flex items-center text-sm"
+                          >
+                            <div className="w-2 h-2 bg-primary rounded-full mr-3" />
+                            {feature}
+                          </motion.div>
+                        ))}
                       </div>
                     </div>
+                    
+                    <div className="grid grid-cols-2 gap-4 pt-4 border-t border-border/50">
+                      <div>
+                        <p className="text-xs text-muted-foreground mb-1">Duration</p>
+                        <p className="font-medium">{service.duration}</p>
+                      </div>
+                      <div>
+                        <p className="text-xs text-muted-foreground mb-1">Investment</p>
+                        <p className="font-medium">{service.price}</p>
+                      </div>
+                    </div>
+                    
+                    <motion.div
+                      whileHover={{ scale: 1.02 }}
+                      whileTap={{ scale: 0.98 }}
+                    >
+                      <Button className="w-full gradient-calm text-white hover:opacity-90">
+                        Learn More
+                      </Button>
+                    </motion.div>
                   </CardContent>
-                </CollapsibleContent>
-              </Collapsible>
-            </Card>
-          ))}
+                </Card>
+              </motion.div>
+            ))}
+          </motion.div>
         </div>
 
         {/* CTA Section */}
-        <div className="mt-20 text-center">
-          <div className="bg-gradient-to-r from-primary/10 to-secondary/10 rounded-3xl p-8 md:p-12">
-            <h2 className="text-2xl md:text-3xl font-light mb-4">
-              Not sure which service is right for you?
-            </h2>
-            <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
-              Our team can help you determine the best treatment approach for your specific needs and circumstances.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link to="/contact">
-                <Button className="gradient-calm text-white hover:opacity-90">
-                  Get a Free Consultation
-                </Button>
-              </Link>
-              <Link to="/booking">
-                <Button variant="outline" className="border-primary/20 hover:bg-primary/5">
-                  Schedule Assessment
-                </Button>
-              </Link>
-            </div>
-          </div>
-        </div>
+        <motion.div 
+          className="mt-20 text-center"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+        >
+          <Card className="bg-gradient-to-r from-primary/10 to-secondary/10 border-border/50">
+            <CardContent className="p-8 md:p-12">
+              <h2 className="text-2xl md:text-3xl font-light mb-4">
+                Ready to Begin Your Journey?
+              </h2>
+              <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
+                Take the first step toward better mental health. Our compassionate team is here to support you every step of the way.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <Link to="/booking">
+                  <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                    <Button className="gradient-calm text-white hover:opacity-90">
+                      Schedule Consultation
+                    </Button>
+                  </motion.div>
+                </Link>
+                <Link to="/contact">
+                  <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                    <Button variant="outline" className="border-primary/20 hover:bg-primary/5">
+                      Contact Us
+                    </Button>
+                  </motion.div>
+                </Link>
+              </div>
+            </CardContent>
+          </Card>
+        </motion.div>
       </div>
     </div>
   );

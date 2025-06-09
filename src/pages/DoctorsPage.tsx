@@ -1,9 +1,10 @@
-
 import { Link } from "react-router-dom";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Calendar } from "lucide-react";
+import { motion } from "framer-motion";
+import { useState } from "react";
 
 const DoctorsPage = () => {
   // Get language from localStorage or default to English
@@ -25,7 +26,8 @@ const DoctorsPage = () => {
         en: ["Depression", "Anxiety Disorders", "Psychological Therapy"],
         ar: ["الاكتئاب", "اضطرابات القلق", "العلاج النفسي"]
       },
-      experience: { en: "10+ years", ar: "أكثر من 10 سنوات" }
+      experience: { en: "10+ years", ar: "أكثر من 10 سنوات" },
+      size: "large"
     },
     {
       id: 2,
@@ -41,7 +43,8 @@ const DoctorsPage = () => {
         en: ["Psychiatry", "Addiction Treatment", "Mental Health"],
         ar: ["الطب النفسي", "علاج الإدمان", "الصحة النفسية"]
       },
-      experience: { en: "12+ years", ar: "أكثر من 12 سنة" }
+      experience: { en: "12+ years", ar: "أكثر من 12 سنة" },
+      size: "medium"
     },
     {
       id: 3,
@@ -109,15 +112,35 @@ const DoctorsPage = () => {
     }
   ];
 
+  const specialties = [
+    { key: "all", name: { en: "All Specialties", ar: "جميع التخصصات" } },
+    { key: "psychiatrist", name: { en: "Psychiatrist", ar: "طب نفسي" } },
+    { key: "addiction", name: { en: "Addiction Treatment", ar: "علاج الإدمان" } },
+    { key: "psychology", name: { en: "Psychology", ar: "علم النفس" } },
+  ];
+
   const getText = (textObj: any) => {
     return textObj[language] || textObj.en;
+  };
+
+  const getCardSize = (size: string) => {
+    switch (size) {
+      case "large": return "h-96 w-80";
+      case "medium": return "h-80 w-72";
+      default: return "h-72 w-64";
+    }
   };
 
   return (
     <div className={`min-h-screen pt-24 pb-16 ${isRTL ? 'rtl' : 'ltr'}`} dir={isRTL ? 'rtl' : 'ltr'}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <div className="text-center mb-16">
+        <motion.div 
+          className="text-center mb-16"
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+        >
           <h1 className="text-4xl md:text-5xl font-light text-balance mb-6">
             {language === "ar" ? "تعرف على " : "Meet Our "}
             <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent font-medium">
@@ -130,83 +153,152 @@ const DoctorsPage = () => {
               : "Our team of experienced mental health professionals is dedicated to providing compassionate, evidence-based care tailored to your unique needs."
             }
           </p>
-        </div>
+        </motion.div>
 
-        {/* Doctors Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {doctors.map((doctor, index) => (
-            <Card 
-              key={doctor.id} 
-              className="group hover:shadow-xl transition-all duration-500 hover:-translate-y-2 border-border/50 overflow-hidden"
-              style={{ animationDelay: `${index * 100}ms` }}
-            >
-              <div className="relative overflow-hidden">
-                <img 
-                  src={doctor.image} 
-                  alt={getText(doctor.name)}
-                  className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                <div className="absolute bottom-4 left-4 right-4 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-4 group-hover:translate-y-0">
-                  <Link to={`/doctors/${doctor.slug}`}>
-                    <Button className="w-full bg-white/90 text-primary hover:bg-white">
-                      {language === "ar" ? "عرض الملف الشخصي" : "View Profile"}
-                    </Button>
-                  </Link>
-                </div>
-              </div>
-              
-              <CardContent className="p-6">
-                <div className="mb-4">
-                  <h3 className="text-xl font-semibold mb-2 group-hover:text-primary transition-colors">
-                    {getText(doctor.name)}
-                  </h3>
-                  <Badge variant="secondary" className="mb-3">
-                    {getText(doctor.specialty)}
-                  </Badge>
-                  <p className="text-muted-foreground text-sm leading-relaxed">
-                    {getText(doctor.description)}
-                  </p>
-                </div>
-                
-                <div className="space-y-3">
-                  <div>
-                    <p className="text-xs font-medium text-muted-foreground mb-2">
-                      {language === "ar" ? "الخبرة" : "EXPERTISE"}
-                    </p>
-                    <div className="flex flex-wrap gap-2">
-                      {getText(doctor.expertise).slice(0, 2).map((skill: string, idx: number) => (
-                        <Badge key={idx} variant="outline" className="text-xs">
-                          {skill}
-                        </Badge>
-                      ))}
-                      {getText(doctor.expertise).length > 2 && (
-                        <Badge variant="outline" className="text-xs">
-                          +{getText(doctor.expertise).length - 2} {language === "ar" ? "أكثر" : "more"}
-                        </Badge>
-                      )}
-                    </div>
+        {/* Animated Filter Bar */}
+        <motion.div 
+          className="flex justify-center mb-12 overflow-x-auto scrollbar-hide"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+        >
+          <div className="flex gap-4 p-2 bg-background/80 backdrop-blur-sm rounded-full border border-border/50">
+            {specialties.map((specialty, index) => (
+              <motion.button
+                key={specialty.key}
+                onClick={() => setSelectedSpecialty(specialty.key)}
+                className={`px-6 py-2 rounded-full whitespace-nowrap transition-all duration-300 ${
+                  selectedSpecialty === specialty.key 
+                    ? 'bg-primary text-primary-foreground shadow-lg' 
+                    : 'hover:bg-muted'
+                }`}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.4, delay: index * 0.1 }}
+              >
+                {getText(specialty.name)}
+              </motion.button>
+            ))}
+          </div>
+        </motion.div>
+
+        {/* Horizontal Scroll Gallery */}
+        <div className="relative">
+          <motion.div 
+            className="flex gap-8 overflow-x-auto scrollbar-hide pb-8 snap-x snap-mandatory"
+            style={{ scrollBehavior: 'smooth' }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+          >
+            {doctors.map((doctor, index) => (
+              <motion.div
+                key={doctor.id}
+                className={`flex-shrink-0 snap-center ${getCardSize(doctor.size)}`}
+                initial={{ opacity: 0, y: 50, rotateY: -15 }}
+                animate={{ opacity: 1, y: 0, rotateY: 0 }}
+                transition={{ 
+                  duration: 0.8, 
+                  delay: index * 0.1,
+                  type: "spring",
+                  stiffness: 100 
+                }}
+                whileHover={{ 
+                  scale: 1.05, 
+                  rotateY: 5,
+                  rotateX: 5,
+                  z: 50,
+                  boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(255, 255, 255, 0.05)"
+                }}
+                whileTap={{ scale: 0.98 }}
+              >
+                <Card className="group h-full w-full overflow-hidden border-border/50 bg-card/80 backdrop-blur-sm hover:border-primary/30 transition-all duration-500">
+                  <div className="relative h-48 overflow-hidden">
+                    <motion.img 
+                      src={doctor.image} 
+                      alt={getText(doctor.name)}
+                      className="w-full h-full object-cover"
+                      whileHover={{ scale: 1.1 }}
+                      transition={{ duration: 0.6 }}
+                    />
+                    <motion.div 
+                      className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"
+                      initial={{ opacity: 0 }}
+                      whileHover={{ opacity: 1 }}
+                      transition={{ duration: 0.3 }}
+                    />
+                    <motion.div 
+                      className="absolute bottom-4 left-4 right-4 opacity-0 group-hover:opacity-100"
+                      initial={{ y: 20 }}
+                      whileHover={{ y: 0 }}
+                      transition={{ duration: 0.3 }}
+                    >
+                      <Link to={`/doctors/${doctor.slug}`}>
+                        <Button className="w-full bg-white/90 text-primary hover:bg-white shadow-lg">
+                          {language === "ar" ? "عرض الملف الشخصي" : "View Profile"}
+                        </Button>
+                      </Link>
+                    </motion.div>
                   </div>
                   
-                  <div className="flex items-center justify-between pt-2">
-                    <span className="text-sm text-muted-foreground">
-                      {getText(doctor.experience)}
-                    </span>
-                    <Link to="/booking" state={{ selectedDoctor: getText(doctor.name) }}>
-                      <Button size="sm" variant="outline" className="border-primary/20 hover:bg-primary/5">
-                        <Calendar className="h-4 w-4 mr-2" />
-                        {language === "ar" ? "احجز" : "Book"}
-                      </Button>
-                    </Link>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-          ))}
+                  <CardContent className="p-6 flex-1 flex flex-col">
+                    <div className="mb-4 flex-1">
+                      <h3 className="text-xl font-semibold mb-2 group-hover:text-primary transition-colors">
+                        {getText(doctor.name)}
+                      </h3>
+                      <Badge variant="secondary" className="mb-3">
+                        {getText(doctor.specialty)}
+                      </Badge>
+                      <p className="text-muted-foreground text-sm leading-relaxed line-clamp-3">
+                        {getText(doctor.description)}
+                      </p>
+                    </div>
+                    
+                    <div className="space-y-3">
+                      <div>
+                        <p className="text-xs font-medium text-muted-foreground mb-2">
+                          {language === "ar" ? "الخبرة" : "EXPERTISE"}
+                        </p>
+                        <div className="flex flex-wrap gap-2">
+                          {getText(doctor.expertise).slice(0, 2).map((skill: string, idx: number) => (
+                            <Badge key={idx} variant="outline" className="text-xs">
+                              {skill}
+                            </Badge>
+                          ))}
+                        </div>
+                      </div>
+                      
+                      <div className="flex items-center justify-between pt-2">
+                        <span className="text-sm text-muted-foreground">
+                          {getText(doctor.experience)}
+                        </span>
+                        <Link to="/booking" state={{ selectedDoctor: getText(doctor.name) }}>
+                          <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                            <Button size="sm" variant="outline" className="border-primary/20 hover:bg-primary/5">
+                              <Calendar className="h-4 w-4 mr-2" />
+                              {language === "ar" ? "احجز" : "Book"}
+                            </Button>
+                          </motion.div>
+                        </Link>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            ))}
+          </motion.div>
         </div>
 
         {/* CTA Section */}
-        <div className="mt-20 text-center">
+        <motion.div 
+          className="mt-20 text-center"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+        >
           <div className="bg-gradient-to-r from-primary/10 to-secondary/10 rounded-3xl p-8 md:p-12">
             <h2 className="text-2xl md:text-3xl font-light mb-4">
               {language === "ar" 
@@ -222,18 +314,22 @@ const DoctorsPage = () => {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link to="/contact">
-                <Button className="gradient-calm text-white hover:opacity-90">
-                  {language === "ar" ? "احصل على مطابقة مع طبيب" : "Get Matched with a Doctor"}
-                </Button>
+                <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                  <Button className="gradient-calm text-white hover:opacity-90">
+                    {language === "ar" ? "احصل على مطابقة مع طبيب" : "Get Matched with a Doctor"}
+                  </Button>
+                </motion.div>
               </Link>
               <Link to="/services">
-                <Button variant="outline" className="border-primary/20 hover:bg-primary/5">
-                  {language === "ar" ? "استكشف خدماتنا" : "Explore Our Services"}
-                </Button>
+                <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                  <Button variant="outline" className="border-primary/20 hover:bg-primary/5">
+                    {language === "ar" ? "استكشف خدماتنا" : "Explore Our Services"}
+                  </Button>
+                </motion.div>
               </Link>
             </div>
           </div>
-        </div>
+        </motion.div>
       </div>
     </div>
   );
