@@ -46,22 +46,13 @@ const DoctorCard = ({
           
           {/* Status Badges */}
           <div className="absolute top-3 right-3 flex flex-col gap-2">
-            {doctor.availableNow && <Badge className="bg-green-500 text-white text-xs">
-                <Clock className="w-3 h-3 mr-1" />
-                {language === "ar" ? "متاح الآن" : "Available Now"}
-              </Badge>}
+            {doctor.availableNow}
             
-            {doctor.onlineConsultation && <Badge className="bg-blue-500 text-white text-xs">
-                <Video className="w-3 h-3 mr-1" />
-                {language === "ar" ? "أونلاين" : "Online"}
-              </Badge>}
+            {doctor.onlineConsultation}
           </div>
           
           {/* Gender Badge */}
-          <Badge className="absolute top-3 left-3 bg-white/90 text-gray-700 text-xs">
-            <Users className="w-3 h-3 mr-1" />
-            {doctor.gender === 'female' ? language === "ar" ? "دكتورة" : "Dr. (F)" : language === "ar" ? "دكتور" : "Dr. (M)"}
-          </Badge>
+          
           
           {/* Quick Action Button */}
           <div className="absolute bottom-4 left-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
