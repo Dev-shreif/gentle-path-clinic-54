@@ -253,17 +253,7 @@ const Index = () => {
         delay: 0.8
       }}>
           <ScrollArea className="w-full">
-            <div className="flex space-x-8 px-4 sm:px-6 lg:px-8 pb-4">
-              {stats.map((stat, index) => <motion.div key={index} className="flex flex-col items-center min-w-[120px] bg-background/80 backdrop-blur-sm rounded-2xl p-4 border border-border/50" whileHover={{
-              scale: 1.05,
-              y: -5
-            }} transition={{
-              duration: 0.3
-            }}>
-                  <span className="text-2xl font-bold text-primary">{stat.number}</span>
-                  <span className="text-sm text-muted-foreground text-center">{stat.label}</span>
-                </motion.div>)}
-            </div>
+            
             <ScrollBar orientation="horizontal" className="invisible" />
           </ScrollArea>
         </motion.div>
