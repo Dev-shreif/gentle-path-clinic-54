@@ -74,17 +74,17 @@ const DoctorsPage = () => {
       },
       slug: "dr-maha-mohsen",
       specialty: {
-        en: "Psychiatrist & Co-Founder",
-        ar: "أخصائي الطب النفسي والمؤسس المشارك"
+        en: "Psychiatrist & Addiction Treatment - Co-Founder",
+        ar: "أخصائية الطب النفسي وعلاج الإدمان - عضو مؤسس"
       },
       image: "/lovable-uploads/cede00fa-ffe6-4d0c-9026-3dbff006bbad.png",
       description: {
-        en: "Co-founder and specialist in psychiatric medicine and addiction treatment with extensive experience in comprehensive mental health care.",
-        ar: "مؤسس مشارك وأخصائية في الطب النفسي وعلاج الإدمان مع خبرة واسعة في الرعاية الشاملة للصحة النفسية."
+        en: "Co-founder with expertise in psychiatry and addiction treatment for adolescents and young women. Former director of adolescent unit at Helwan Mental Health Hospital.",
+        ar: "عضو مؤسس مع خبرة في الطب النفسي وعلاج الإدمان للمراهقين والفتيات. مديرة سابقة لوحدة المراهقين بمستشفى حلوان للصحة النفسية."
       },
       expertise: {
-        en: ["Psychiatry", "Addiction Treatment", "Mental Health"],
-        ar: ["الطب النفسي", "علاج الإدمان", "الصحة النفسية"]
+        en: ["Adolescent Psychiatry", "Addiction Treatment", "CBT", "DBT", "Group Therapy"],
+        ar: ["طب نفس المراهقين", "علاج الإدمان", "العلاج المعرفي السلوكي", "العلاج الجدلي السلوكي", "العلاج الجماعي"]
       },
       experience: {
         en: "14+ years",
@@ -95,7 +95,7 @@ const DoctorsPage = () => {
       category: "psychiatrist",
       gender: "female",
       languages: ["Arabic", "English"],
-      tags: ["addiction", "psychiatry", "couples", "founder"],
+      tags: ["addiction", "teens", "therapy", "founder"],
       nextAvailable: "Tomorrow 10:00 AM",
       onlineConsultation: true,
       size: "large",
@@ -109,17 +109,17 @@ const DoctorsPage = () => {
       },
       slug: "dr-nada-alawadi",
       specialty: {
-        en: "Psychiatrist & Co-Founder",
-        ar: "طبيبة ومعالجة نفسية والمؤسس المشارك"
+        en: "Psychiatrist & Psychological Treatment - Co-Founder",
+        ar: "أخصائي الطب النفسي ومعالجة نفسية - عضو مؤسس"
       },
       image: "/lovable-uploads/5a3488b9-e38f-44f4-90d7-8dce28f0003a.png",
       description: {
-        en: "Co-founder and expert in psychiatric medicine and psychological treatment with a focus on holistic patient care.",
-        ar: "مؤسس مشارك وخبيرة في الطب النفسي والعلاج النفسي مع التركيز على الرعاية الشاملة للمرضى."
+        en: "Co-founder with Egyptian Fellowship in Psychiatry and Addiction. Specialized in trauma therapy with EMDR, Psychodrama, and IFS training. Mental health consultant for UNHCR refugees.",
+        ar: "عضو مؤسس حاصل على الزمالة المصرية في الطب النفسي وعلاج الإدمان. متخصص في علاج الصدمات بـ EMDR والسيكودراما و IFS. مستشار الصحة النفسية للاجئين مع المفوضية السامية."
       },
       expertise: {
-        en: ["Psychiatry", "Psychological Treatment", "Therapy"],
-        ar: ["الطب النفسي", "العلاج النفسي", "العلاج"]
+        en: ["EMDR Trauma Therapy", "Psychodrama", "IFS", "Refugee Mental Health", "Dynamic Therapy"],
+        ar: ["علاج الصدمات بـ EMDR", "السيكودراما", "نظام الأجزاء الداخلية", "الصحة النفسية للاجئين", "العلاج الديناميكي"]
       },
       experience: {
         en: "12+ years",
@@ -130,7 +130,7 @@ const DoctorsPage = () => {
       category: "psychiatrist",
       gender: "female",
       languages: ["Arabic", "English"],
-      tags: ["couples", "anxiety", "therapy", "founder"],
+      tags: ["trauma", "refugees", "therapy", "founder"],
       nextAvailable: "Today 1:00 PM",
       onlineConsultation: true,
       size: "large",
@@ -144,17 +144,17 @@ const DoctorsPage = () => {
       },
       slug: "dr-heba-ahmed-alazab",
       specialty: {
-        en: "Psychiatrist & Co-Founder",
-        ar: "طبيبة نفسية والمؤسس المشارك"
+        en: "Child & Adolescent Psychiatrist - Co-Founder",
+        ar: "طبيبة نفسية للأطفال والمراهقين - عضو مؤسس"
       },
       image: "/lovable-uploads/2f284f11-59ed-4850-9684-375341aae1ba.png",
       description: {
-        en: "Co-founder and dedicated psychiatrist specializing in comprehensive mental health treatment and patient care.",
-        ar: "مؤسس مشارك وطبيبة نفسية مكرسة متخصصة في العلاج الشامل للصحة النفسية ورعاية المرضى."
+        en: "Co-founder and child psychiatrist with over 6 years managing pediatric units at Helwan Hospital. Developer of 'Heroes Camp' program implemented nationwide. Specialized in EMDR and family therapy.",
+        ar: "عضو مؤسس وطبيبة نفسية للأطفال مع أكثر من 6 سنوات في إدارة وحدة الأطفال بمستشفى حلوان. مطورة برنامج 'مخيم الأبطال' المنفذ على مستوى الجمهورية. متخصصة في EMDR والعلاج الأسري."
       },
       expertise: {
-        en: ["Psychiatry", "Mental Health Treatment", "Patient Care"],
-        ar: ["الطب النفسي", "علاج الصحة النفسية", "رعاية المرضى"]
+        en: ["Child & Adolescent Psychiatry", "EMDR", "Family Therapy", "ADHD", "Animal-Assisted Therapy"],
+        ar: ["طب نفس الأطفال والمراهقين", "علاج الصدمات EMDR", "العلاج الأسري", "فرط الحركة وتشتت الانتباه", "العلاج بمساعدة الحيوانات"]
       },
       experience: {
         en: "10+ years",
@@ -165,7 +165,7 @@ const DoctorsPage = () => {
       category: "psychiatrist",
       gender: "female",
       languages: ["Arabic"],
-      tags: ["teens", "anxiety", "therapy", "founder"],
+      tags: ["children", "teens", "therapy", "founder"],
       nextAvailable: "Today 4:30 PM",
       onlineConsultation: false,
       size: "large",
@@ -181,17 +181,17 @@ const DoctorsPage = () => {
       },
       slug: "prof-bahaa-mohammed-sharaf-eldin",
       specialty: {
-        en: "Clinical Psychologist",
-        ar: "أخصائي نفسي إكلينيكي"
+        en: "Clinical Psychology & Psychotherapy",
+        ar: "أخصائي علم النفس الإكلينيكي ومعالج نفسي"
       },
       image: "/lovable-uploads/311b6663-caea-4df5-be65-6d3bbf5e434d.png",
       description: {
-        en: "Professor and clinical psychologist with extensive experience in psychological assessment and therapy.",
-        ar: "أستاذ وأخصائي نفسي إكلينيكي مع خبرة واسعة في التقييم النفسي والعلاج."
+        en: "Clinical psychologist and director of psychological services at Helwan Hospital. Specialized in trauma therapy, addiction treatment, and child protection. Author of 'Why Me' book on child sexual abuse protection.",
+        ar: "أخصائي علم النفس الإكلينيكي ومدير قسم الخدمة النفسية بمستشفى حلوان. متخصص في علاج الصدمات والإدمان وحماية الأطفال. مؤلف كتاب 'اشمعني أنا' لحماية الأطفال من الإساءة الجنسية."
       },
       expertise: {
-        en: ["Clinical Psychology", "Psychological Assessment", "Therapy"],
-        ar: ["علم النفس الإكلينيكي", "التقييم النفسي", "العلاج"]
+        en: ["Trauma Therapy", "Addiction Treatment", "Child Protection", "Art Therapy", "CBT", "DBT", "Psychodrama"],
+        ar: ["علاج الصدمات", "علاج الإدمان", "حماية الأطفال", "العلاج بالفن", "العلاج المعرفي السلوكي", "العلاج الجدلي السلوكي", "السيكودراما"]
       },
       experience: {
         en: "20+ years",
@@ -202,77 +202,8 @@ const DoctorsPage = () => {
       category: "psychologist",
       gender: "male",
       languages: ["Arabic", "English"],
-      tags: ["teens", "therapy"],
+      tags: ["trauma", "addiction", "children"],
       nextAvailable: "Monday 9:00 AM",
-      onlineConsultation: true,
-      isFounder: false
-    },
-    // ... keep existing code (rest of the doctors without isFounder flag)
-    {
-      id: 6,
-      name: {
-        en: "Dr. Fatima Abdeldin",
-        ar: "د. فاطمة عابدين"
-      },
-      slug: "dr-fatima-abdeldin",
-      specialty: {
-        en: "Psychiatrist & Psychological Treatment",
-        ar: "طبيبة ومعالجة نفسية"
-      },
-      image: "/lovable-uploads/c75597ef-239d-4c00-b646-6e4c3a125dd8.png",
-      description: {
-        en: "Specialist in psychiatric medicine and psychological treatment with a compassionate approach to patient care.",
-        ar: "متخصصة في الطب النفسي والعلاج النفسي مع نهج متفهم في رعاية المرضى."
-      },
-      expertise: {
-        en: ["Psychiatry", "Psychological Treatment", "Mental Health"],
-        ar: ["الطب النفسي", "العلاج النفسي", "الصحة النفسية"]
-      },
-      experience: {
-        en: "11+ years",
-        ar: "أكثر من 11 سنة"
-      },
-      rating: 4.8,
-      availableNow: true,
-      category: "psychologist",
-      gender: "female",
-      languages: ["Arabic", "English", "French"],
-      tags: ["couples", "depression"],
-      nextAvailable: "Today 6:00 PM",
-      onlineConsultation: true,
-      isFounder: false
-    },
-    {
-      id: 7,
-      name: {
-        en: "Dr. Heba Mohamed",
-        ar: "د. هبة الله محمد"
-      },
-      slug: "dr-heba-mohamed",
-      specialty: {
-        en: "Psychiatrist",
-        ar: "أخصائي الطب النفسي"
-      },
-      image: "/lovable-uploads/c2e8c79b-fd10-4434-a3eb-19f4871f2a77.png",
-      description: {
-        en: "Dedicated psychiatrist with extensive experience in treating various mental health conditions with compassionate care.",
-        ar: "طبيبة نفسية مكرسة مع خبرة واسعة في علاج حالات الصحة النفسية المختلفة برعاية متفهمة."
-      },
-      expertise: {
-        en: ["Psychiatry", "Anxiety Treatment", "Depression"],
-        ar: ["الطب النفسي", "علاج القلق", "الاكتئاب"]
-      },
-      experience: {
-        en: "7+ years",
-        ar: "أكثر من 7 سنوات"
-      },
-      rating: 4.6,
-      availableNow: true,
-      category: "psychiatrist",
-      gender: "female",
-      languages: ["Arabic", "English"],
-      tags: ["anxiety", "depression", "therapy"],
-      nextAvailable: "Today 3:00 PM",
       onlineConsultation: true,
       isFounder: false
     },
@@ -289,12 +220,12 @@ const DoctorsPage = () => {
       },
       image: "/lovable-uploads/afbd437d-18ad-4d76-b691-8064750c08e9.png",
       description: {
-        en: "Specialist in psychiatry and addiction treatment with Egyptian fellowship credentials and comprehensive approach to mental health.",
-        ar: "متخصصة في الطب النفسي وعلاج الإدمان بالزمالة المصرية مع نهج شامل للصحة النفسية."
+        en: "Psychiatrist certified by Egyptian Fellowship working since 2017 at El-Khanka Mental Health Hospital. Specialized in trauma therapy, addiction recovery, and group therapy with extensive training in DBT, ACT, EMDR, and IFS.",
+        ar: "طبيبة نفسية حاصلة على الزمالة المصرية تعمل منذ 2017 بمستشفى الخانكة للصحة النفسية. متخصصة في علاج الصدمات والتعافي من الإدمان والعلاج الجماعي مع تدريبات موسعة في DBT و ACT و EMDR و IFS."
       },
       expertise: {
-        en: ["Psychiatry", "Addiction Treatment", "Mental Health Recovery"],
-        ar: ["الطب النفسي", "علاج الإدمان", "التعافي من الصحة النفسية"]
+        en: ["Trauma Therapy", "Addiction Recovery", "Group Therapy", "Personality Disorders", "DBT", "ACT", "EMDR", "IFS"],
+        ar: ["علاج الصدمات", "التعافي من الإدمان", "العلاج الجماعي", "اضطرابات الشخصية", "العلاج الجدلي السلوكي", "علاج القبول والالتزام", "EMDR", "نظام العائلة الداخلية"]
       },
       experience: {
         en: "9+ years",
@@ -305,7 +236,7 @@ const DoctorsPage = () => {
       category: "psychiatrist",
       gender: "female",
       languages: ["Arabic", "English"],
-      tags: ["addiction", "depression", "therapy"],
+      tags: ["addiction", "trauma", "therapy"],
       nextAvailable: "Tomorrow 11:00 AM",
       onlineConsultation: true,
       isFounder: false
@@ -318,17 +249,17 @@ const DoctorsPage = () => {
       },
       slug: "dr-nabil-ali-nasr",
       specialty: {
-        en: "Psychiatrist",
-        ar: "أخصائي الطب النفسي"
+        en: "Group Psychotherapy & Psychodrama",
+        ar: "أخصائي العلاج النفسي الجماعي والسيكودراما"
       },
       image: "/lovable-uploads/018e99c6-68ad-48b7-9937-83e492f96b14.png",
       description: {
-        en: "Experienced psychiatrist specializing in comprehensive mental health treatment with a focus on evidence-based care.",
-        ar: "طبيب نفسي ذو خبرة متخصص في العلاج الشامل للصحة النفسية مع التركيز على الرعاية القائمة على الأدلة."
+        en: "Founder & Director of 'Kayan' Clinic in Alexandria. Experienced group psychotherapist and psychodrama practitioner since 2012. Former psychotherapist at AUC Student Support Center with extensive work with Syrian refugees.",
+        ar: "مؤسس ومدير عيادة 'كيان' في الإسكندرية. معالج نفسي جماعي وممارس سيكودراما ذو خبرة منذ 2012. معالج نفسي سابق بمركز دعم الطلاب بالجامعة الأمريكية مع عمل موسع مع اللاجئين السوريين."
       },
       expertise: {
-        en: ["Psychiatry", "Mental Health", "Therapeutic Interventions"],
-        ar: ["الطب النفسي", "الصحة النفسية", "التدخلات العلاجية"]
+        en: ["Group Psychotherapy", "Psychodrama", "Adolescent Mental Health", "PTSD & Trauma Recovery", "Art Therapy", "IFS"],
+        ar: ["العلاج النفسي الجماعي", "السيكودراما", "الصحة النفسية للمراهقين", "علاج الصدمات واضطراب ما بعد الصدمة", "العلاج بالفن", "نظام العائلة الداخلية"]
       },
       experience: {
         en: "12+ years",
@@ -339,7 +270,7 @@ const DoctorsPage = () => {
       category: "psychiatrist",
       gender: "male",
       languages: ["Arabic", "English"],
-      tags: ["anxiety", "couples", "therapy"],
+      tags: ["teens", "trauma", "therapy"],
       nextAvailable: "Today 5:00 PM",
       onlineConsultation: false,
       isFounder: false
@@ -357,12 +288,12 @@ const DoctorsPage = () => {
       },
       image: "/lovable-uploads/eb6484dd-175a-40d4-a7a2-670eb167cab4.png",
       description: {
-        en: "Senior psychiatric consultant specializing in addiction treatment and mental health disorders with comprehensive care approach.",
-        ar: "استشاري طب نفسي أول متخصص في علاج الإدمان واضطرابات الصحة النفسية مع نهج رعاية شامل."
+        en: "Consultant psychiatrist with extensive experience since 2012. Former Deputy Director of Helwan Addiction Center and Women's Unit at Abbasiya Mental Hospital. Specialized in adolescent psychiatry with international certifications.",
+        ar: "استشاري طب نفسي مع خبرة واسعة منذ 2012. نائب مدير سابق لمركز حلوان للإدمان ووحدة النساء بمستشفى العباسية. متخصص في طب نفس المراهقين مع شهادات دولية."
       },
       expertise: {
-        en: ["Psychiatric Consultation", "Addiction Treatment", "Mental Health"],
-        ar: ["الاستشارة النفسية", "علاج الإدمان", "الصحة النفسية"]
+        en: ["Addiction Treatment", "Adolescent Psychiatry", "Trauma & PTSD", "DBT & EMDR Therapy", "Women's Mental Health"],
+        ar: ["علاج الإدمان", "طب نفس المراهقين", "الصدمات واضطراب ما بعد الصدمة", "العلاج الجدلي السلوكي و EMDR", "الصحة النفسية للمرأة"]
       },
       experience: {
         en: "16+ years",
@@ -373,7 +304,7 @@ const DoctorsPage = () => {
       category: "psychiatrist",
       gender: "male",
       languages: ["Arabic", "English"],
-      tags: ["addiction", "couples", "therapy"],
+      tags: ["addiction", "teens", "therapy"],
       nextAvailable: "Monday 2:00 PM",
       onlineConsultation: true,
       isFounder: false
@@ -386,28 +317,28 @@ const DoctorsPage = () => {
       },
       slug: "dr-amira-ayed-hashem",
       specialty: {
-        en: "Clinical Psychologist",
-        ar: "طبيبة تخاطب"
+        en: "Speech Therapy Specialist",
+        ar: "أخصائية أمراض التخاطب"
       },
       image: "/lovable-uploads/b1aa3700-f12e-4ad8-807e-9c0024774168.png",
       description: {
-        en: "Clinical psychologist specializing in speech therapy and communication disorders with focus on holistic patient care.",
-        ar: "طبيبة نفسية إكلينيكية متخصصة في علاج التخاطب واضطرابات التواصل مع التركيز على الرعاية الشاملة للمرضى."
+        en: "Speech therapy specialist with clinical experience since 2015 at Ain Shams University hospitals. Specialized in speech delay treatment for children with autism and ADHD, voice disorders, and post-stroke rehabilitation.",
+        ar: "أخصائية أمراض التخاطب مع خبرة سريرية منذ 2015 بمستشفيات جامعة عين شمس. متخصصة في علاج تأخر الكلام للأطفال المصابين بالتوحد وفرط الحركة واضطرابات الصوت وتأهيل ما بعد الجلطات."
       },
       expertise: {
-        en: ["Speech Therapy", "Communication Disorders", "Clinical Psychology"],
-        ar: ["علاج التخاطب", "اضطرابات التواصل", "علم النفس الإكلينيكي"]
+        en: ["Speech Delay Treatment", "Autism & ADHD", "Voice Disorders", "Stuttering Treatment", "Post-Stroke Rehabilitation", "Cochlear Implant Training"],
+        ar: ["علاج تأخر الكلام", "التوحد وفرط الحركة", "اضطرابات الصوت", "علاج التلعثم", "تأهيل ما بعد الجلطات", "تدريب زارعي القوقعة"]
       },
       experience: {
-        en: "6+ years",
-        ar: "أكثر من 6 سنوات"
+        en: "9+ years",
+        ar: "أكثر من 9 سنوات"
       },
       rating: 4.5,
       availableNow: true,
-      category: "psychologist",
+      category: "speech_therapist",
       gender: "female",
       languages: ["Arabic"],
-      tags: ["teens", "therapy"],
+      tags: ["children", "autism", "speech"],
       nextAvailable: "Today 4:00 PM",
       onlineConsultation: false,
       isFounder: false
@@ -425,12 +356,12 @@ const DoctorsPage = () => {
       },
       image: "/lovable-uploads/1a654861-711e-493c-98eb-ad59c14480ea.png",
       description: {
-        en: "Medical doctor and psychological therapist providing integrated mental health care with emphasis on patient wellbeing.",
-        ar: "طبيبة ومعالجة نفسية تقدم رعاية متكاملة للصحة النفسية مع التركيز على رفاهية المرضى."
+        en: "Physician and psychotherapist specializing in adolescent psychiatry (12-18 years). Resident at Abbasiya Mental Health Hospital since 2020, training in Egyptian Fellowship. Experienced in family, group, and cognitive behavioral therapy.",
+        ar: "طبيبة ومعالجة نفسية متخصصة في الطب النفسي للمراهقين (12-18 سنة). طبيب مقيم بمستشفى العباسية للصحة النفسية منذ 2020، في تدريب الزمالة المصرية. خبرة في العلاج الأسري والجماعي والمعرفي السلوكي."
       },
       expertise: {
-        en: ["Medical Psychology", "Psychological Treatment", "Mental Wellness"],
-        ar: ["علم النفس الطبي", "العلاج النفسي", "العافية النفسية"]
+        en: ["Adolescent Psychiatry", "Schizophrenia", "Bipolar Disorder", "Depression", "Family Therapy", "Group Therapy", "CBT", "DBT Training"],
+        ar: ["طب نفس المراهقين", "الفصام", "ثنائي القطب", "الاكتئاب", "العلاج الأسري", "العلاج الجماعي", "العلاج المعرفي السلوكي", "تدريب العلاج الجدلي السلوكي"]
       },
       experience: {
         en: "5+ years",
@@ -438,10 +369,10 @@ const DoctorsPage = () => {
       },
       rating: 4.4,
       availableNow: false,
-      category: "psychologist",
+      category: "psychiatrist",
       gender: "female",
       languages: ["Arabic", "English"],
-      tags: ["anxiety", "depression"],
+      tags: ["teens", "depression"],
       nextAvailable: "Tomorrow 3:00 PM",
       onlineConsultation: true,
       isFounder: false
@@ -454,17 +385,17 @@ const DoctorsPage = () => {
       },
       slug: "dr-asmaa-saeed",
       specialty: {
-        en: "Psychiatrist",
-        ar: "أخصائي الطب النفسي"
+        en: "Psychiatrist & Addiction Treatment",
+        ar: "أخصائية الطب النفسي وعلاج الإدمان"
       },
       image: "/lovable-uploads/220aca75-8577-44e0-bcca-ea15e8b64b21.png",
       description: {
-        en: "Dedicated psychiatrist with expertise in treating various mental health conditions with compassionate and professional care.",
-        ar: "طبيبة نفسية مكرسة مع خبرة في علاج حالات الصحة النفسية المختلفة برعاية متفهمة ومهنية."
+        en: "Psychiatrist with Egyptian Fellowship and former director of child psychiatry unit at Helwan Hospital. Provided psychological support during COVID-19 via hotline. Specialized in integrating pharmacological and psychological treatment.",
+        ar: "أخصائية طب نفسي حاصلة على الزمالة المصرية ومديرة سابقة لوحدة طب نفس الأطفال بمستشفى حلوان. قدمت دعماً نفسياً خلال كوفيد-19 عبر الخط الساخن. متخصصة في التكامل بين العلاج الدوائي والنفسي."
       },
       expertise: {
-        en: ["Psychiatry", "Mental Health Treatment", "Patient Care"],
-        ar: ["الطب النفسي", "علاج الصحة النفسية", "رعاية المرضى"]
+        en: ["Child Psychiatry", "CBT & DBT", "Family Support", "Adolescent Therapy", "Sexual Medicine", "Nonviolent Communication"],
+        ar: ["طب نفس الأطفال", "العلاج المعرفي والجدلي السلوكي", "تدعيم الأسرة", "العلاج النفسي للمراهقين", "الطب الجنسي", "التواصل اللاعنفي"]
       },
       experience: {
         en: "8+ years",
@@ -475,7 +406,7 @@ const DoctorsPage = () => {
       category: "psychiatrist",
       gender: "female",
       languages: ["Arabic"],
-      tags: ["anxiety", "therapy"],
+      tags: ["children", "therapy"],
       nextAvailable: "Today 2:30 PM",
       onlineConsultation: true,
       isFounder: false
@@ -484,33 +415,135 @@ const DoctorsPage = () => {
       id: 14,
       name: {
         en: "Dr. Dalia Al-Laithi",
-        ar: "د. داليا الليثي"
+        ar: "د. داليا حسين الليثي"
       },
       slug: "dr-dalia-allaithi",
       specialty: {
-        en: "Psychiatrist",
-        ar: "أخصائي الطب النفسي"
+        en: "Child, Adolescent & Adult Psychiatrist",
+        ar: "أخصائي الطب النفسي للأطفال والمراهقين والبالغين"
       },
       image: "/lovable-uploads/228fee0a-017e-489c-8d64-3965417d0d9b.png",
       description: {
-        en: "Professional psychiatrist offering comprehensive mental health services with focus on individualized treatment plans.",
-        ar: "طبيبة نفسية محترفة تقدم خدمات شاملة للصحة النفسية مع التركيز على خطط العلاج الفردية."
+        en: "Psychiatrist with extensive experience at Helwan Mental Health Hospital (2014-2021). Currently working at Wahah Clinic specializing in trauma therapy for children and adolescents. Former chief of psychiatry at Manshiet El-Bakri Hospital.",
+        ar: "طبيبة نفسية مع خبرة واسعة في مستشفى حلوان للصحة النفسية (2014-2021). تعمل حالياً في عيادة واحة متخصصة في علاج الصدمات للأطفال والمراهقين. رئيس سابق لقسم الطب النفسي بمستشفى منشية البكري."
       },
       expertise: {
-        en: ["Psychiatry", "Individual Treatment", "Mental Health"],
-        ar: ["الطب النفسي", "العلاج الفردي", "الصحة النفسية"]
+        en: ["Child & Adolescent Psychiatry", "Trauma Therapy", "Family Therapy", "CBT", "OCD", "Anxiety", "Depression"],
+        ar: ["طب نفس الأطفال والمراهقين", "علاج الصدمات", "العلاج الأسري", "العلاج المعرفي السلوكي", "الوسواس القهري", "القلق", "الاكتئاب"]
       },
       experience: {
-        en: "7+ years",
-        ar: "أكثر من 7 سنوات"
+        en: "10+ years",
+        ar: "أكثر من 10 سنوات"
       },
       rating: 4.5,
       availableNow: false,
       category: "psychiatrist",
       gender: "female",
       languages: ["Arabic", "English"],
-      tags: ["depression", "therapy"],
+      tags: ["children", "teens", "therapy"],
       nextAvailable: "Tomorrow 1:00 PM",
+      onlineConsultation: true,
+      isFounder: false
+    },
+    {
+      id: 6,
+      name: {
+        en: "Dr. Fatima Abdeldin",
+        ar: "د. فاطمة عابدين"
+      },
+      slug: "dr-fatima-abdeldin",
+      specialty: {
+        en: "Physician & Psychological Treatment",
+        ar: "طبيبة ومعالجة نفسية"
+      },
+      image: "/lovable-uploads/c75597ef-239d-4c00-b646-6e4c3a125dd8.png",
+      description: {
+        en: "Physician and psychotherapist with experience at Helwan Hospital, Doctors Without Borders, Caritas, and Doctors of the World. Specialized in treating depression, anxiety, OCD, schizophrenia, and trauma with training in multiple therapeutic approaches.",
+        ar: "طبيبة ومعالجة نفسية مع خبرة في مستشفى حلوان وأطباء بلا حدود وكاريتاس وأطباء العالم. متخصصة في علاج الاكتئاب والقلق والوسواس والفصام والصدمات مع تدريبات في عدة مناهج علاجية."
+      },
+      expertise: {
+        en: ["Dynamic Therapy", "CBT & DBT", "Internal Family Systems", "Depression", "Anxiety", "OCD", "Schizophrenia", "Trauma", "Refugee Support"],
+        ar: ["العلاج الديناميكي", "العلاج المعرفي والجدلي السلوكي", "نظام العائلة الداخلية", "الاكتئاب", "القلق", "الوسواس القهري", "الفصام", "الصدمات", "دعم اللاجئين"]
+      },
+      experience: {
+        en: "11+ years",
+        ar: "أكثر من 11 سنة"
+      },
+      rating: 4.8,
+      availableNow: true,
+      category: "psychologist",
+      gender: "female",
+      languages: ["Arabic", "English", "French"],
+      tags: ["depression", "trauma", "refugees"],
+      nextAvailable: "Today 6:00 PM",
+      onlineConsultation: true,
+      isFounder: false
+    },
+    {
+      id: 7,
+      name: {
+        en: "Dr. Heba Mohamed",
+        ar: "د. هبة الله محمد أحمد علي"
+      },
+      slug: "dr-heba-mohamed",
+      specialty: {
+        en: "Psychiatrist",
+        ar: "أخصائي الطب النفسي"
+      },
+      image: "/lovable-uploads/c2e8c79b-fd10-4434-a3eb-19f4871f2a77.png",
+      description: {
+        en: "Psychiatrist practicing since 2011 with experience at Helwan Mental Health Hospital and Shubra General Hospital. Supervisor at Wahah Clinic for adult trauma therapy and mental health hotline. Specialized in EMDR and trauma treatment.",
+        ar: "طبيبة نفسية تمارس منذ 2011 مع خبرة في مستشفى حلوان للصحة النفسية ومستشفى شبرا العام. مشرفة بعيادة واحة لعلاج صدمات البالغين والخط الساخن للصحة النفسية. متخصصة في EMDR وعلاج الصدمات."
+      },
+      expertise: {
+        en: ["CBT", "DBT", "EMDR Trauma Therapy", "Abuse Treatment", "Art Therapy", "Adult Psychiatry"],
+        ar: ["العلاج المعرفي السلوكي", "العلاج الجدلي السلوكي", "علاج الصدمات EMDR", "علاج الإساءات", "العلاج بالفن", "الطب النفسي للبالغين"]
+      },
+      experience: {
+        en: "13+ years",
+        ar: "أكثر من 13 سنة"
+      },
+      rating: 4.6,
+      availableNow: true,
+      category: "psychiatrist",
+      gender: "female",
+      languages: ["Arabic", "English"],
+      tags: ["trauma", "therapy"],
+      nextAvailable: "Today 3:00 PM",
+      onlineConsultation: true,
+      isFounder: false
+    },
+    {
+      id: 15,
+      name: {
+        en: "Dr. Ahmed Hesham",
+        ar: "د. أحمد هشام"
+      },
+      slug: "dr-ahmed-hesham",
+      specialty: {
+        en: "Psychiatrist & Addiction Treatment",
+        ar: "طبيب نفسي وعلاج الإدمان"
+      },
+      image: "/lovable-uploads/018e99c6-68ad-48b7-9937-83e492f96b14.png",
+      description: {
+        en: "Psychiatrist with honors degree (2019) enrolled in Egyptian Fellowship since 2021. Worked at major institutions including Helwan Hospital, Al-Mashfa, Wahah Clinic, and Maki Center. Participated in WHO national research (2023).",
+        ar: "طبيب نفسي حاصل على درجة امتياز مع مرتبة الشرف (2019) والتحق بالزمالة المصرية منذ 2021. عمل في مؤسسات كبرى منها مستشفى حلوان والمشفى وعيادة واحة ومركز مكي. شارك في البحث القومي مع منظمة الصحة العالمية (2023)."
+      },
+      expertise: {
+        en: ["CBT", "Suicide & Delusion Treatment", "Group & DBT", "Trauma-Focused Therapy", "Pregnancy & Elderly Support"],
+        ar: ["العلاج المعرفي السلوكي", "علاج الأفكار الانتحارية والضلالات", "العلاج الجماعي والجدلي السلوكي", "العلاج المرتكز على الصدمات", "دعم مرضى الحمل وكبار السن"]
+      },
+      experience: {
+        en: "5+ years",
+        ar: "أكثر من 5 سنوات"
+      },
+      rating: 4.4,
+      availableNow: true,
+      category: "psychiatrist",
+      gender: "male",
+      languages: ["Arabic", "English"],
+      tags: ["addiction", "trauma", "therapy"],
+      nextAvailable: "Today 11:00 AM",
       onlineConsultation: true,
       isFounder: false
     }
