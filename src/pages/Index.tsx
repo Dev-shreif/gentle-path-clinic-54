@@ -1,749 +1,431 @@
-import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
+import { 
+  Brain, 
+  Users, 
+  Clock, 
+  Shield, 
+  CheckCircle, 
+  Star,
+  ArrowRight,
+  Phone,
+  Calendar,
+  Heart,
+  Lightbulb,
+  Target,
+  Award
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
-import { Calendar, Heart, User, Check, ArrowRight, Search, Star, Award } from "lucide-react";
-import { motion, useScroll, useTransform, useInView } from "framer-motion";
 
 const Index = () => {
-  const [currentTestimonial, setCurrentTestimonial] = useState(0);
-  const [language, setLanguage] = useState("en");
-  const heroRef = useRef(null);
-  const servicesRef = useRef(null);
-  const {
-    scrollYProgress
-  } = useScroll();
-  const isServicesInView = useInView(servicesRef, {
-    once: true,
-    amount: 0.3
-  });
+  // Get language from localStorage or default to English
+  const language = typeof window !== "undefined" 
+    ? localStorage.getItem("language") || "en" 
+    : "en";
+  const isRTL = language === "ar";
 
-  // Parallax effects
-  const y1 = useTransform(scrollYProgress, [0, 1], [0, -50]);
-  const y2 = useTransform(scrollYProgress, [0, 1], [0, -100]);
-  const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
+  const getText = (enText: string, arText: string) => 
+    language === "ar" ? arText : enText;
 
-  // Load language from localStorage
-  useEffect(() => {
-    const savedLanguage = localStorage.getItem("language") || "en";
-    setLanguage(savedLanguage);
-  }, []);
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        delayChildren: 0.3,
+        staggerChildren: 0.2
+      }
+    }
+  };
 
-  const testimonials = [{
-    name: language === "en" ? "Sarah Johnson" : "سارة جونسون",
-    text: language === "en" ? "The care I received here transformed my life. The doctors truly listen and understand." : "الرعاية التي تلقيتها هنا غيرت حياتي. الأطباء يستمعون ويفهمون حقاً.",
-    role: language === "en" ? "Patient since 2023" : "مريضة منذ 2023",
-    rating: 5
-  }, {
-    name: language === "en" ? "Michael Chen" : "مايكل تشين",
-    text: language === "en" ? "Professional, compassionate, and effective treatment. I finally found the help I needed." : "علاج مهني ومتفهم وفعال. وجدت أخيراً المساعدة التي احتجتها.",
-    role: language === "en" ? "Patient since 2022" : "مريض منذ 2022",
-    rating: 5
-  }, {
-    name: language === "en" ? "Emma Davis" : "إيما ديفيس",
-    text: language === "en" ? "The calming environment and expert care made all the difference in my recovery journey." : "البيئة المهدئة والرعاية المتخصصة أحدثت فرقاً كبيراً في رحلة شفائي.",
-    role: language === "en" ? "Patient since 2024" : "مريضة منذ 2024",
-    rating: 5
-  }];
-  const services = [{
-    title: language === "en" ? "Individual Therapy" : "العلاج الفردي",
-    description: language === "en" ? "One-on-one sessions tailored to your unique needs" : "جلسات فردية مصممة لتناسب احتياجاتك الفريدة",
-    icon: User,
-    color: "from-blue-500 to-purple-600"
-  }, {
-    title: language === "en" ? "Anxiety Treatment" : "علاج القلق",
-    description: language === "en" ? "Evidence-based approaches to manage anxiety disorders" : "أساليب مبنية على الأدلة لإدارة اضطرابات القلق",
-    icon: Heart,
-    color: "from-green-500 to-teal-600"
-  }, {
-    title: language === "en" ? "Depression Care" : "رعاية الاكتئاب",
-    description: language === "en" ? "Comprehensive treatment for mood disorders" : "علاج شامل لاضطرابات المزاج",
-    icon: Heart,
-    color: "from-pink-500 to-rose-600"
-  }, {
-    title: language === "en" ? "Trauma Therapy" : "علاج الصدمات",
-    description: language === "en" ? "Specialized care for trauma and PTSD recovery" : "رعاية متخصصة لعلاج الصدمات واضطراب ما بعد الصدمة",
-    icon: User,
-    color: "from-orange-500 to-red-600"
-  }, {
-    title: language === "en" ? "Family Counseling" : "الإرشاد الأسري",
-    description: language === "en" ? "Strengthening family bonds and communication" : "تقوية الروابط الأسرية والتواصل",
-    icon: Heart,
-    color: "from-indigo-500 to-blue-600"
-  }, {
-    title: language === "en" ? "Group Therapy" : "العلاج الجماعي",
-    description: language === "en" ? "Shared healing experiences in supportive environments" : "تجارب شفاء مشتركة في بيئات داعمة",
-    icon: User,
-    color: "from-purple-500 to-pink-600"
-  }];
-  const stats = [{
-    number: "500+",
-    label: language === "en" ? "Happy Patients" : "مريض سعيد"
-  }, {
-    number: "15+",
-    label: language === "en" ? "Years Experience" : "سنة خبرة"
-  }, {
-    number: "6",
-    label: language === "en" ? "Expert Doctors" : "طبيب خبير"
-  }, {
-    number: "98%",
-    label: language === "en" ? "Success Rate" : "معدل نجاح"
-  }];
-  const conditions = [language === "en" ? "Depression & Mood Disorders" : "الاكتئاب واضطرابات المزاج", language === "en" ? "Anxiety & Panic Disorders" : "القلق واضطرابات الهلع", language === "en" ? "PTSD & Trauma" : "اضطراب ما بعد الصدمة والصدمات", language === "en" ? "Bipolar Disorder" : "اضطراب ثنائي القطب", language === "en" ? "OCD & Related Disorders" : "الوسواس القهري والاضطرابات المرتبطة", language === "en" ? "ADHD & Focus Issues" : "فرط الحركة ونقص الانتباه ومشاكل التركيز"];
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentTestimonial(prev => (prev + 1) % testimonials.length);
-    }, 4000);
-    return () => clearInterval(timer);
-  }, [testimonials.length]);
+  const itemVariants = {
+    hidden: { y: 20, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1
+    }
+  };
 
-  return <div className="min-h-screen overflow-x-hidden relative">
-      {/* Background Nature Scene */}
-      <div className="fixed inset-0 -z-30">
-        <div className="absolute inset-0 bg-gradient-to-br from-emerald-50/80 via-teal-50/60 to-blue-50/80" />
-        <div 
-          className="absolute inset-0 opacity-20"
-          style={{
-            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23059669' fill-opacity='0.1'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3Ccircle cx='10' cy='10' r='1'/%3E%3Ccircle cx='50' cy='50' r='1'/%3E%3Cpath d='M20 20c2-2 4-2 6 0s2 4 0 6-4 2-6 0-2-4 0-6zm20 20c2-2 4-2 6 0s2 4 0 6-4 2-6 0-2-4 0-6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
-          }}
-        />
-        {/* Floating nature elements */}
-        <motion.div 
-          className="absolute top-20 left-10 w-64 h-64 rounded-full"
-          style={{
-            background: "radial-gradient(circle, rgba(16, 185, 129, 0.1) 0%, transparent 70%)",
-          }}
-          animate={{
-            scale: [1, 1.2, 1],
-            opacity: [0.3, 0.6, 0.3],
-          }}
-          transition={{
-            duration: 8,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
-        />
-        <motion.div 
-          className="absolute bottom-20 right-20 w-80 h-80 rounded-full"
-          style={{
-            background: "radial-gradient(circle, rgba(34, 197, 94, 0.08) 0%, transparent 70%)",
-          }}
-          animate={{
-            scale: [1.2, 1, 1.2],
-            opacity: [0.2, 0.5, 0.2],
-          }}
-          transition={{
-            duration: 10,
-            repeat: Infinity,
-            ease: "easeInOut",
-            delay: 2
-          }}
-        />
-      </div>
-
-      {/* Asymmetric Hero Section */}
-      <section ref={heroRef} className="relative min-h-screen flex items-center overflow-hidden pt-16">
-        <motion.div className="absolute inset-0 gradient-calm opacity-20" style={{
-        y: y1
-      }} />
-        
-        {/* Floating geometric shapes */}
-        <motion.div className="absolute top-20 right-10 w-32 h-32 bg-primary/10 rounded-full" animate={{
-        rotate: 360,
-        scale: [1, 1.2, 1]
-      }} transition={{
-        duration: 20,
-        repeat: Infinity,
-        ease: "linear"
-      }} />
-        <motion.div className="absolute bottom-32 left-20 w-24 h-24 bg-secondary/10 rounded-full" animate={{
-        y: [-20, 20, -20]
-      }} transition={{
-        duration: 6,
-        repeat: Infinity,
-        ease: "easeInOut"
-      }} />
-
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-12 gap-8 items-center min-h-[80vh]">
-            {/* Asymmetric text layout - takes 7 columns */}
-            <motion.div className="lg:col-span-7 lg:col-start-1" initial={{
-            opacity: 0,
-            x: -100
-          }} animate={{
-            opacity: 1,
-            x: 0
-          }} transition={{
-            duration: 1,
-            ease: "easeOut"
-          }}>
-              <motion.h1 className="text-5xl md:text-7xl font-light text-balance mb-8 leading-tight" initial={{
-              opacity: 0,
-              y: 50
-            }} animate={{
-              opacity: 1,
-              y: 0
-            }} transition={{
-              duration: 1,
-              delay: 0.2
-            }}>
-                {language === "en" ? "Your Journey to" : "رحلتك نحو"}{" "}
-                <motion.span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent font-medium block" initial={{
-                opacity: 0
-              }} animate={{
-                opacity: 1
-              }} transition={{
-                duration: 1,
-                delay: 0.5
-              }}>
-                  {language === "en" ? "Mental Wellness" : "الصحة النفسية"}
-                </motion.span>{" "}
-                {language === "en" ? "Starts Here" : "تبدأ هنا"}
-              </motion.h1>
-              
-              <motion.p className="text-xl text-muted-foreground mb-10 text-balance max-w-lg" initial={{
-              opacity: 0,
-              y: 30
-            }} animate={{
-              opacity: 1,
-              y: 0
-            }} transition={{
-              duration: 1,
-              delay: 0.4
-            }}>
-                {language === "en" ? "Expert psychiatric care in a serene environment where healing happens naturally. Our compassionate doctors are here to support your mental health journey." : "رعاية نفسية متخصصة في بيئة هادئة حيث يحدث الشفاء بشكل طبيعي. أطباؤنا المتفهمون هنا لدعم رحلة صحتك النفسية."}
-              </motion.p>
-              
-              <motion.div className="flex flex-col sm:flex-row gap-6" initial={{
-              opacity: 0,
-              y: 30
-            }} animate={{
-              opacity: 1,
-              y: 0
-            }} transition={{
-              duration: 1,
-              delay: 0.6
-            }}>
-                <Link to="/booking">
-                  <Button size="lg" className="gradient-calm hover:opacity-90 transition-all duration-300 hover:scale-105 text-zinc-950">
-                    <Calendar className="h-5 w-5 mr-2" />
-                    {language === "en" ? "Book Your Session" : "احجز جلستك"}
-                  </Button>
-                </Link>
-                <Link to="/doctors">
-                  <Button variant="outline" size="lg" className="border-primary/20 hover:bg-primary/5 transition-all duration-300 hover:scale-105">
-                    {language === "en" ? "Meet Our Doctors" : "تعرف على أطبائنا"}
-                    <ArrowRight className="h-5 w-5 ml-2" />
-                  </Button>
-                </Link>
-              </motion.div>
-            </motion.div>
-            
-            {/* Asymmetric image layout - takes 5 columns with offset */}
-            <motion.div className="lg:col-span-4 lg:col-start-9 relative" initial={{
-            opacity: 0,
-            x: 100
-          }} animate={{
-            opacity: 1,
-            x: 0
-          }} transition={{
-            duration: 1,
-            delay: 0.3
-          }} style={{
-            y: y2
-          }}>
-              <div className="relative">
-                <motion.img src="https://images.unsplash.com/photo-1649972904349-6e44c42644a7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Peaceful therapy session" className="rounded-3xl shadow-2xl w-full h-96 object-cover" whileHover={{
-                scale: 1.05
-              }} transition={{
-                duration: 0.3
-              }} />
-                <motion.div className="absolute -bottom-6 -left-6 backdrop-blur-sm rounded-2xl p-4 shadow-lg bg-background/90 border border-border/50" initial={{
-                opacity: 0,
-                scale: 0.8
-              }} animate={{
-                opacity: 1,
-                scale: 1
-              }} transition={{
-                duration: 0.5,
-                delay: 1
-              }}>
-                  <div className="flex items-center space-x-3">
-                    <motion.div className="w-3 h-3 bg-green-500 rounded-full" animate={{
-                    scale: [1, 1.2, 1]
-                  }} transition={{
-                    duration: 2,
-                    repeat: Infinity
-                  }} />
-                    <span className="text-sm font-medium">
-                      {language === "en" ? "Available Today" : "متاح اليوم"}
-                    </span>
-                  </div>
-                </motion.div>
-              </div>
-            </motion.div>
+  return (
+    <div className={`min-h-screen ${isRTL ? 'rtl' : 'ltr'}`} dir={isRTL ? 'rtl' : 'ltr'}>
+      {/* Hero Section with Calming Background */}
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+        {/* Calming Background */}
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-green-50 to-teal-50">
+          <div className="absolute inset-0 bg-gradient-to-r from-primary/5 to-secondary/5"></div>
+          {/* Subtle pattern overlay */}
+          <div className="absolute inset-0 opacity-30">
+            <div className="absolute top-20 left-20 w-32 h-32 bg-primary/10 rounded-full blur-3xl"></div>
+            <div className="absolute top-40 right-32 w-24 h-24 bg-secondary/10 rounded-full blur-2xl"></div>
+            <div className="absolute bottom-32 left-1/3 w-40 h-40 bg-teal-200/20 rounded-full blur-3xl"></div>
+            <div className="absolute bottom-20 right-20 w-28 h-28 bg-blue-200/20 rounded-full blur-2xl"></div>
           </div>
         </div>
 
-        {/* Stats section with horizontal scroll */}
-        <motion.div className="absolute bottom-10 left-0 right-0" initial={{
-        opacity: 0,
-        y: 50
-      }} animate={{
-        opacity: 1,
-        y: 0
-      }} transition={{
-        duration: 1,
-        delay: 0.8
-      }}>
-          <ScrollArea className="w-full">
-            <ScrollBar orientation="horizontal" className="invisible" />
-          </ScrollArea>
-        </motion.div>
-      </section>
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <motion.div
+            initial="hidden"
+            animate="visible"
+            variants={containerVariants}
+            className="space-y-8"
+          >
+            <motion.div variants={itemVariants}>
+              <Badge 
+                variant="secondary" 
+                className="mb-4 bg-white/80 text-primary border-primary/20 backdrop-blur-sm"
+              >
+                {getText("Professional Mental Health Care", "رعاية صحة نفسية محترفة")}
+              </Badge>
+            </motion.div>
 
-      {/* Enhanced Dynamic Services Section */}
-      <motion.section 
-        ref={servicesRef} 
-        className="relative py-32 overflow-hidden"
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        transition={{ duration: 1.5 }}
-        viewport={{ once: true }}
-      >
-        {/* Full-width animated background */}
-        <motion.div 
-          className="absolute inset-0"
-          initial={{ scale: 1.2, opacity: 0 }}
-          whileInView={{ scale: 1, opacity: 1 }}
-          transition={{ duration: 2, ease: "easeOut" }}
-          viewport={{ once: true }}
-        >
-          <div className="absolute inset-0 bg-gradient-to-br from-slate-900/95 via-slate-800/90 to-slate-900/95" />
-          <div 
-            className="absolute inset-0 opacity-30"
-            style={{
-              backgroundImage: `url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M50 0c27.614 0 50 22.386 50 50s-22.386 50-50 50S0 77.614 0 50 22.386 0 50 0zm0 10c-22.091 0-40 17.909-40 40s17.909 40 40 40 40-17.909 40-40-17.909-40-40-40z'/%3E%3C/g%3E%3C/svg%3E")`,
-            }}
-          />
-          {/* Animated particles */}
-          {[...Array(6)].map((_, i) => (
-            <motion.div
-              key={i}
-              className="absolute w-2 h-2 bg-white/20 rounded-full"
-              style={{
-                left: `${Math.random() * 100}%`,
-                top: `${Math.random() * 100}%`,
-              }}
-              animate={{
-                y: [0, -30, 0],
-                opacity: [0.2, 0.8, 0.2],
-              }}
-              transition={{
-                duration: 4 + Math.random() * 2,
-                repeat: Infinity,
-                delay: Math.random() * 2,
-              }}
-            />
-          ))}
-        </motion.div>
-
-        <div className="relative z-10 w-full">
-          {/* Page transition effect */}
-          <motion.div 
-            className="absolute inset-0 bg-gradient-to-r from-primary/20 via-transparent to-secondary/20"
-            initial={{ x: "-100%" }}
-            whileInView={{ x: "100%" }}
-            transition={{ duration: 2, ease: "easeInOut" }}
-            viewport={{ once: true }}
-          />
-
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <motion.div 
-              className="text-center mb-20"
-              initial={{ opacity: 0, y: 80 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1, delay: 0.3 }}
-              viewport={{ once: true }}
+            <motion.h1 
+              variants={itemVariants}
+              className="text-4xl md:text-6xl lg:text-7xl font-light leading-tight"
             >
-              <motion.h2 
-                className="text-5xl md:text-7xl font-light text-balance mb-8 text-white"
-                initial={{ opacity: 0, scale: 0.8 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 1.2, delay: 0.5 }}
-                viewport={{ once: true }}
-              >
-                {language === "en" ? "Our" : "خدماتنا"}{" "}
-                <motion.span 
-                  className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent font-medium"
-                  initial={{ opacity: 0 }}
-                  whileInView={{ opacity: 1 }}
-                  transition={{ duration: 1, delay: 0.8 }}
-                  viewport={{ once: true }}
+              {getText("Your Journey to", "رحلتك نحو")}
+              <br />
+              <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent font-medium">
+                {getText("Mental Wellness", "العافية النفسية")}
+              </span>
+              <br />
+              {getText("Starts Here", "تبدأ هنا")}
+            </motion.h1>
+
+            <motion.p 
+              variants={itemVariants}
+              className="text-xl md:text-2xl text-muted-foreground max-w-4xl mx-auto leading-relaxed"
+            >
+              {getText(
+                "Connect with certified mental health professionals who understand your unique journey and provide personalized care in a safe, supportive environment.",
+                "تواصل مع أخصائيي الصحة النفسية المعتمدين الذين يفهمون رحلتك الفريدة ويقدمون رعاية شخصية في بيئة آمنة وداعمة."
+              )}
+            </motion.p>
+
+            <motion.div 
+              variants={itemVariants}
+              className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-6"
+            >
+              <Link to="/booking">
+                <Button 
+                  size="lg" 
+                  className="gradient-calm hover:opacity-90 text-slate-800 shadow-lg px-8 py-6 text-lg rounded-full"
                 >
-                  {language === "en" ? "Services" : "المتخصصة"}
-                </motion.span>
-              </motion.h2>
-              <motion.p 
-                className="text-xl text-gray-300 max-w-3xl mx-auto text-balance leading-relaxed"
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 1, delay: 0.7 }}
-                viewport={{ once: true }}
-              >
-                {language === "en" ? "Discover our comprehensive range of mental health services designed to support your unique journey" : "اكتشف مجموعتنا الشاملة من خدمات الصحة النفسية المصممة لدعم رحلتك الفريدة"}
-              </motion.p>
+                  <Calendar className="w-5 h-5 mr-2" />
+                  {getText("Book Consultation", "احجز استشارة")}
+                </Button>
+              </Link>
+
+              <Link to="/doctors">
+                <Button 
+                  size="lg" 
+                  variant="outline" 
+                  className="border-primary/30 hover:bg-primary/5 backdrop-blur-sm bg-white/50 px-8 py-6 text-lg rounded-full"
+                >
+                  <Users className="w-5 h-5 mr-2" />
+                  {getText("Meet Our Doctors", "تعرف على أطبائنا")}
+                </Button>
+              </Link>
             </motion.div>
 
-            <ScrollArea className="w-full">
-              <motion.div 
-                className="flex space-x-8 pb-8"
-                initial={{ x: -200, opacity: 0 }}
-                whileInView={{ x: 0, opacity: 1 }}
-                transition={{ duration: 1.5, delay: 0.5 }}
-                viewport={{ once: true }}
-              >
-                {services.map((service, index) => (
-                  <motion.div 
-                    key={index} 
-                    className="min-w-[380px] group"
-                    initial={{ opacity: 0, y: 100, rotateX: 25 }}
-                    whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
-                    transition={{ 
-                      duration: 0.8, 
-                      delay: 0.8 + index * 0.2,
-                      type: "spring",
-                      stiffness: 100
-                    }}
-                    whileHover={{ 
-                      scale: 1.05, 
-                      y: -10,
-                      rotateY: 5,
-                      transition: { duration: 0.3 }
-                    }}
-                    viewport={{ once: true }}
-                  >
-                    <Card className="h-full bg-white/10 backdrop-blur-md border border-white/20 shadow-2xl hover:shadow-3xl transition-all duration-700 overflow-hidden group-hover:bg-white/15">
-                      <div className={`absolute inset-0 bg-gradient-to-br ${service.color} opacity-20 group-hover:opacity-30 transition-opacity duration-500`} />
-                      <motion.div 
-                        className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary to-secondary"
-                        initial={{ scaleX: 0 }}
-                        whileInView={{ scaleX: 1 }}
-                        transition={{ duration: 1, delay: 1.2 + index * 0.1 }}
-                        viewport={{ once: true }}
-                      />
-                      
-                      <CardContent className="p-8 relative z-10">
-                        <motion.div
-                          initial={{ scale: 0, rotate: -180 }}
-                          whileInView={{ scale: 1, rotate: 0 }}
-                          transition={{ 
-                            duration: 0.8, 
-                            delay: 1 + index * 0.15,
-                            type: "spring"
-                          }}
-                          whileHover={{ 
-                            scale: 1.2, 
-                            rotate: 10,
-                            transition: { duration: 0.3 }
-                          }}
-                          className={`w-20 h-20 rounded-2xl bg-gradient-to-br ${service.color} shadow-xl flex items-center justify-center mb-6 group-hover:shadow-2xl transition-all duration-500`}
-                        >
-                          <service.icon className="h-10 w-10 text-white" />
-                        </motion.div>
-                        
-                        <motion.h3 
-                          className="text-2xl font-semibold mb-4 text-white group-hover:text-gray-100 transition-colors"
-                          initial={{ opacity: 0, x: -20 }}
-                          whileInView={{ opacity: 1, x: 0 }}
-                          transition={{ duration: 0.6, delay: 1.2 + index * 0.1 }}
-                          viewport={{ once: true }}
-                        >
-                          {service.title}
-                        </motion.h3>
-                        
-                        <motion.p 
-                          className="text-gray-300 leading-relaxed mb-6"
-                          initial={{ opacity: 0 }}
-                          whileInView={{ opacity: 1 }}
-                          transition={{ duration: 0.6, delay: 1.4 + index * 0.1 }}
-                          viewport={{ once: true }}
-                        >
-                          {service.description}
-                        </motion.p>
-                        
-                        <motion.div
-                          whileHover={{ x: 8 }}
-                          transition={{ duration: 0.2 }}
-                          initial={{ opacity: 0, y: 20 }}
-                          whileInView={{ opacity: 1, y: 0 }}
-                          viewport={{ once: true }}
-                          className="transition-transform duration-300"
-                        >
-                          <Link to="/services" className="inline-flex items-center text-primary hover:text-secondary font-medium transition-colors duration-300">
-                            {language === "en" ? "Learn More" : "اعرف المزيد"}
-                            <ArrowRight className="h-4 w-4 ml-2 transition-transform group-hover:translate-x-1" />
-                          </Link>
-                        </motion.div>
-                      </CardContent>
-                    </Card>
-                  </motion.div>
-                ))}
-              </motion.div>
-              <ScrollBar orientation="horizontal" />
-            </ScrollArea>
-          </div>
-        </div>
-      </motion.section>
-
-      {/* Asymmetric Conditions Section */}
-      <section className="py-24 relative">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-12 gap-12 items-center">
-            {/* Asymmetric layout - conditions on right, content on left */}
-            <motion.div className="lg:col-span-5" initial={{
-            opacity: 0,
-            x: -50
-          }} whileInView={{
-            opacity: 1,
-            x: 0
-          }} transition={{
-            duration: 0.8
-          }} viewport={{
-            once: true
-          }}>
-              <h3 className="text-3xl md:text-4xl font-light mb-8">
-                {language === "en" ? "Conditions We" : "الحالات التي"}{" "}
-                <span className="text-primary font-medium">
-                  {language === "en" ? "Treat" : "نعالجها"}
-                </span>
-              </h3>
-              <p className="text-lg text-muted-foreground mb-8">
-                {language === "en" ? "Our expert team provides specialized care for a wide range of mental health conditions with personalized treatment approaches." : "يقدم فريقنا المتخصص رعاية متخصصة لمجموعة واسعة من حالات الصحة النفسية بأساليب علاج مخصصة."}
-              </p>
-              <div className="text-center lg:text-left">
-                <Badge variant="secondary" className="px-6 py-3 text-sm">
-                  <Search className="h-4 w-4 mr-2" />
-                  {language === "en" ? "Personalized Treatment Plans" : "خطط علاج مخصصة"}
-                </Badge>
+            {/* Trust Indicators */}
+            <motion.div 
+              variants={itemVariants}
+              className="pt-12 grid grid-cols-2 md:grid-cols-4 gap-8 max-w-2xl mx-auto"
+            >
+              <div className="text-center">
+                <div className="text-2xl font-bold text-primary">500+</div>
+                <div className="text-sm text-muted-foreground">
+                  {getText("Happy Clients", "عميل سعيد")}
+                </div>
               </div>
-            </motion.div>
-
-            <motion.div className="lg:col-span-6 lg:col-start-7" initial={{
-            opacity: 0,
-            x: 50
-          }} whileInView={{
-            opacity: 1,
-            x: 0
-          }} transition={{
-            duration: 0.8,
-            delay: 0.2
-          }} viewport={{
-            once: true
-          }}>
-              <div className="bg-card/50 backdrop-blur-sm rounded-3xl p-8 border border-border/50">
-                <div className="grid gap-4">
-                  {conditions.map((condition, index) => <motion.div key={index} className="flex items-center space-x-4 group cursor-pointer p-4 rounded-xl hover:bg-background/50 transition-all duration-300" whileHover={{
-                  scale: 1.02,
-                  x: 10
-                }} transition={{
-                  duration: 0.2
-                }}>
-                      <div className="bg-secondary/20 p-3 rounded-xl group-hover:bg-secondary/30 transition-colors duration-300">
-                        <Check className="h-5 w-5 text-secondary" />
-                      </div>
-                      <span className="text-foreground group-hover:text-primary transition-colors duration-300 font-medium">
-                        {condition}
-                      </span>
-                    </motion.div>)}
+              <div className="text-center">
+                <div className="text-2xl font-bold text-primary">15+</div>
+                <div className="text-sm text-muted-foreground">
+                  {getText("Expert Doctors", "طبيب خبير")}
+                </div>
+              </div>
+              <div className="text-center">
+                <div className="text-2xl font-bold text-primary">24/7</div>
+                <div className="text-sm text-muted-foreground">
+                  {getText("Support", "دعم")}
+                </div>
+              </div>
+              <div className="text-center">
+                <div className="text-2xl font-bold text-primary">4.9</div>
+                <div className="text-sm text-muted-foreground">
+                  {getText("Rating", "تقييم")}
                 </div>
               </div>
             </motion.div>
-          </div>
+          </motion.div>
         </div>
+
+        {/* Scroll indicator */}
+        <motion.div
+          className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
+          animate={{
+            y: [0, 8, 0],
+          }}
+          transition={{
+            duration: 2,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+        >
+          <div className="w-6 h-10 border-2 border-primary/30 rounded-full flex justify-center">
+            <div className="w-1 h-3 bg-primary/50 rounded-full mt-2"></div>
+          </div>
+        </motion.div>
       </section>
 
-      {/* Interactive Testimonials with Motion */}
-      <section className="py-24 bg-muted/20 relative overflow-hidden">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <motion.h2 className="text-4xl md:text-5xl font-light mb-16 text-balance" initial={{
-          opacity: 0,
-          y: 50
-        }} whileInView={{
-          opacity: 1,
-          y: 0
-        }} transition={{
-          duration: 0.8
-        }} viewport={{
-          once: true
-        }}>
-            {language === "en" ? "Stories of" : "قصص"}{" "}
-            <span className="text-primary font-medium">
-              {language === "en" ? "Transformation" : "التحول"}
-            </span>
-          </motion.h2>
-          
-          <div className="relative">
-            <motion.div key={currentTestimonial} initial={{
-            opacity: 0,
-            x: 100
-          }} animate={{
-            opacity: 1,
-            x: 0
-          }} exit={{
-            opacity: 0,
-            x: -100
-          }} transition={{
-            duration: 0.5
-          }}>
-              <Card className="bg-card/80 backdrop-blur-sm border-border/50 shadow-xl overflow-hidden">
-                <CardContent className="p-8 md:p-12">
-                  <div className="flex justify-center mb-4">
-                    {[...Array(testimonials[currentTestimonial].rating)].map((_, i) => <motion.div key={i} initial={{
-                    opacity: 0,
-                    scale: 0
-                  }} animate={{
-                    opacity: 1,
-                    scale: 1
-                  }} transition={{
-                    duration: 0.3,
-                    delay: i * 0.1
-                  }}>
-                        <Star className="h-5 w-5 text-yellow-500 fill-current" />
-                      </motion.div>)}
-                  </div>
-                  <motion.div className="mb-6" initial={{
-                  opacity: 0,
-                  y: 20
-                }} animate={{
-                  opacity: 1,
-                  y: 0
-                }} transition={{
-                  duration: 0.5,
-                  delay: 0.2
-                }}>
-                    <div className="text-4xl text-primary mb-4">"</div>
-                    <p className="text-lg md:text-xl text-muted-foreground italic text-balance">
-                      {testimonials[currentTestimonial].text}
+      {/* Services Section - Enhanced with Dynamic Animation */}
+      <motion.section 
+        className="relative py-24 bg-gradient-to-b from-slate-900 via-slate-800 to-slate-900 overflow-hidden"
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        transition={{ duration: 1 }}
+        viewport={{ once: true }}
+      >
+        {/* Background Elements */}
+        <div className="absolute inset-0">
+          <div className="absolute top-20 left-10 w-72 h-72 bg-primary/5 rounded-full blur-3xl"></div>
+          <div className="absolute bottom-20 right-10 w-96 h-96 bg-secondary/5 rounded-full blur-3xl"></div>
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-r from-primary/3 to-secondary/3 rounded-full blur-3xl"></div>
+        </div>
+
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-4xl md:text-5xl font-light text-white mb-6">
+              {getText("Our", "خدماتنا")}
+              <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent font-medium ml-3">
+                {getText("Services", "المميزة")}
+              </span>
+            </h2>
+            <p className="text-xl text-slate-300 max-w-3xl mx-auto">
+              {getText(
+                "Comprehensive mental health services designed to support your journey towards emotional wellness and personal growth.",
+                "خدمات صحة نفسية شاملة مصممة لدعم رحلتك نحو العافية العاطفية والنمو الشخصي."
+              )}
+            </p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {[
+              {
+                icon: Brain,
+                title: getText("Individual Therapy", "العلاج الفردي"),
+                description: getText("Personalized one-on-one sessions", "جلسات فردية مخصصة"),
+                color: "from-blue-500 to-cyan-500"
+              },
+              {
+                icon: Users,
+                title: getText("Group Therapy", "العلاج الجماعي"),
+                description: getText("Supportive group sessions", "جلسات جماعية داعمة"),
+                color: "from-purple-500 to-pink-500"
+              },
+              {
+                icon: Heart,
+                title: getText("Couples Counseling", "استشارات الأزواج"),
+                description: getText("Relationship guidance", "إرشاد العلاقات"),
+                color: "from-rose-500 to-orange-500"
+              },
+              {
+                icon: Lightbulb,
+                title: getText("Cognitive Behavioral Therapy", "العلاج المعرفي السلوكي"),
+                description: getText("Evidence-based treatment", "علاج قائم على الأدلة"),
+                color: "from-green-500 to-teal-500"
+              },
+              {
+                icon: Target,
+                title: getText("Goal-Oriented Therapy", "العلاج الموجه بالأهداف"),
+                description: getText("Focused therapeutic approach", "نهج علاجي مركز"),
+                color: "from-indigo-500 to-blue-500"
+              },
+              {
+                icon: Award,
+                title: getText("Specialized Programs", "برامج متخصصة"),
+                description: getText("Tailored treatment plans", "خطط علاج مخصصة"),
+                color: "from-yellow-500 to-orange-500"
+              }
+            ].map((service, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                viewport={{ once: true }}
+                whileHover={{ 
+                  scale: 1.05,
+                  rotateY: 5,
+                  z: 50
+                }}
+                className="group perspective-1000"
+              >
+                <Card className="h-full bg-white/5 backdrop-blur-sm border-white/10 hover:bg-white/10 transition-all duration-500 transform-gpu hover:shadow-2xl hover:shadow-primary/20">
+                  <CardContent className="p-8 text-center">
+                    <motion.div
+                      className={`w-16 h-16 mx-auto mb-6 rounded-2xl bg-gradient-to-r ${service.color} flex items-center justify-center shadow-lg`}
+                      whileHover={{ rotate: 360 }}
+                      transition={{ duration: 0.6 }}
+                    >
+                      <service.icon className="w-8 h-8 text-white" />
+                    </motion.div>
+                    <h3 className="text-xl font-semibold text-white mb-4 group-hover:text-primary transition-colors">
+                      {service.title}
+                    </h3>
+                    <p className="text-slate-300 group-hover:text-slate-200 transition-colors">
+                      {service.description}
                     </p>
-                  </motion.div>
-                  <motion.div className="flex items-center justify-center space-x-4" initial={{
-                  opacity: 0,
-                  y: 20
-                }} animate={{
-                  opacity: 1,
-                  y: 0
-                }} transition={{
-                  duration: 0.5,
-                  delay: 0.4
-                }}>
-                    <div className="w-12 h-12 bg-gradient-to-br from-primary to-secondary rounded-full"></div>
-                    <div className="text-left">
-                      <p className="font-medium">{testimonials[currentTestimonial].name}</p>
-                      <p className="text-sm text-muted-foreground">{testimonials[currentTestimonial].role}</p>
-                    </div>
-                  </motion.div>
-                </CardContent>
-              </Card>
-            </motion.div>
-            
-            {/* Interactive Testimonial Indicators */}
-            <div className="flex justify-center space-x-3 mt-8">
-              {testimonials.map((_, index) => <motion.button key={index} onClick={() => setCurrentTestimonial(index)} className={`w-4 h-4 rounded-full transition-all duration-300 ${index === currentTestimonial ? "bg-primary scale-125" : "bg-primary/20 hover:bg-primary/40"}`} whileHover={{
-              scale: 1.2
-            }} whileTap={{
-              scale: 0.9
-            }} />)}
-            </div>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            ))}
           </div>
-          
-          <motion.div className="mt-12" initial={{
-          opacity: 0,
-          y: 30
-        }} whileInView={{
-          opacity: 1,
-          y: 0
-        }} transition={{
-          duration: 0.6
-        }} viewport={{
-          once: true
-        }}>
-            <Link to="/testimonials">
-              <Button variant="outline" className="border-primary/20 hover:bg-primary/5 transition-all duration-300 hover:scale-105">
-                {language === "en" ? "Read More Stories" : "اقرأ المزيد من القصص"}
-                <ArrowRight className="h-4 w-4 ml-2" />
+
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            viewport={{ once: true }}
+            className="text-center mt-16"
+          >
+            <Link to="/services">
+              <Button 
+                size="lg"
+                className="bg-gradient-to-r from-primary to-secondary hover:opacity-90 text-white shadow-xl px-8 py-6 text-lg rounded-full"
+              >
+                {getText("Explore All Services", "استكشف جميع الخدمات")}
+                <ArrowRight className="w-5 h-5 ml-2" />
               </Button>
             </Link>
           </motion.div>
+        </div>
+      </motion.section>
+
+      {/* Why Choose Us Section */}
+      <section className="py-24 bg-gradient-to-b from-background to-muted/30">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-4xl md:text-5xl font-light mb-6">
+              {getText("Why Choose", "لماذا تختار")}
+              <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent font-medium ml-3">
+                {getText("Our Clinic?", "عيادتنا؟")}
+              </span>
+            </h2>
+            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+              {getText(
+                "We're committed to providing exceptional mental health care with a personalized approach that puts your wellbeing first.",
+                "نحن ملتزمون بتقديم رعاية استثنائية للصحة النفسية بنهج شخصي يضع رفاهيتك في المقدمة."
+              )}
+            </p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {[
+              {
+                icon: Shield,
+                title: getText("Confidential & Safe", "سري وآمن"),
+                description: getText("Complete privacy protection", "حماية كاملة للخصوصية")
+              },
+              {
+                icon: Star,
+                title: getText("Expert Professionals", "محترفون خبراء"),
+                description: getText("Licensed and experienced", "مرخصون وذوو خبرة")
+              },
+              {
+                icon: Clock,
+                title: getText("Flexible Scheduling", "مواعيد مرنة"),
+                description: getText("Book at your convenience", "احجز في الوقت المناسب لك")
+              },
+              {
+                icon: Heart,
+                title: getText("Compassionate Care", "رعاية متفهمة"),
+                description: getText("Empathetic support", "دعم متفهم")
+              }
+            ].map((feature, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                viewport={{ once: true }}
+                whileHover={{ scale: 1.05 }}
+                className="text-center group"
+              >
+                <div className="w-16 h-16 mx-auto mb-6 rounded-2xl bg-gradient-to-r from-primary/10 to-secondary/10 flex items-center justify-center group-hover:from-primary/20 group-hover:to-secondary/20 transition-all duration-300">
+                  <feature.icon className="w-8 h-8 text-primary group-hover:scale-110 transition-transform" />
+                </div>
+                <h3 className="text-xl font-semibold mb-3 group-hover:text-primary transition-colors">
+                  {feature.title}
+                </h3>
+                <p className="text-muted-foreground">
+                  {feature.description}
+                </p>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </section>
 
-      {/* CTA Section with Curved Design */}
-      <section className="relative py-24 overflow-hidden">
-        <motion.div className="absolute inset-0 gradient-lavender" style={{
-        clipPath: "ellipse(100% 100% at 50% 0%)",
-        y: y1
-      }} />
-        <div className="relative z-10 max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
-          <motion.h2 className="text-4xl md:text-5xl mb-8 text-balance font-light text-slate-900" initial={{
-          opacity: 0,
-          y: 50
-        }} whileInView={{
-          opacity: 1,
-          y: 0
-        }} transition={{
-          duration: 0.8
-        }} viewport={{
-          once: true
-        }}>
-            {language === "en" ? "Ready to Begin Your" : "مستعد لبدء"}{" "}
-            <span className="font-medium">
-              {language === "en" ? "Healing Journey?" : "رحلة الشفاء؟"}
-            </span>
-          </motion.h2>
-          <motion.p className="text-xl mb-10 text-balance text-slate-950" initial={{
-          opacity: 0,
-          y: 30
-        }} whileInView={{
-          opacity: 1,
-          y: 0
-        }} transition={{
-          duration: 0.8,
-          delay: 0.2
-        }} viewport={{
-          once: true
-        }}>
-            {language === "en" ? "Take the first step towards better mental health. Our experienced team is here to support you." : "اتخذ الخطوة الأولى نحو صحة نفسية أفضل. فريقنا ذو الخبرة هنا لدعمك."}
-          </motion.p>
-          <motion.div className="flex flex-col sm:flex-row gap-6 justify-center" initial={{
-          opacity: 0,
-          y: 30
-        }} whileInView={{
-          opacity: 1,
-          y: 0
-        }} transition={{
-          duration: 0.8,
-          delay: 0.4
-        }} viewport={{
-          once: true
-        }}>
-            <Link to="/booking">
-              <Button size="lg" variant="secondary" className="text-primary bg-slate-950 hover:bg-slate-800 transition-all duration-300 hover:scale-105">
-                <Calendar className="h-5 w-5 mr-2" />
-                {language === "en" ? "Schedule Consultation" : "حدد موعد استشارة"}
-              </Button>
-            </Link>
-            <Link to="/contact">
-              <Button size="lg" variant="outline" className="border-white/30 transition-all duration-300 hover:scale-105 font-extrabold text-lg text-violet-500 bg-zinc-950 hover:bg-zinc-800">
-                {language === "en" ? "Contact Us" : "اتصل بنا"}
-              </Button>
-            </Link>
+      {/* CTA Section */}
+      <section className="py-24 bg-gradient-to-r from-primary/10 via-secondary/5 to-primary/10">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+          >
+            <h2 className="text-4xl md:text-5xl font-light mb-6">
+              {getText("Ready to Start Your", "مستعد لبدء")}
+              <br />
+              <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent font-medium">
+                {getText("Healing Journey?", "رحلة الشفاء؟")}
+              </span>
+            </h2>
+            <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
+              {getText(
+                "Take the first step towards better mental health. Our compassionate team is here to support you every step of the way.",
+                "اتخذ الخطوة الأولى نحو صحة نفسية أفضل. فريقنا المتفهم هنا لدعمك في كل خطوة من الطريق."
+              )}
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link to="/booking">
+                <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                  <Button size="lg" className="gradient-calm hover:opacity-90 text-slate-800 shadow-lg px-8 py-4">
+                    <Calendar className="w-5 h-5 mr-2" />
+                    {getText("Book Your Session", "احجز جلستك")}
+                  </Button>
+                </motion.div>
+              </Link>
+              <Link to="/contact">
+                <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                  <Button size="lg" variant="outline" className="border-primary/30 hover:bg-primary/5 px-8 py-4">
+                    <Phone className="w-5 h-5 mr-2" />
+                    {getText("Contact Us", "تواصل معنا")}
+                  </Button>
+                </motion.div>
+              </Link>
+            </div>
           </motion.div>
         </div>
       </section>
-    </div>;
+    </div>
+  );
 };
 
 export default Index;
