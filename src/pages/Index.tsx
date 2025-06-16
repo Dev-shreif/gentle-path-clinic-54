@@ -6,6 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import { Calendar, Heart, User, Check, ArrowRight, Search, Star, Award } from "lucide-react";
 import { motion, useScroll, useTransform, useInView } from "framer-motion";
+
 const Index = () => {
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
   const [language, setLanguage] = useState("en");
@@ -29,6 +30,7 @@ const Index = () => {
     const savedLanguage = localStorage.getItem("language") || "en";
     setLanguage(savedLanguage);
   }, []);
+
   const testimonials = [{
     name: language === "en" ? "Sarah Johnson" : "سارة جونسون",
     text: language === "en" ? "The care I received here transformed my life. The doctors truly listen and understand." : "الرعاية التي تلقيتها هنا غيرت حياتي. الأطباء يستمعون ويفهمون حقاً.",
@@ -96,7 +98,51 @@ const Index = () => {
     }, 4000);
     return () => clearInterval(timer);
   }, [testimonials.length]);
-  return <div className="min-h-screen overflow-x-hidden">
+
+  return <div className="min-h-screen overflow-x-hidden relative">
+      {/* Background Nature Scene */}
+      <div className="fixed inset-0 -z-30">
+        <div className="absolute inset-0 bg-gradient-to-br from-emerald-50/80 via-teal-50/60 to-blue-50/80" />
+        <div 
+          className="absolute inset-0 opacity-20"
+          style={{
+            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23059669' fill-opacity='0.1'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3Ccircle cx='10' cy='10' r='1'/%3E%3Ccircle cx='50' cy='50' r='1'/%3E%3Cpath d='M20 20c2-2 4-2 6 0s2 4 0 6-4 2-6 0-2-4 0-6zm20 20c2-2 4-2 6 0s2 4 0 6-4 2-6 0-2-4 0-6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+          }}
+        />
+        {/* Floating nature elements */}
+        <motion.div 
+          className="absolute top-20 left-10 w-64 h-64 rounded-full"
+          style={{
+            background: "radial-gradient(circle, rgba(16, 185, 129, 0.1) 0%, transparent 70%)",
+          }}
+          animate={{
+            scale: [1, 1.2, 1],
+            opacity: [0.3, 0.6, 0.3],
+          }}
+          transition={{
+            duration: 8,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+        />
+        <motion.div 
+          className="absolute bottom-20 right-20 w-80 h-80 rounded-full"
+          style={{
+            background: "radial-gradient(circle, rgba(34, 197, 94, 0.08) 0%, transparent 70%)",
+          }}
+          animate={{
+            scale: [1.2, 1, 1.2],
+            opacity: [0.2, 0.5, 0.2],
+          }}
+          transition={{
+            duration: 10,
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: 2
+          }}
+        />
+      </div>
+
       {/* Asymmetric Hero Section */}
       <section ref={heroRef} className="relative min-h-screen flex items-center overflow-hidden pt-16">
         <motion.div className="absolute inset-0 gradient-calm opacity-20" style={{
@@ -253,83 +299,204 @@ const Index = () => {
         delay: 0.8
       }}>
           <ScrollArea className="w-full">
-            
             <ScrollBar orientation="horizontal" className="invisible" />
           </ScrollArea>
         </motion.div>
       </section>
 
-      {/* Horizontal Scrolling Services Section */}
-      <section ref={servicesRef} className="py-24 relative overflow-hidden">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div className="text-center mb-16" initial={{
-          opacity: 0,
-          y: 50
-        }} animate={isServicesInView ? {
-          opacity: 1,
-          y: 0
-        } : {
-          opacity: 0,
-          y: 50
-        }} transition={{
-          duration: 0.8
-        }}>
-            <h2 className="text-4xl md:text-5xl font-light text-balance mb-6">
-              {language === "en" ? "Our" : "خدماتنا"}{" "}
-              <span className="text-primary font-medium">
-                {language === "en" ? "Services" : "المتخصصة"}
-              </span>
-            </h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto text-balance">
-              {language === "en" ? "Discover our comprehensive range of mental health services designed to support your unique journey" : "اكتشف مجموعتنا الشاملة من خدمات الصحة النفسية المصممة لدعم رحلتك الفريدة"}
-            </p>
-          </motion.div>
+      {/* Enhanced Dynamic Services Section */}
+      <motion.section 
+        ref={servicesRef} 
+        className="relative py-32 overflow-hidden"
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        transition={{ duration: 1.5 }}
+        viewport={{ once: true }}
+      >
+        {/* Full-width animated background */}
+        <motion.div 
+          className="absolute inset-0"
+          initial={{ scale: 1.2, opacity: 0 }}
+          whileInView={{ scale: 1, opacity: 1 }}
+          transition={{ duration: 2, ease: "easeOut" }}
+          viewport={{ once: true }}
+        >
+          <div className="absolute inset-0 bg-gradient-to-br from-slate-900/95 via-slate-800/90 to-slate-900/95" />
+          <div 
+            className="absolute inset-0 opacity-30"
+            style={{
+              backgroundImage: `url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M50 0c27.614 0 50 22.386 50 50s-22.386 50-50 50S0 77.614 0 50 22.386 0 50 0zm0 10c-22.091 0-40 17.909-40 40s17.909 40 40 40 40-17.909 40-40-17.909-40-40-40z'/%3E%3C/g%3E%3C/svg%3E")`,
+            }}
+          />
+          {/* Animated particles */}
+          {[...Array(6)].map((_, i) => (
+            <motion.div
+              key={i}
+              className="absolute w-2 h-2 bg-white/20 rounded-full"
+              style={{
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+              }}
+              animate={{
+                y: [0, -30, 0],
+                opacity: [0.2, 0.8, 0.2],
+              }}
+              transition={{
+                duration: 4 + Math.random() * 2,
+                repeat: Infinity,
+                delay: Math.random() * 2,
+              }}
+            />
+          ))}
+        </motion.div>
 
-          <ScrollArea className="w-full">
-            <motion.div className="flex space-x-6 pb-6" initial={{
-            x: -100,
-            opacity: 0
-          }} animate={isServicesInView ? {
-            x: 0,
-            opacity: 1
-          } : {
-            x: -100,
-            opacity: 0
-          }} transition={{
-            duration: 1,
-            delay: 0.3
-          }}>
-              {services.map((service, index) => <motion.div key={index} className="min-w-[320px] group" whileHover={{
-              scale: 1.05
-            }} transition={{
-              duration: 0.3
-            }}>
-                  <Card className="h-full bg-gradient-to-br opacity-90 hover:opacity-100 transition-all duration-500 border-0 shadow-lg hover:shadow-xl overflow-hidden">
-                    <div className={`absolute inset-0 bg-gradient-to-br ${service.color} opacity-10`} />
-                    <CardContent className="p-8 relative z-10">
-                      <div className={`inline-flex p-4 rounded-2xl bg-gradient-to-br ${service.color} mb-6 group-hover:scale-110 transition-transform duration-300`}>
-                        <service.icon className="h-8 w-8 text-white" />
-                      </div>
-                      <h3 className="text-xl font-semibold mb-4 text-foreground">{service.title}</h3>
-                      <p className="text-muted-foreground leading-relaxed">{service.description}</p>
-                      <motion.div className="mt-6" whileHover={{
-                    x: 5
-                  }} transition={{
-                    duration: 0.2
-                  }}>
-                        <Link to="/services" className="inline-flex items-center text-primary hover:text-primary/80 font-medium">
-                          {language === "en" ? "Learn More" : "اعرف المزيد"}
-                          <ArrowRight className="h-4 w-4 ml-2" />
-                        </Link>
-                      </motion.div>
-                    </CardContent>
-                  </Card>
-                </motion.div>)}
+        <div className="relative z-10 w-full">
+          {/* Page transition effect */}
+          <motion.div 
+            className="absolute inset-0 bg-gradient-to-r from-primary/20 via-transparent to-secondary/20"
+            initial={{ x: "-100%" }}
+            whileInView={{ x: "100%" }}
+            transition={{ duration: 2, ease: "easeInOut" }}
+            viewport={{ once: true }}
+          />
+
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <motion.div 
+              className="text-center mb-20"
+              initial={{ opacity: 0, y: 80 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1, delay: 0.3 }}
+              viewport={{ once: true }}
+            >
+              <motion.h2 
+                className="text-5xl md:text-7xl font-light text-balance mb-8 text-white"
+                initial={{ opacity: 0, scale: 0.8 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 1.2, delay: 0.5 }}
+                viewport={{ once: true }}
+              >
+                {language === "en" ? "Our" : "خدماتنا"}{" "}
+                <motion.span 
+                  className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent font-medium"
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  transition={{ duration: 1, delay: 0.8 }}
+                  viewport={{ once: true }}
+                >
+                  {language === "en" ? "Services" : "المتخصصة"}
+                </motion.span>
+              </motion.h2>
+              <motion.p 
+                className="text-xl text-gray-300 max-w-3xl mx-auto text-balance leading-relaxed"
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 1, delay: 0.7 }}
+                viewport={{ once: true }}
+              >
+                {language === "en" ? "Discover our comprehensive range of mental health services designed to support your unique journey" : "اكتشف مجموعتنا الشاملة من خدمات الصحة النفسية المصممة لدعم رحلتك الفريدة"}
+              </motion.p>
             </motion.div>
-            <ScrollBar orientation="horizontal" />
-          </ScrollArea>
+
+            <ScrollArea className="w-full">
+              <motion.div 
+                className="flex space-x-8 pb-8"
+                initial={{ x: -200, opacity: 0 }}
+                whileInView={{ x: 0, opacity: 1 }}
+                transition={{ duration: 1.5, delay: 0.5 }}
+                viewport={{ once: true }}
+              >
+                {services.map((service, index) => (
+                  <motion.div 
+                    key={index} 
+                    className="min-w-[380px] group"
+                    initial={{ opacity: 0, y: 100, rotateX: 25 }}
+                    whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
+                    transition={{ 
+                      duration: 0.8, 
+                      delay: 0.8 + index * 0.2,
+                      type: "spring",
+                      stiffness: 100
+                    }}
+                    whileHover={{ 
+                      scale: 1.05, 
+                      y: -10,
+                      rotateY: 5,
+                      transition: { duration: 0.3 }
+                    }}
+                    viewport={{ once: true }}
+                  >
+                    <Card className="h-full bg-white/10 backdrop-blur-md border border-white/20 shadow-2xl hover:shadow-3xl transition-all duration-700 overflow-hidden group-hover:bg-white/15">
+                      <div className={`absolute inset-0 bg-gradient-to-br ${service.color} opacity-20 group-hover:opacity-30 transition-opacity duration-500`} />
+                      <motion.div 
+                        className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary to-secondary"
+                        initial={{ scaleX: 0 }}
+                        whileInView={{ scaleX: 1 }}
+                        transition={{ duration: 1, delay: 1.2 + index * 0.1 }}
+                        viewport={{ once: true }}
+                      />
+                      
+                      <CardContent className="p-8 relative z-10">
+                        <motion.div
+                          initial={{ scale: 0, rotate: -180 }}
+                          whileInView={{ scale: 1, rotate: 0 }}
+                          transition={{ 
+                            duration: 0.8, 
+                            delay: 1 + index * 0.15,
+                            type: "spring"
+                          }}
+                          whileHover={{ 
+                            scale: 1.2, 
+                            rotate: 10,
+                            transition: { duration: 0.3 }
+                          }}
+                          className={`w-20 h-20 rounded-2xl bg-gradient-to-br ${service.color} shadow-xl flex items-center justify-center mb-6 group-hover:shadow-2xl transition-all duration-500`}
+                        >
+                          <service.icon className="h-10 w-10 text-white" />
+                        </motion.div>
+                        
+                        <motion.h3 
+                          className="text-2xl font-semibold mb-4 text-white group-hover:text-gray-100 transition-colors"
+                          initial={{ opacity: 0, x: -20 }}
+                          whileInView={{ opacity: 1, x: 0 }}
+                          transition={{ duration: 0.6, delay: 1.2 + index * 0.1 }}
+                          viewport={{ once: true }}
+                        >
+                          {service.title}
+                        </motion.h3>
+                        
+                        <motion.p 
+                          className="text-gray-300 leading-relaxed mb-6"
+                          initial={{ opacity: 0 }}
+                          whileInView={{ opacity: 1 }}
+                          transition={{ duration: 0.6, delay: 1.4 + index * 0.1 }}
+                          viewport={{ once: true }}
+                        >
+                          {service.description}
+                        </motion.p>
+                        
+                        <motion.div
+                          whileHover={{ x: 8 }}
+                          transition={{ duration: 0.2 }}
+                          initial={{ opacity: 0, y: 20 }}
+                          whileInView={{ opacity: 1, y: 0 }}
+                          viewport={{ once: true }}
+                          className="transition-transform duration-300"
+                        >
+                          <Link to="/services" className="inline-flex items-center text-primary hover:text-secondary font-medium transition-colors duration-300">
+                            {language === "en" ? "Learn More" : "اعرف المزيد"}
+                            <ArrowRight className="h-4 w-4 ml-2 transition-transform group-hover:translate-x-1" />
+                          </Link>
+                        </motion.div>
+                      </CardContent>
+                    </Card>
+                  </motion.div>
+                ))}
+              </motion.div>
+              <ScrollBar orientation="horizontal" />
+            </ScrollArea>
+          </div>
         </div>
-      </section>
+      </motion.section>
 
       {/* Asymmetric Conditions Section */}
       <section className="py-24 relative">
@@ -578,4 +745,5 @@ const Index = () => {
       </section>
     </div>;
 };
+
 export default Index;
