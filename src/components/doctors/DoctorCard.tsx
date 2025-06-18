@@ -65,9 +65,7 @@ const DoctorCard = ({
               <Link to="/booking" state={{
               selectedDoctor: getText(doctor.name)
             }}>
-                <Button size="sm" className="bg-primary hover:bg-primary/90 shadow-lg">
-                  <Calendar className="w-3 h-3" />
-                </Button>
+                
               </Link>
             </div>
           </div>
@@ -94,8 +92,8 @@ const DoctorCard = ({
             
             {/* Rating */}
             <div className="flex items-center gap-1">
-              <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
-              <span className="text-sm font-medium">{doctor.rating}</span>
+              
+              
             </div>
           </div>
           
