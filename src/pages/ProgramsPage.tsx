@@ -1,8 +1,7 @@
-
 import { useState, useEffect } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Users, Heart, Brain, Family, Shield, Calendar } from "lucide-react";
+import { Users, Heart, Brain, Shield, Calendar } from "lucide-react";
 
 const ProgramsPage = () => {
   const [language, setLanguage] = useState("en");
@@ -59,7 +58,7 @@ const ProgramsPage = () => {
     },
     {
       id: 5,
-      icon: Family,
+      icon: Users,
       title: language === "en" ? "Family Group Therapy" : "برنامج العلاج الأسري الجماعي",
       ageGroup: language === "en" ? "All family members" : "جميع أفراد الأسرة",
       description: language === "en"
