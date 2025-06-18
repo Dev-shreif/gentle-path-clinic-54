@@ -1,4 +1,5 @@
 
+import React from "react";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -23,36 +24,38 @@ import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
 
-const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <ThemeProvider defaultTheme="light" storageKey="serenity-theme">
-      <TooltipProvider>
-        <Toaster />
-        <Sonner />
-        <BrowserRouter>
-          <div className="min-h-screen bg-background">
-            <Navigation />
-            <Routes>
-              <Route path="/" element={<Index />} />
-              <Route path="/doctors" element={<DoctorsPage />} />
-              <Route path="/doctors/:doctorSlug" element={<DoctorProfile />} />
-              <Route path="/services" element={<ServicesPage />} />
-              <Route path="/booking" element={<BookingPage />} />
-              <Route path="/blog" element={<BlogPage />} />
-              <Route path="/activities" element={<ActivitiesPage />} />
-              <Route path="/programs" element={<ProgramsPage />} />
-              <Route path="/stories" element={<StoriesPage />} />
-              <Route path="/about" element={<AboutPage />} />
-              <Route path="/contact" element={<ContactPage />} />
-              <Route path="/testimonials" element={<TestimonialsPage />} />
-              <Route path="/privacy" element={<PrivacyPage />} />
-              <Route path="*" element={<NotFound />} />
-            </Routes>
-          </div>
-        </BrowserRouter>
-      </TooltipProvider>
-    </ThemeProvider>
-  </QueryClientProvider>
-);
+const App: React.FC = () => {
+  return (
+    <QueryClientProvider client={queryClient}>
+      <ThemeProvider defaultTheme="light" storageKey="serenity-theme">
+        <TooltipProvider>
+          <Toaster />
+          <Sonner />
+          <BrowserRouter>
+            <div className="min-h-screen bg-background">
+              <Navigation />
+              <Routes>
+                <Route path="/" element={<Index />} />
+                <Route path="/doctors" element={<DoctorsPage />} />
+                <Route path="/doctors/:doctorSlug" element={<DoctorProfile />} />
+                <Route path="/services" element={<ServicesPage />} />
+                <Route path="/booking" element={<BookingPage />} />
+                <Route path="/blog" element={<BlogPage />} />
+                <Route path="/activities" element={<ActivitiesPage />} />
+                <Route path="/programs" element={<ProgramsPage />} />
+                <Route path="/stories" element={<StoriesPage />} />
+                <Route path="/about" element={<AboutPage />} />
+                <Route path="/contact" element={<ContactPage />} />
+                <Route path="/testimonials" element={<TestimonialsPage />} />
+                <Route path="/privacy" element={<PrivacyPage />} />
+                <Route path="*" element={<NotFound />} />
+              </Routes>
+            </div>
+          </BrowserRouter>
+        </TooltipProvider>
+      </ThemeProvider>
+    </QueryClientProvider>
+  );
+};
 
 export default App;
