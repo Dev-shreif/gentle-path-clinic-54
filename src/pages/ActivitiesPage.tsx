@@ -1,83 +1,159 @@
+
 import { useState, useEffect } from "react";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Button } from "@/components/ui/button";
-import { Calendar, Clock, MapPin, Users, Play, ExternalLink } from "lucide-react";
+import VideoPlayer from "@/components/activities/VideoPlayer";
+import PhotoGallery from "@/components/activities/PhotoGallery";
+import EventCalendar from "@/components/activities/EventCalendar";
+
 const ActivitiesPage = () => {
   const [language, setLanguage] = useState("en");
+
   useEffect(() => {
     const savedLanguage = localStorage.getItem("language") || "en";
     setLanguage(savedLanguage);
   }, []);
-  const photos = [{
-    id: 1,
-    src: "https://images.unsplash.com/photo-1559027615-cd4628902d4a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    caption: language === "en" ? "Teen Support Group Workshop" : "ورشة دعم المراهقين",
-    date: "2024-01-15"
-  }, {
-    id: 2,
-    src: "https://images.unsplash.com/photo-1516321497487-e288fb19713f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    caption: language === "en" ? "Family Therapy Session" : "جلسة علاج أسري",
-    date: "2024-02-20"
-  }, {
-    id: 3,
-    src: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    caption: language === "en" ? "Mental Health Awareness Event" : "فعالية التوعية بالصحة النفسية",
-    date: "2024-03-10"
-  }, {
-    id: 4,
-    src: "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    caption: language === "en" ? "Art Therapy Workshop" : "ورشة العلاج بالفن",
-    date: "2024-03-25"
-  }];
-  const videos = [{
-    id: 1,
-    title: language === "en" ? "Journey Clinic Introduction" : "مقدمة عن عيادة Journey",
-    thumbnail: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    duration: "3:45"
-  }, {
-    id: 2,
-    title: language === "en" ? "Teen Support Program Highlights" : "أبرز برنامج دعم المراهقين",
-    thumbnail: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    duration: "5:20"
-  }];
-  const events = [{
-    id: 1,
-    title: language === "en" ? "Mental Health Awareness Workshop" : "ورشة التوعية بالصحة النفسية",
-    date: "2024-12-25",
-    time: "10:00 AM",
-    location: language === "en" ? "Journey Clinic" : "عيادة Journey",
-    type: language === "en" ? "Workshop" : "ورشة عمل",
-    status: "upcoming"
-  }, {
-    id: 2,
-    title: language === "en" ? "Family Support Group" : "مجموعة دعم الأسر",
-    date: "2024-12-30",
-    time: "6:00 PM",
-    location: language === "en" ? "Journey Clinic" : "عيادة Journey",
-    type: language === "en" ? "Support Group" : "مجموعة دعم",
-    status: "upcoming"
-  }, {
-    id: 3,
-    title: language === "en" ? "Teen Art Therapy Session" : "جلسة العلاج بالفن للمراهقين",
-    date: "2024-11-15",
-    time: "4:00 PM",
-    location: language === "en" ? "Journey Clinic" : "عيادة Journey",
-    type: language === "en" ? "Therapy Session" : "جلسة علاجية",
-    status: "past"
-  }];
-  return <div className="min-h-screen bg-gradient-to-br from-sage/20 via-background to-lavender/20">
+
+  const videos = [
+    {
+      id: "1",
+      title: language === "en" ? "Anxiety Disorders Awareness Session" : "جلسة توعية حول اضطرابات القلق",
+      doctor: "مها محسن",
+      date: "2024-03-15",
+      description: language === "en" ? "Educational session about understanding and managing anxiety disorders" : "جلسة تعليمية حول فهم وإدارة اضطرابات القلق",
+      facebookUrl: "https://www.facebook.com/100086556327224/videos/1165705737447771",
+      thumbnail: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+    },
+    {
+      id: "2", 
+      title: language === "en" ? "Teen Mental Health Workshop" : "ورشة الصحة النفسية للمراهقين",
+      doctor: "داليا الليثي",
+      date: "2024-02-28",
+      description: language === "en" ? "Interactive workshop focusing on teen mental health challenges and coping strategies" : "ورشة تفاعلية تركز على تحديات الصحة النفسية للمراهقين واستراتيجيات التأقلم",
+      facebookUrl: "https://www.facebook.com/100086556327224/videos/2769849259816826",
+      thumbnail: "https://images.unsplash.com/photo-1559027615-cd4628902d4a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+    },
+    {
+      id: "3",
+      title: language === "en" ? "Family Therapy Awareness Session" : "جلسة توعية حول العلاج الأسري",
+      doctor: "ندى العوضي",
+      date: "2024-01-20",
+      description: language === "en" ? "Understanding the importance of family therapy in mental health recovery" : "فهم أهمية العلاج الأسري في التعافي من مشاكل الصحة النفسية",
+      facebookUrl: "https://www.facebook.com/100086556327224/videos/433151679718075",
+      thumbnail: "https://images.unsplash.com/photo-1516321497487-e288fb19713f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+    }
+  ];
+
+  const photos = [
+    {
+      id: 1,
+      src: "https://images.unsplash.com/photo-1559027615-cd4628902d4a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      caption: language === "en" ? "Teen Support Group Workshop" : "ورشة مجموعة دعم المراهقين",
+      date: "2024-03-15",
+      event: language === "en" ? "Mental Health Awareness Week" : "أسبوع التوعية بالصحة النفسية"
+    },
+    {
+      id: 2,
+      src: "https://images.unsplash.com/photo-1516321497487-e288fb19713f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      caption: language === "en" ? "Family Therapy Session" : "جلسة العلاج الأسري",
+      date: "2024-02-20",
+      event: language === "en" ? "Family Healing Program" : "برنامج الشفاء الأسري"
+    },
+    {
+      id: 3,
+      src: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      caption: language === "en" ? "Mental Health Awareness Event" : "فعالية التوعية بالصحة النفسية",
+      date: "2024-01-10",
+      event: language === "en" ? "Community Outreach" : "التواصل المجتمعي"
+    },
+    {
+      id: 4,
+      src: "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      caption: language === "en" ? "Art Therapy Workshop" : "ورشة العلاج بالفن",
+      date: "2024-03-25",
+      event: language === "en" ? "Creative Healing Sessions" : "جلسات الشفاء الإبداعي"
+    },
+    {
+      id: 5,
+      src: "https://images.unsplash.com/photo-1581090464777-f3220bbe1b8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      caption: language === "en" ? "Mindfulness and Meditation Session" : "جلسة اليقظة الذهنية والتأمل",
+      date: "2024-02-14",
+      event: language === "en" ? "Stress Management Workshop" : "ورشة إدارة الضغوط"
+    },
+    {
+      id: 6,
+      src: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      caption: language === "en" ? "Nature Therapy Session" : "جلسة العلاج بالطبيعة",
+      date: "2024-04-05",
+      event: language === "en" ? "Outdoor Healing Program" : "برنامج الشفاء في الطبيعة"
+    }
+  ];
+
+  const events = [
+    {
+      id: 1,
+      title: language === "en" ? "Mental Health First Aid Workshop" : "ورشة الإسعافات الأولية للصحة النفسية",
+      description: language === "en" ? "Learn essential skills to help someone experiencing a mental health crisis" : "تعلم المهارات الأساسية لمساعدة شخص يواجه أزمة صحة نفسية",
+      date: "2024-12-25",
+      time: "10:00 AM",
+      location: language === "en" ? "Journey Clinic - Main Hall" : "عيادة Journey - القاعة الرئيسية",
+      doctor: "مها محسن",
+      type: language === "en" ? "Workshop" : "ورشة عمل",
+      status: "upcoming" as const
+    },
+    {
+      id: 2,
+      title: language === "en" ? "Family Support Group Session" : "جلسة مجموعة دعم الأسر",
+      description: language === "en" ? "Support group for families dealing with mental health challenges" : "مجموعة دعم للأسر التي تواجه تحديات الصحة النفسية",
+      date: "2024-12-30",
+      time: "6:00 PM",
+      location: language === "en" ? "Journey Clinic - Group Room" : "عيادة Journey - غرفة المجموعات",
+      doctor: "ندى العوضي",
+      type: language === "en" ? "Support Group" : "مجموعة دعم",
+      status: "upcoming" as const
+    },
+    {
+      id: 3,
+      title: language === "en" ? "Teen Anxiety Management Workshop" : "ورشة إدارة القلق للمراهقين",
+      description: language === "en" ? "Practical techniques for managing anxiety in teenagers" : "تقنيات عملية لإدارة القلق عند المراهقين",
+      date: "2025-01-15",
+      time: "4:00 PM",
+      location: language === "en" ? "Journey Clinic - Youth Space" : "عيادة Journey - مساحة الشباب",
+      doctor: "داليا الليثي",
+      type: language === "en" ? "Workshop" : "ورشة عمل",
+      status: "upcoming" as const
+    },
+    {
+      id: 4,
+      title: language === "en" ? "Art Therapy Session" : "جلسة العلاج بالفن",
+      description: language === "en" ? "Healing through creative expression and art therapy" : "الشفاء من خلال التعبير الإبداعي والعلاج بالفن",
+      date: "2024-11-15",
+      time: "4:00 PM",
+      location: language === "en" ? "Journey Clinic - Art Studio" : "عيادة Journey - استوديو الفن",
+      doctor: "هبة أحمد العزب",
+      type: language === "en" ? "Therapy Session" : "جلسة علاجية",
+      status: "past" as const
+    }
+  ];
+
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-sage/20 via-background to-lavender/20">
       {/* Hero Section */}
       <div className="relative pt-20 pb-16">
-        <div className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-10" style={{
-        backgroundImage: "url('https://images.unsplash.com/photo-1559027615-cd4628902d4a?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80')"
-      }} />
+        <div 
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-10" 
+          style={{
+            backgroundImage: "url('https://images.unsplash.com/photo-1559027615-cd4628902d4a?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80')"
+          }} 
+        />
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
+          <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-6 animate-fade-in">
             {language === "en" ? "Journey Activities" : "أنشطة Journey"}
           </h1>
-          <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto">
-            {language === "en" ? "Explore our community events, workshops, and activities that bring healing and support to individuals and families on their mental health journey." : "استكشف فعاليات مجتمعنا وورش العمل والأنشطة التي تجلب الشفاء والدعم للأفراد والعائلات في رحلتهم للصحة النفسية."}
+          <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto animate-fade-in">
+            {language === "en" 
+              ? "Explore our community events, workshops, and activities that bring healing and support to individuals and families on their mental health journey." 
+              : "استكشف فعاليات مجتمعنا وورش العمل والأنشطة التي تجلب الشفاء والدعم للأفراد والعائلات في رحلتهم للصحة النفسية."
+            }
           </p>
         </div>
       </div>
@@ -86,134 +162,43 @@ const ActivitiesPage = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
         <Tabs defaultValue="photos" className="w-full">
           <TabsList className="grid w-full grid-cols-3 max-w-md mx-auto mb-8">
-            <TabsTrigger value="photos">
+            <TabsTrigger value="photos" className="transition-all duration-200">
               {language === "en" ? "Photos" : "الصور"}
             </TabsTrigger>
-            <TabsTrigger value="videos">
+            <TabsTrigger value="videos" className="transition-all duration-200">
               {language === "en" ? "Videos" : "الفيديوهات"}
             </TabsTrigger>
-            <TabsTrigger value="calendar">
+            <TabsTrigger value="events" className="transition-all duration-200">
               {language === "en" ? "Events" : "الفعاليات"}
             </TabsTrigger>
           </TabsList>
 
           {/* Photos Tab */}
-          <TabsContent value="photos" className="space-y-6">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {photos.map(photo => <Card key={photo.id} className="overflow-hidden hover:shadow-lg transition-shadow duration-300 group cursor-pointer">
-                  <div className="relative overflow-hidden">
-                    <img src={photo.src} alt={photo.caption} className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300" />
-                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300 flex items-center justify-center">
-                      <ExternalLink className="text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 h-8 w-8" />
-                    </div>
-                  </div>
-                  <CardContent className="p-4">
-                    <h3 className="font-semibold text-lg mb-2">{photo.caption}</h3>
-                    <p className="text-sm text-muted-foreground">{photo.date}</p>
-                  </CardContent>
-                </Card>)}
-            </div>
+          <TabsContent value="photos" className="space-y-6 animate-fade-in">
+            <PhotoGallery photos={photos} language={language} />
           </TabsContent>
 
           {/* Videos Tab */}
-          <TabsContent value="videos" className="space-y-6">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {videos.map(video => <Card key={video.id} className="overflow-hidden hover:shadow-lg transition-shadow duration-300 group cursor-pointer">
-                  <div className="relative">
-                    <img src={video.thumbnail} alt={video.title} className="w-full h-64 object-cover" />
-                    <div className="absolute inset-0 bg-black/40 flex items-center justify-center group-hover:bg-black/50 transition-colors duration-300">
-                      <div className="bg-white/90 rounded-full p-4 group-hover:scale-110 transition-transform duration-300">
-                        <Play className="h-8 w-8 text-primary ml-1" />
-                      </div>
-                    </div>
-                    <div className="absolute bottom-4 right-4 bg-black/70 text-white px-2 py-1 rounded text-sm">
-                      {video.duration}
-                    </div>
-                  </div>
-                  <CardContent className="p-4">
-                    <h3 className="font-semibold text-lg">{video.title}</h3>
-                  </CardContent>
-                </Card>)}
+          <TabsContent value="videos" className="space-y-6 animate-fade-in">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {videos.map(video => (
+                <VideoPlayer 
+                  key={video.id} 
+                  {...video} 
+                  language={language}
+                />
+              ))}
             </div>
           </TabsContent>
 
-          {/* Events Calendar Tab */}
-          <TabsContent value="calendar" className="space-y-6">
-            <div className="space-y-8">
-              {/* Upcoming Events */}
-              <div>
-                <h2 className="text-2xl font-bold mb-6 text-primary">
-                  {language === "en" ? "Upcoming Events" : "الفعاليات القادمة"}
-                </h2>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  {events.filter(event => event.status === "upcoming").map(event => <Card key={event.id} className="hover:shadow-lg transition-shadow duration-300">
-                      <CardHeader>
-                        <div className="flex justify-between items-start">
-                          <CardTitle className="text-xl">{event.title}</CardTitle>
-                          <span className="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs font-medium">
-                            {language === "en" ? "Upcoming" : "قادم"}
-                          </span>
-                        </div>
-                        <CardDescription className="text-primary font-medium">
-                          {event.type}
-                        </CardDescription>
-                      </CardHeader>
-                      <CardContent className="space-y-3">
-                        <div className="flex items-center text-muted-foreground">
-                          <Calendar className="h-4 w-4 mr-2" />
-                          <span>{event.date}</span>
-                        </div>
-                        <div className="flex items-center text-muted-foreground">
-                          <Clock className="h-4 w-4 mr-2" />
-                          <span>{event.time}</span>
-                        </div>
-                        <div className="flex items-center text-muted-foreground">
-                          <MapPin className="h-4 w-4 mr-2" />
-                          <span>{event.location}</span>
-                        </div>
-                        
-                      </CardContent>
-                    </Card>)}
-                </div>
-              </div>
-
-              {/* Past Events */}
-              <div>
-                <h2 className="text-2xl font-bold mb-6 text-muted-foreground">
-                  {language === "en" ? "Past Events" : "الفعاليات السابقة"}
-                </h2>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  {events.filter(event => event.status === "past").map(event => <Card key={event.id} className="opacity-75">
-                      <CardHeader>
-                        <div className="flex justify-between items-start">
-                          <CardTitle className="text-xl">{event.title}</CardTitle>
-                          <span className="bg-gray-100 text-gray-600 px-2 py-1 rounded-full text-xs font-medium">
-                            {language === "en" ? "Completed" : "مكتمل"}
-                          </span>
-                        </div>
-                        <CardDescription>{event.type}</CardDescription>
-                      </CardHeader>
-                      <CardContent className="space-y-3">
-                        <div className="flex items-center text-muted-foreground">
-                          <Calendar className="h-4 w-4 mr-2" />
-                          <span>{event.date}</span>
-                        </div>
-                        <div className="flex items-center text-muted-foreground">
-                          <Clock className="h-4 w-4 mr-2" />
-                          <span>{event.time}</span>
-                        </div>
-                        <div className="flex items-center text-muted-foreground">
-                          <MapPin className="h-4 w-4 mr-2" />
-                          <span>{event.location}</span>
-                        </div>
-                      </CardContent>
-                    </Card>)}
-                </div>
-              </div>
-            </div>
+          {/* Events Tab */}
+          <TabsContent value="events" className="space-y-6 animate-fade-in">
+            <EventCalendar events={events} language={language} />
           </TabsContent>
         </Tabs>
       </div>
-    </div>;
+    </div>
+  );
 };
+
 export default ActivitiesPage;
