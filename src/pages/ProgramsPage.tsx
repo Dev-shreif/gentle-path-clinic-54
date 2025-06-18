@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -49,7 +48,7 @@ const ProgramsPage = () => {
       id: 3,
       icon: Brain,
       title: language === "en" ? "CBT Program for Anxiety – Summer Session" : "برنامج العلاج المعرفي السلوكي للقلق - جلسة الصيف",
-      ageGroup: language === "en" ? "Adults 18+" : "البالغين 18+"",
+      ageGroup: language === "en" ? "Adults 18+" : "البالغين 18+",
       description: language === "en"
         ? "An intensive 8-week Cognitive Behavioral Therapy program specifically designed to help participants manage anxiety disorders."
         : "برنامج مكثف لمدة 8 أسابيع للعلاج المعرفي السلوكي مصمم خصيصاً لمساعدة المشاركين على إدارة اضطرابات القلق.",
