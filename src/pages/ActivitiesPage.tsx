@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import VideoPlayer from "@/components/activities/VideoPlayer";
@@ -40,6 +39,15 @@ const ActivitiesPage = () => {
       description: language === "en" ? "Understanding the importance of family therapy in mental health recovery" : "فهم أهمية العلاج الأسري في التعافي من مشاكل الصحة النفسية",
       facebookUrl: "https://www.facebook.com/100086556327224/videos/433151679718075",
       thumbnail: "https://images.unsplash.com/photo-1516321497487-e288fb19713f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+    },
+    {
+      id: "4",
+      title: language === "en" ? "Journey Mental Health Session" : "جلسة Journey للصحة النفسية",
+      doctor: "فريق Journey",
+      date: "2024-04-10",
+      description: language === "en" ? "Special session covering various mental health topics and support strategies" : "جلسة خاصة تغطي مواضيع الصحة النفسية المختلفة واستراتيجيات الدعم",
+      facebookUrl: "https://www.facebook.com/100086556327224/videos/433151679718075",
+      thumbnail: "https://images.unsplash.com/photo-1581090464777-f3220bbe1b8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
     }
   ];
 

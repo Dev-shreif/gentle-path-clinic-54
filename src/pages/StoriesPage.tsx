@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Quote, Heart, Star, ArrowRight, Play } from "lucide-react";
+import VideoPlayer from "@/components/activities/VideoPlayer";
 
 const StoriesPage = () => {
   const [language, setLanguage] = useState("en");
@@ -48,6 +49,18 @@ const StoriesPage = () => {
         : "العلاج الأسري ساعدنا نتواصل أحسن ونفهم بعض. دلوقتي إحنا أقرب لبعض أكتر من أي وقت فات.",
       program: language === "en" ? "Family Group Therapy" : "العلاج الأسري الجماعي",
       rating: 5
+    }
+  ];
+
+  const videos = [
+    {
+      id: "1",
+      title: language === "en" ? "Family Therapy Awareness Session" : "جلسة توعية حول العلاج الأسري",
+      doctor: "ندى العوضي",
+      date: "2024-01-20",
+      description: language === "en" ? "Understanding the importance of family therapy in mental health recovery" : "فهم أهمية العلاج الأسري في التعافي من مشاكل الصحة النفسية",
+      facebookUrl: "https://www.facebook.com/100086556327224/videos/433151679718075",
+      thumbnail: "https://images.unsplash.com/photo-1516321497487-e288fb19713f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
     }
   ];
 
@@ -130,6 +143,22 @@ const StoriesPage = () => {
               </CardContent>
             </Card>
           ))}
+        </div>
+
+        {/* Journey Videos Section */}
+        <div className="mb-16">
+          <h2 className="text-3xl font-bold text-center mb-8 text-foreground">
+            {language === "en" ? "Journey Videos" : "فيديوهات Journey"}
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {videos.map(video => (
+              <VideoPlayer 
+                key={video.id} 
+                {...video} 
+                language={language}
+              />
+            ))}
+          </div>
         </div>
 
         {/* Video Testimonials */}
