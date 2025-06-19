@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -7,7 +7,6 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ThemeProvider } from "@/components/theme-provider";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
-import Sidebar from "@/components/Sidebar";
 import Index from "./pages/Index";
 import DoctorsPage from "./pages/DoctorsPage";
 import DoctorProfile from "./pages/DoctorProfile";
@@ -26,13 +25,6 @@ import NotFound from "./pages/NotFound";
 const queryClient = new QueryClient();
 
 const App: React.FC = () => {
-  const [language, setLanguage] = useState("en");
-
-  useEffect(() => {
-    const savedLanguage = localStorage.getItem("language") || "en";
-    setLanguage(savedLanguage);
-  }, []);
-
   return (
     <QueryClientProvider client={queryClient}>
       <ThemeProvider defaultTheme="light" storageKey="serenity-theme">
@@ -42,27 +34,24 @@ const App: React.FC = () => {
           <BrowserRouter>
             <div className="min-h-screen bg-background flex flex-col">
               <Navigation />
-              <div className="flex flex-1">
-                <main className="flex-1 pr-64">
-                  <Routes>
-                    <Route path="/" element={<Index />} />
-                    <Route path="/doctors" element={<DoctorsPage />} />
-                    <Route path="/doctors/:doctorSlug" element={<DoctorProfile />} />
-                    <Route path="/services" element={<ServicesPage />} />
-                    <Route path="/booking" element={<BookingPage />} />
-                    <Route path="/blog" element={<BlogPage />} />
-                    <Route path="/activities" element={<ActivitiesPage />} />
-                    <Route path="/programs" element={<ProgramsPage />} />
-                    <Route path="/stories" element={<StoriesPage />} />
-                    <Route path="/about" element={<AboutPage />} />
-                    <Route path="/contact" element={<ContactPage />} />
-                    <Route path="/testimonials" element={<TestimonialsPage />} />
-                    <Route path="/privacy" element={<PrivacyPage />} />
-                    <Route path="*" element={<NotFound />} />
-                  </Routes>
-                </main>
-                <Sidebar language={language} />
-              </div>
+              <main className="flex-1">
+                <Routes>
+                  <Route path="/" element={<Index />} />
+                  <Route path="/doctors" element={<DoctorsPage />} />
+                  <Route path="/doctors/:doctorSlug" element={<DoctorProfile />} />
+                  <Route path="/services" element={<ServicesPage />} />
+                  <Route path="/booking" element={<BookingPage />} />
+                  <Route path="/blog" element={<BlogPage />} />
+                  <Route path="/activities" element={<ActivitiesPage />} />
+                  <Route path="/programs" element={<ProgramsPage />} />
+                  <Route path="/stories" element={<StoriesPage />} />
+                  <Route path="/about" element={<AboutPage />} />
+                  <Route path="/contact" element={<ContactPage />} />
+                  <Route path="/testimonials" element={<TestimonialsPage />} />
+                  <Route path="/privacy" element={<PrivacyPage />} />
+                  <Route path="*" element={<NotFound />} />
+                </Routes>
+              </main>
               <Footer />
             </div>
           </BrowserRouter>

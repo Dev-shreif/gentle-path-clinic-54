@@ -1,31 +1,27 @@
-
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { 
-  Menu, 
-  X, 
-  Calendar, 
-  Globe, 
-  Phone,
-  Mail,
-  MapPin,
-  Clock
-} from "lucide-react";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
+import { Menu, X, Calendar, Moon, Sun, Globe, ChevronDown } from "lucide-react";
+import { useTheme } from "@/components/theme-provider";
 
 const Navigation = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
   const [language, setLanguage] = useState("en");
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
   const location = useLocation();
+  const { theme, setTheme } = useTheme();
 
+  // Load language from localStorage on component mount
   useEffect(() => {
     const savedLanguage = localStorage.getItem("language") || "en";
     setLanguage(savedLanguage);
+    document.documentElement.dir = savedLanguage === "ar" ? "rtl" : "ltr";
+    document.documentElement.lang = savedLanguage;
   }, []);
 
+  // Handle navbar visibility on scroll
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
@@ -41,100 +37,85 @@ const Navigation = () => {
       setLastScrollY(currentScrollY);
     };
 
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
   }, [lastScrollY]);
 
-  const toggleLanguage = () => {
-    const newLanguage = language === "en" ? "ar" : "en";
-    setLanguage(newLanguage);
-    localStorage.setItem("language", newLanguage);
+  const navigation = [
+    { name: language === "en" ? "Home" : "الرئيسية", href: "/" },
+    { name: language === "en" ? "Doctors" : "الأطباء", href: "/doctors" },
+    { name: language === "en" ? "Services" : "الخدمات", href: "/services" },
+    { name: language === "en" ? "About" : "من نحن", href: "/about" },
+    { name: language === "en" ? "Contact" : "اتصل بنا", href: "/contact" }
+  ];
+
+  const contentPages = [
+    { name: language === "en" ? "Blog" : "المقالات", href: "/blog" },
+    { name: language === "en" ? "Activities" : "الأنشطة", href: "/activities" },
+    { name: language === "en" ? "Journey Programs" : "برامج Journey", href: "/programs" },
+    { name: language === "en" ? "Stories & Experiences" : "القصص والتجارب", href: "/stories" }
+  ];
+
+  const isActive = (path: string) => location.pathname === path;
+
+  const handleLanguageChange = (lang: string) => {
+    setLanguage(lang);
+    localStorage.setItem("language", lang);
+    document.documentElement.dir = lang === "ar" ? "rtl" : "ltr";
+    document.documentElement.lang = lang;
     window.location.reload();
   };
 
-  const navItems = [
-    { name: language === "en" ? "Home" : "الرئيسية", href: "/" },
-    { name: language === "en" ? "About" : "من نحن", href: "/about" },
-    { name: language === "en" ? "Doctors" : "الأطباء", href: "/doctors" },
-    { name: language === "en" ? "Services" : "الخدمات", href: "/services" },
-    { name: language === "en" ? "Activities" : "الأنشطة", href: "/activities" },
-    { name: language === "en" ? "Programs" : "البرامج", href: "/programs" },
-    { name: language === "en" ? "Stories" : "القصص", href: "/stories" },
-    { name: language === "en" ? "Blog" : "المدونة", href: "/blog" },
-    { name: language === "en" ? "Contact" : "تواصل معنا", href: "/contact" }
-  ];
-
   return (
     <>
-      {/* Top Info Bar */}
-      <div className="bg-gradient-to-r from-primary/10 to-secondary/10 text-sm py-2 border-b border-border/20">
+      {/* Top Bar */}
+      <div className="hidden lg:block bg-gradient-to-r from-primary/10 to-secondary/10 text-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col sm:flex-row justify-between items-center space-y-2 sm:space-y-0">
+          <div className="flex justify-between items-center py-2">
             <div className="flex items-center space-x-6 text-muted-foreground">
-              <div className="flex items-center space-x-2">
-                <Phone className="h-3 w-3" />
-                <span>015 51521419</span>
-              </div>
-              <div className="hidden md:flex items-center space-x-2">
-                <Mail className="h-3 w-3" />
-                <span>info@journeyclinic.com</span>
-              </div>
-              <div className="hidden lg:flex items-center space-x-2">
-                <Clock className="h-3 w-3" />
-                <span>{language === "en" ? "Mon-Fri 9AM-6PM" : "الإثنين-الجمعة 9ص-6م"}</span>
-              </div>
+              <span>{language === "en" ? "Professional Mental Health Care" : "رعاية صحة نفسية محترفة"}</span>
+              <span>•</span>
+              <span>{language === "en" ? "24/7 Support Available" : "دعم متاح 24/7"}</span>
             </div>
             <div className="flex items-center space-x-4">
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={toggleLanguage}
-                className="text-muted-foreground hover:text-primary transition-colors"
-              >
-                <Globe className="h-4 w-4 mr-1" />
-                {language === "en" ? "العربية" : "English"}
-              </Button>
+              <span className="text-primary font-medium">015 51521419</span>
+              <div className="h-4 w-px bg-border"></div>
+              <Link to="/blog" className="hover:text-primary transition-colors">
+                {language === "en" ? "BLOG" : "المدونة"}
+              </Link>
+              <Link to="/contact" className="hover:text-primary transition-colors">
+                {language === "en" ? "FOR PROVIDERS" : "للمقدمين"}
+              </Link>
+              <Link to="/booking" className="hover:text-primary transition-colors">
+                {language === "en" ? "BOOKSTORE" : "المتجر"}
+              </Link>
             </div>
           </div>
         </div>
       </div>
 
       {/* Main Navigation */}
-      <motion.nav
-        initial={{ y: 0 }}
-        animate={{ y: isVisible ? 0 : -100 }}
-        transition={{ duration: 0.3, ease: "easeInOut" }}
-        className="bg-background/95 backdrop-blur-md border-b border-border/20 sticky top-0 z-50 shadow-sm"
+      <nav 
+        className={`fixed top-0 lg:top-[44px] w-full z-50 transition-all duration-300 ${
+          isVisible ? 'translate-y-0' : '-translate-y-full'
+        } bg-background/95 backdrop-blur-xl border-b border-border/50 shadow-lg`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center py-4">
+          <div className="flex justify-between items-center h-16 lg:h-20">
             {/* Logo */}
             <Link to="/" className="flex items-center space-x-3 group">
-              <motion.div 
-                whileHover={{ scale: 1.05, rotate: 5 }}
-                whileTap={{ scale: 0.95 }}
-                transition={{ duration: 0.3 }}
-                className="relative"
-              >
+              <div className="relative">
                 <img 
                   src="/lovable-uploads/e412ac9b-1331-4455-b7ba-751776a83649.png" 
-                  alt="Journey Clinic Logo" 
-                  className="w-12 h-12 object-contain transition-all duration-300 group-hover:drop-shadow-lg"
+                  alt="Journey Logo" 
+                  className="w-12 h-12 object-contain group-hover:scale-105 transition-transform duration-300"
                 />
-                <motion.div 
-                  className="absolute inset-0 bg-gradient-to-r from-primary/20 to-secondary/20 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10 blur-xl"
-                  animate={{ scale: [1, 1.2, 1] }}
-                  transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-                />
-              </motion.div>
+              </div>
               <div className="flex flex-col">
-                <motion.span 
-                  className="text-2xl font-bold bg-gradient-to-r from-primary via-secondary to-primary bg-clip-text text-transparent bg-size-200 animate-gradient"
-                  whileHover={{ scale: 1.02 }}
-                >
+                <span className="text-2xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
                   {language === "en" ? "Journey" : "رحلة"}
-                </motion.span>
-                <span className="text-xs text-muted-foreground italic font-light">
+                </span>
+                <span className="text-xs text-muted-foreground italic">
                   {language === "en" ? "Your Way for Healing" : "طريقك للشفاء"}
                 </span>
               </div>
@@ -142,122 +123,206 @@ const Navigation = () => {
 
             {/* Desktop Navigation */}
             <div className="hidden lg:flex items-center space-x-1">
-              {navItems.map((item) => (
+              {navigation.map(item => (
                 <Link
                   key={item.name}
                   to={item.href}
-                  className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 relative group ${
-                    location.pathname === item.href
+                  className={`relative px-4 py-2 text-sm font-medium transition-all duration-300 rounded-lg group ${
+                    isActive(item.href)
                       ? "text-primary bg-primary/10"
-                      : "text-muted-foreground hover:text-primary hover:bg-primary/5"
+                      : "text-foreground hover:text-primary hover:bg-primary/5"
                   }`}
                 >
-                  <span className="relative z-10">{item.name}</span>
-                  {location.pathname === item.href && (
-                    <motion.div
-                      layoutId="activeTab"
-                      className="absolute inset-0 bg-gradient-to-r from-primary/10 to-secondary/10 rounded-lg"
-                      transition={{ type: "spring", stiffness: 380, damping: 30 }}
-                    />
-                  )}
-                  <span className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-gradient-to-r from-primary to-secondary group-hover:w-full transition-all duration-300" />
+                  {item.name}
+                  <div className={`absolute bottom-0 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-gradient-to-r from-primary to-secondary transition-all duration-300 group-hover:w-full ${
+                    isActive(item.href) ? "w-full" : ""
+                  }`}></div>
                 </Link>
               ))}
+              
+              {/* Content Dropdown */}
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button variant="ghost" className="text-sm font-medium text-foreground hover:text-primary hover:bg-primary/5 rounded-lg px-4 py-2">
+                    {language === "en" ? "More" : "المزيد"}
+                    <ChevronDown className="ml-1 h-3 w-3 transition-transform group-data-[state=open]:rotate-180" />
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end" className="bg-background/95 backdrop-blur-xl border border-border/50 shadow-xl rounded-xl">
+                  {contentPages.map(page => (
+                    <DropdownMenuItem key={page.name} asChild>
+                      <Link
+                        to={page.href}
+                        className={`cursor-pointer rounded-lg transition-colors ${
+                          isActive(page.href) ? "bg-primary/10 text-primary" : "hover:bg-primary/5"
+                        }`}
+                      >
+                        {page.name}
+                      </Link>
+                    </DropdownMenuItem>
+                  ))}
+                </DropdownMenuContent>
+              </DropdownMenu>
             </div>
 
-            {/* Desktop CTA Button */}
-            <div className="hidden lg:flex items-center space-x-4">
+            {/* Desktop Actions */}
+            <div className="hidden lg:flex items-center space-x-3">
+              {/* Language Switcher */}
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button variant="ghost" size="sm" className="p-2 rounded-lg hover:bg-primary/5">
+                    <Globe className="h-4 w-4" />
+                    <span className="ml-1 text-xs font-medium">
+                      {language === "en" ? "EN" : "عر"}
+                    </span>
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end" className="bg-background/95 backdrop-blur-xl border border-border/50 shadow-xl rounded-xl">
+                  <DropdownMenuItem
+                    onClick={() => handleLanguageChange("en")}
+                    className={`rounded-lg ${language === "en" ? "bg-primary/10 text-primary" : "hover:bg-primary/5"}`}
+                  >
+                    English
+                  </DropdownMenuItem>
+                  <DropdownMenuItem
+                    onClick={() => handleLanguageChange("ar")}
+                    className={`rounded-lg ${language === "ar" ? "bg-primary/10 text-primary" : "hover:bg-primary/5"}`}
+                  >
+                    العربية
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+
+              {/* Theme Switcher */}
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => setTheme(theme === "light" ? "dark" : "light")}
+                className="p-2 rounded-lg hover:bg-primary/5"
+              >
+                {theme === "light" ? <Moon className="h-4 w-4" /> : <Sun className="h-4 w-4" />}
+              </Button>
+
+              {/* Book Appointment Button */}
               <Link to="/booking">
-                <Button className="bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 text-white shadow-lg hover:shadow-xl transition-all duration-300 rounded-lg group">
-                  <Calendar className="h-4 w-4 mr-2 group-hover:scale-110 transition-transform" />
-                  {language === "en" ? "Book Appointment" : "احجز موعد"}
+                <Button className="bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 text-white shadow-lg hover:shadow-xl transition-all duration-300 rounded-lg px-6 py-2">
+                  <Calendar className="h-4 w-4 mr-2" />
+                  {language === "en" ? "Book Now" : "احجز الآن"}
                 </Button>
               </Link>
             </div>
 
-            {/* Mobile Menu Button */}
-            <Button
-              variant="ghost"
-              size="sm"
-              className="lg:hidden"
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-            >
-              <AnimatePresence mode="wait">
-                {isMenuOpen ? (
-                  <motion.div
-                    key="close"
-                    initial={{ rotate: -90, opacity: 0 }}
-                    animate={{ rotate: 0, opacity: 1 }}
-                    exit={{ rotate: 90, opacity: 0 }}
-                    transition={{ duration: 0.2 }}
-                  >
-                    <X className="h-6 w-6" />
-                  </motion.div>
-                ) : (
-                  <motion.div
-                    key="menu"
-                    initial={{ rotate: 90, opacity: 0 }}
-                    animate={{ rotate: 0, opacity: 1 }}
-                    exit={{ rotate: -90, opacity: 0 }}
-                    transition={{ duration: 0.2 }}
-                  >
-                    <Menu className="h-6 w-6" />
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </Button>
+            {/* Mobile menu button */}
+            <div className="lg:hidden">
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => setIsOpen(!isOpen)}
+                className="p-2 rounded-lg"
+              >
+                {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+              </Button>
+            </div>
           </div>
-        </div>
 
-        {/* Mobile Menu */}
-        <AnimatePresence>
-          {isMenuOpen && (
-            <motion.div
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: "auto" }}
-              exit={{ opacity: 0, height: 0 }}
-              transition={{ duration: 0.3, ease: "easeInOut" }}
-              className="lg:hidden border-t border-border/20 bg-background/98 backdrop-blur-md"
-            >
-              <div className="px-4 py-6 space-y-4">
-                {navItems.map((item, index) => (
-                  <motion.div
+          {/* Mobile Navigation */}
+          {isOpen && (
+            <div className="lg:hidden border-t border-border/30">
+              <div className="px-2 pt-4 pb-6 space-y-2 bg-background/95 backdrop-blur-xl">
+                {navigation.map(item => (
+                  <Link
                     key={item.name}
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.3, delay: index * 0.05 }}
+                    to={item.href}
+                    className={`block px-4 py-3 text-base font-medium rounded-xl transition-all duration-200 ${
+                      isActive(item.href)
+                        ? "text-primary bg-primary/10 border-l-4 border-primary"
+                        : "text-foreground hover:text-primary hover:bg-primary/5"
+                    }`}
+                    onClick={() => setIsOpen(false)}
                   >
-                    <Link
-                      to={item.href}
-                      className={`block px-4 py-3 rounded-lg text-sm font-medium transition-all duration-300 ${
-                        location.pathname === item.href
-                          ? "text-primary bg-gradient-to-r from-primary/10 to-secondary/10 border-l-4 border-primary"
-                          : "text-muted-foreground hover:text-primary hover:bg-primary/5 hover:translate-x-2"
-                      }`}
-                      onClick={() => setIsMenuOpen(false)}
-                    >
-                      {item.name}
-                    </Link>
-                  </motion.div>
+                    {item.name}
+                  </Link>
                 ))}
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.3, delay: navItems.length * 0.05 }}
-                  className="pt-4 border-t border-border/20"
-                >
-                  <Link to="/booking" onClick={() => setIsMenuOpen(false)}>
-                    <Button className="w-full bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 text-white shadow-lg transition-all duration-300 rounded-lg">
+                
+                {/* Mobile Content Pages */}
+                <div className="border-t border-border/30 pt-4 mt-4">
+                  <div className="px-4 py-2 text-xs font-semibold text-muted-foreground uppercase tracking-wider">
+                    {language === "en" ? "More Pages" : "صفحات إضافية"}
+                  </div>
+                  {contentPages.map(page => (
+                    <Link
+                      key={page.name}
+                      to={page.href}
+                      className={`block px-4 py-3 text-base font-medium rounded-xl transition-all duration-200 ${
+                        isActive(page.href)
+                          ? "text-primary bg-primary/10 border-l-4 border-primary"
+                          : "text-foreground hover:text-primary hover:bg-primary/5"
+                      }`}
+                      onClick={() => setIsOpen(false)}
+                    >
+                      {page.name}
+                    </Link>
+                  ))}
+                </div>
+                
+                {/* Mobile Actions */}
+                <div className="border-t border-border/30 pt-4 mt-4 space-y-4">
+                  <div className="flex items-center justify-between">
+                    {/* Mobile Language Switcher */}
+                    <DropdownMenu>
+                      <DropdownMenuTrigger asChild>
+                        <Button variant="outline" size="sm" className="rounded-lg">
+                          <Globe className="h-4 w-4" />
+                          <span className="ml-2">
+                            {language === "en" ? "English" : "العربية"}
+                          </span>
+                        </Button>
+                      </DropdownMenuTrigger>
+                      <DropdownMenuContent align="end" className="bg-background/95 backdrop-blur-xl border border-border/50 shadow-xl rounded-xl">
+                        <DropdownMenuItem
+                          onClick={() => handleLanguageChange("en")}
+                          className={`rounded-lg ${language === "en" ? "bg-primary/10 text-primary" : "hover:bg-primary/5"}`}
+                        >
+                          English
+                        </DropdownMenuItem>
+                        <DropdownMenuItem
+                          onClick={() => handleLanguageChange("ar")}
+                          className={`rounded-lg ${language === "ar" ? "bg-primary/10 text-primary" : "hover:bg-primary/5"}`}
+                        >
+                          العربية
+                        </DropdownMenuItem>
+                      </DropdownMenuContent>
+                    </DropdownMenu>
+
+                    {/* Mobile Theme Switcher */}
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={() => setTheme(theme === "light" ? "dark" : "light")}
+                      className="rounded-lg"
+                    >
+                      {theme === "light" ? <Moon className="h-4 w-4" /> : <Sun className="h-4 w-4" />}
+                      <span className="ml-2">
+                        {theme === "light" ? (language === "en" ? "Dark" : "داكن") : (language === "en" ? "Light" : "فاتح")}
+                      </span>
+                    </Button>
+                  </div>
+
+                  <Link to="/booking" onClick={() => setIsOpen(false)}>
+                    <Button className="w-full bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 text-white rounded-lg py-3">
                       <Calendar className="h-4 w-4 mr-2" />
                       {language === "en" ? "Book Appointment" : "احجز موعد"}
                     </Button>
                   </Link>
-                </motion.div>
+                </div>
               </div>
-            </motion.div>
+            </div>
           )}
-        </AnimatePresence>
-      </motion.nav>
+        </div>
+      </nav>
+
+      {/* Spacer for navigation */}
+      <div className="h-16 lg:h-[124px]"></div>
     </>
   );
 };
