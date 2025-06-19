@@ -48,6 +48,42 @@ const ActivitiesPage = () => {
       description: language === "en" ? "Special session covering various mental health topics and support strategies" : "جلسة خاصة تغطي مواضيع الصحة النفسية المختلفة واستراتيجيات الدعم",
       facebookUrl: "https://www.facebook.com/100086556327224/videos/433151679718075",
       thumbnail: "https://images.unsplash.com/photo-1581090464777-f3220bbe1b8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+    },
+    {
+      id: "5",
+      title: language === "en" ? "Depression Support Group Session" : "جلسة مجموعة دعم الاكتئاب",
+      doctor: "هبة أحمد العزب",
+      date: "2024-05-12",
+      description: language === "en" ? "Support group session for individuals dealing with depression and mood disorders" : "جلسة مجموعة دعم للأفراد الذين يتعاملون مع الاكتئاب واضطرابات المزاج",
+      facebookUrl: "https://www.facebook.com/100086556327224/videos/1165705737447771",
+      thumbnail: "https://images.unsplash.com/photo-1544027993-37dbfe43562a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+    },
+    {
+      id: "6",
+      title: language === "en" ? "Stress Management Workshop" : "ورشة إدارة الضغوط",
+      doctor: "مها محسن",
+      date: "2024-05-25",
+      description: language === "en" ? "Practical techniques for managing stress and building resilience" : "تقنيات عملية لإدارة الضغوط وبناء المرونة النفسية",
+      facebookUrl: "https://www.facebook.com/100086556327224/videos/2769849259816826",
+      thumbnail: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+    },
+    {
+      id: "7",
+      title: language === "en" ? "Mindfulness and Meditation Session" : "جلسة اليقظة الذهنية والتأمل",
+      doctor: "ندى العوضي",
+      date: "2024-06-08",
+      description: language === "en" ? "Introduction to mindfulness practices for mental wellness" : "مقدمة في ممارسات اليقظة الذهنية للعافية النفسية",
+      facebookUrl: "https://www.facebook.com/100086556327224/videos/433151679718075",
+      thumbnail: "https://images.unsplash.com/photo-1545389336-cf090694435e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+    },
+    {
+      id: "8",
+      title: language === "en" ? "Art Therapy Workshop for Children" : "ورشة العلاج بالفن للأطفال",
+      doctor: "داليا الليثي",
+      date: "2024-06-20",
+      description: language === "en" ? "Creative therapy session designed specifically for children and adolescents" : "جلسة علاج إبداعي مصممة خصيصاً للأطفال والمراهقين",
+      facebookUrl: "https://www.facebook.com/100086556327224/videos/1165705737447771",
+      thumbnail: "https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
     }
   ];
 
@@ -168,23 +204,18 @@ const ActivitiesPage = () => {
 
       {/* Main Content */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
-        <Tabs defaultValue="photos" className="w-full">
+        <Tabs defaultValue="videos" className="w-full">
           <TabsList className="grid w-full grid-cols-3 max-w-md mx-auto mb-8">
-            <TabsTrigger value="photos" className="transition-all duration-200">
-              {language === "en" ? "Photos" : "الصور"}
-            </TabsTrigger>
             <TabsTrigger value="videos" className="transition-all duration-200">
               {language === "en" ? "Videos" : "الفيديوهات"}
+            </TabsTrigger>
+            <TabsTrigger value="photos" className="transition-all duration-200">
+              {language === "en" ? "Photos" : "الصور"}
             </TabsTrigger>
             <TabsTrigger value="events" className="transition-all duration-200">
               {language === "en" ? "Events" : "الفعاليات"}
             </TabsTrigger>
           </TabsList>
-
-          {/* Photos Tab */}
-          <TabsContent value="photos" className="space-y-6 animate-fade-in">
-            <PhotoGallery photos={photos} language={language} />
-          </TabsContent>
 
           {/* Videos Tab */}
           <TabsContent value="videos" className="space-y-6 animate-fade-in">
@@ -197,6 +228,11 @@ const ActivitiesPage = () => {
                 />
               ))}
             </div>
+          </TabsContent>
+
+          {/* Photos Tab */}
+          <TabsContent value="photos" className="space-y-6 animate-fade-in">
+            <PhotoGallery photos={photos} language={language} />
           </TabsContent>
 
           {/* Events Tab */}

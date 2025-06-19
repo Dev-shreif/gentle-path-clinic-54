@@ -61,6 +61,24 @@ const StoriesPage = () => {
       description: language === "en" ? "Understanding the importance of family therapy in mental health recovery" : "فهم أهمية العلاج الأسري في التعافي من مشاكل الصحة النفسية",
       facebookUrl: "https://www.facebook.com/100086556327224/videos/433151679718075",
       thumbnail: "https://images.unsplash.com/photo-1516321497487-e288fb19713f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+    },
+    {
+      id: "2",
+      title: language === "en" ? "Patient Recovery Story - M.A" : "قصة تعافي المريض - م.أ",
+      doctor: "مها محسن",
+      date: "2024-03-10",
+      description: language === "en" ? "A patient shares their journey of overcoming anxiety and finding hope" : "مريض يشارك رحلته في التغلب على القلق وإيجاد الأمل",
+      facebookUrl: "https://www.facebook.com/100086556327224/videos/1165705737447771",
+      thumbnail: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+    },
+    {
+      id: "3",
+      title: language === "en" ? "Group Therapy Success Story" : "قصة نجاح العلاج الجماعي",
+      doctor: "داليا الليثي",
+      date: "2024-04-15",
+      description: language === "en" ? "How group therapy transformed lives and built lasting connections" : "كيف غير العلاج الجماعي الحياة وبنى علاقات دائمة",
+      facebookUrl: "https://www.facebook.com/100086556327224/videos/2769849259816826",
+      thumbnail: "https://images.unsplash.com/photo-1559027615-cd4628902d4a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
     }
   ];
 
@@ -69,13 +87,29 @@ const StoriesPage = () => {
       id: 1,
       title: language === "en" ? "Recovery Journey - Anonymous Patient" : "رحلة التعافي - مريض مجهول",
       thumbnail: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
-      duration: "2:30"
+      duration: "2:30",
+      description: language === "en" ? "A heartfelt testimonial about overcoming depression" : "شهادة صادقة حول التغلب على الاكتئاب"
     },
     {
       id: 2,
       title: language === "en" ? "Family Healing Story" : "قصة شفاء أسري",
       thumbnail: "https://images.unsplash.com/photo-1516321497487-e288fb19713f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
-      duration: "3:15"
+      duration: "3:15",
+      description: language === "en" ? "How family therapy brought a family closer together" : "كيف جمع العلاج الأسري العائلة مع بعضها البعض"
+    },
+    {
+      id: 3,
+      title: language === "en" ? "Teen Success Story" : "قصة نجاح مراهق",
+      thumbnail: "https://images.unsplash.com/photo-1544027993-37dbfe43562a?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+      duration: "1:45",
+      description: language === "en" ? "A teenager's journey to self-confidence and mental wellness" : "رحلة مراهق نحو الثقة بالنفس والعافية النفسية"
+    },
+    {
+      id: 4,  
+      title: language === "en" ? "Mother's Journey - Finding Balance" : "رحلة أم - إيجاد التوازن",
+      thumbnail: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+      duration: "2:50",
+      description: language === "en" ? "A mother's story of balancing family life and mental health" : "قصة أم عن توازن الحياة الأسرية والصحة النفسية"
     }
   ];
 
@@ -185,7 +219,8 @@ const StoriesPage = () => {
                   </div>
                 </div>
                 <CardContent className="p-4">
-                  <h3 className="font-semibold text-lg">{video.title}</h3>
+                  <h3 className="font-semibold text-lg mb-2">{video.title}</h3>
+                  <p className="text-sm text-muted-foreground">{video.description}</p>
                 </CardContent>
               </Card>
             ))}
