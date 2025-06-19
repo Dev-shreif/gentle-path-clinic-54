@@ -35,18 +35,18 @@ const Footer = () => {
           {/* Logo and Mission */}
           <div className="lg:col-span-2">
             <Link to="/" className="flex items-center space-x-3 mb-6 group">
-              <div className="relative">
+              <div className="relative overflow-hidden rounded-lg p-1 bg-gradient-to-br from-primary/5 to-secondary/5 group-hover:from-primary/10 group-hover:to-secondary/10 transition-all duration-300">
                 <img 
                   src="/lovable-uploads/e412ac9b-1331-4455-b7ba-751776a83649.png" 
                   alt="Journey Logo" 
-                  className="w-12 h-12 object-contain group-hover:scale-105 transition-transform duration-300"
+                  className="w-10 h-10 object-contain opacity-80 group-hover:opacity-100 transition-all duration-300 filter grayscale group-hover:grayscale-0"
                 />
               </div>
               <div className="flex flex-col">
-                <span className="text-2xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+                <span className="text-xl font-bold bg-gradient-to-r from-primary/80 to-secondary/80 bg-clip-text text-transparent group-hover:from-primary group-hover:to-secondary transition-all duration-300">
                   {language === "en" ? "Journey" : "رحلة"}
                 </span>
-                <span className="text-sm text-muted-foreground italic">
+                <span className="text-xs text-muted-foreground italic opacity-70 group-hover:opacity-90 transition-opacity duration-300">
                   {language === "en" ? "Your Way for Healing" : "طريقك للشفاء"}
                 </span>
               </div>

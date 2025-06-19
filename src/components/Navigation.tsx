@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -102,20 +103,21 @@ const Navigation = () => {
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16 lg:h-20">
-            {/* Logo */}
-            <Link to="/" className="flex items-center space-x-3 group">
-              <div className="relative">
+            {/* Enhanced Logo */}
+            <Link to="/" className="flex items-center space-x-3 group transition-all duration-300 hover:scale-105">
+              <div className="relative overflow-hidden rounded-xl p-1 bg-gradient-to-br from-primary/10 to-secondary/10 group-hover:from-primary/20 group-hover:to-secondary/20 transition-all duration-300">
                 <img 
                   src="/lovable-uploads/e412ac9b-1331-4455-b7ba-751776a83649.png" 
                   alt="Journey Logo" 
-                  className="w-12 h-12 object-contain group-hover:scale-105 transition-transform duration-300"
+                  className="w-10 h-10 lg:w-12 lg:h-12 object-contain transition-all duration-300 group-hover:brightness-110"
                 />
+                <div className="absolute inset-0 bg-gradient-to-br from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl"></div>
               </div>
               <div className="flex flex-col">
-                <span className="text-2xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+                <span className="text-xl lg:text-2xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent group-hover:from-primary/80 group-hover:to-secondary/80 transition-all duration-300">
                   {language === "en" ? "Journey" : "رحلة"}
                 </span>
-                <span className="text-xs text-muted-foreground italic">
+                <span className="text-xs text-muted-foreground italic opacity-80 group-hover:opacity-100 transition-opacity duration-300">
                   {language === "en" ? "Your Way for Healing" : "طريقك للشفاء"}
                 </span>
               </div>
