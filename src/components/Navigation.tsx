@@ -4,15 +4,14 @@ import { Button } from "@/components/ui/button";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { Menu, X, Calendar, Moon, Sun, Globe, ChevronDown } from "lucide-react";
 import { useTheme } from "@/components/theme-provider";
+
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [language, setLanguage] = useState("en");
-  const [scrolled, setScrolled] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
   const location = useLocation();
-  const {
-    theme,
-    setTheme
-  } = useTheme();
+  const { theme, setTheme } = useTheme();
 
   // Load language from localStorage on component mount
   useEffect(() => {
@@ -22,44 +21,43 @@ const Navigation = () => {
     document.documentElement.lang = savedLanguage;
   }, []);
 
-  // Handle scroll effect
+  // Handle navbar visibility on scroll
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
+      const currentScrollY = window.scrollY;
+      
+      if (currentScrollY < 10) {
+        setIsVisible(true);
+      } else if (currentScrollY > lastScrollY && currentScrollY > 100) {
+        setIsVisible(false);
+      } else if (currentScrollY < lastScrollY) {
+        setIsVisible(true);
+      }
+      
+      setLastScrollY(currentScrollY);
     };
-    window.addEventListener("scroll", handleScroll);
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-  const navigation = [{
-    name: language === "en" ? "Home" : "الرئيسية",
-    href: "/"
-  }, {
-    name: language === "en" ? "Doctors" : "الأطباء",
-    href: "/doctors"
-  }, {
-    name: language === "en" ? "Services" : "الخدمات",
-    href: "/services"
-  }, {
-    name: language === "en" ? "About" : "من نحن",
-    href: "/about"
-  }, {
-    name: language === "en" ? "Contact" : "اتصل بنا",
-    href: "/contact"
-  }];
-  const contentPages = [{
-    name: language === "en" ? "Blog" : "المقالات",
-    href: "/blog"
-  }, {
-    name: language === "en" ? "Activities" : "الأنشطة",
-    href: "/activities"
-  }, {
-    name: language === "en" ? "Journey Programs" : "برامج Journey",
-    href: "/programs"
-  }, {
-    name: language === "en" ? "Stories & Experiences" : "القصص والتجارب",
-    href: "/stories"
-  }];
+  }, [lastScrollY]);
+
+  const navigation = [
+    { name: language === "en" ? "Home" : "الرئيسية", href: "/" },
+    { name: language === "en" ? "Doctors" : "الأطباء", href: "/doctors" },
+    { name: language === "en" ? "Services" : "الخدمات", href: "/services" },
+    { name: language === "en" ? "About" : "من نحن", href: "/about" },
+    { name: language === "en" ? "Contact" : "اتصل بنا", href: "/contact" }
+  ];
+
+  const contentPages = [
+    { name: language === "en" ? "Blog" : "المقالات", href: "/blog" },
+    { name: language === "en" ? "Activities" : "الأنشطة", href: "/activities" },
+    { name: language === "en" ? "Journey Programs" : "برامج Journey", href: "/programs" },
+    { name: language === "en" ? "Stories & Experiences" : "القصص والتجارب", href: "/stories" }
+  ];
+
   const isActive = (path: string) => location.pathname === path;
+
   const handleLanguageChange = (lang: string) => {
     setLanguage(lang);
     localStorage.setItem("language", lang);
@@ -67,7 +65,9 @@ const Navigation = () => {
     document.documentElement.lang = lang;
     window.location.reload();
   };
-  return <>
+
+  return (
+    <>
       {/* Top Bar */}
       <div className="hidden lg:block bg-gradient-to-r from-primary/10 to-secondary/10 text-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -95,31 +95,50 @@ const Navigation = () => {
       </div>
 
       {/* Main Navigation */}
-      <nav className={`fixed top-0 lg:top-[44px] w-full z-50 transition-all duration-300 ${scrolled ? "bg-background/95 backdrop-blur-xl border-b border-border/50 shadow-lg" : "bg-background/80 backdrop-blur-lg border-b border-border/30"}`}>
+      <nav 
+        className={`fixed top-0 lg:top-[44px] w-full z-50 transition-all duration-300 ${
+          isVisible ? 'translate-y-0' : '-translate-y-full'
+        } bg-background/95 backdrop-blur-xl border-b border-border/50 shadow-lg`}
+      >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16 lg:h-20">
             {/* Logo */}
             <Link to="/" className="flex items-center space-x-3 group">
               <div className="relative">
-                <div className="w-10 h-10 bg-gradient-to-br from-primary via-secondary to-primary rounded-2xl rotate-12 group-hover:rotate-0 transition-transform duration-300 shadow-lg"></div>
-                <div className="absolute inset-0 w-10 h-10 bg-gradient-to-tr from-secondary/50 to-primary/50 rounded-2xl -rotate-12 group-hover:rotate-12 transition-transform duration-300"></div>
+                <img 
+                  src="/lovable-uploads/e412ac9b-1331-4455-b7ba-751776a83649.png" 
+                  alt="Journey Logo" 
+                  className="w-12 h-12 object-contain group-hover:scale-105 transition-transform duration-300"
+                />
               </div>
               <div className="flex flex-col">
                 <span className="text-2xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
                   {language === "en" ? "Journey" : "رحلة"}
                 </span>
                 <span className="text-xs text-muted-foreground italic">
-                  {language === "en" ? "at The Meadows" : "في المروج"}
+                  {language === "en" ? "Your Way for Healing" : "طريقك للشفاء"}
                 </span>
               </div>
             </Link>
 
             {/* Desktop Navigation */}
             <div className="hidden lg:flex items-center space-x-1">
-              {navigation.map(item => <Link key={item.name} to={item.href} className={`relative px-4 py-2 text-sm font-medium transition-all duration-300 rounded-lg group ${isActive(item.href) ? "text-primary bg-primary/10" : "text-foreground hover:text-primary hover:bg-primary/5"}`}>
+              {navigation.map(item => (
+                <Link
+                  key={item.name}
+                  to={item.href}
+                  className={`relative px-4 py-2 text-sm font-medium transition-all duration-300 rounded-lg group ${
+                    isActive(item.href)
+                      ? "text-primary bg-primary/10"
+                      : "text-foreground hover:text-primary hover:bg-primary/5"
+                  }`}
+                >
                   {item.name}
-                  <div className={`absolute bottom-0 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-gradient-to-r from-primary to-secondary transition-all duration-300 group-hover:w-full ${isActive(item.href) ? "w-full" : ""}`}></div>
-                </Link>)}
+                  <div className={`absolute bottom-0 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-gradient-to-r from-primary to-secondary transition-all duration-300 group-hover:w-full ${
+                    isActive(item.href) ? "w-full" : ""
+                  }`}></div>
+                </Link>
+              ))}
               
               {/* Content Dropdown */}
               <DropdownMenu>
@@ -130,11 +149,18 @@ const Navigation = () => {
                   </Button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="end" className="bg-background/95 backdrop-blur-xl border border-border/50 shadow-xl rounded-xl">
-                  {contentPages.map(page => <DropdownMenuItem key={page.name} asChild>
-                      <Link to={page.href} className={`cursor-pointer rounded-lg transition-colors ${isActive(page.href) ? "bg-primary/10 text-primary" : "hover:bg-primary/5"}`}>
+                  {contentPages.map(page => (
+                    <DropdownMenuItem key={page.name} asChild>
+                      <Link
+                        to={page.href}
+                        className={`cursor-pointer rounded-lg transition-colors ${
+                          isActive(page.href) ? "bg-primary/10 text-primary" : "hover:bg-primary/5"
+                        }`}
+                      >
                         {page.name}
                       </Link>
-                    </DropdownMenuItem>)}
+                    </DropdownMenuItem>
+                  ))}
                 </DropdownMenuContent>
               </DropdownMenu>
             </div>
@@ -152,17 +178,28 @@ const Navigation = () => {
                   </Button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="end" className="bg-background/95 backdrop-blur-xl border border-border/50 shadow-xl rounded-xl">
-                  <DropdownMenuItem onClick={() => handleLanguageChange("en")} className={`rounded-lg ${language === "en" ? "bg-primary/10 text-primary" : "hover:bg-primary/5"}`}>
+                  <DropdownMenuItem
+                    onClick={() => handleLanguageChange("en")}
+                    className={`rounded-lg ${language === "en" ? "bg-primary/10 text-primary" : "hover:bg-primary/5"}`}
+                  >
                     English
                   </DropdownMenuItem>
-                  <DropdownMenuItem onClick={() => handleLanguageChange("ar")} className={`rounded-lg ${language === "ar" ? "bg-primary/10 text-primary" : "hover:bg-primary/5"}`}>
+                  <DropdownMenuItem
+                    onClick={() => handleLanguageChange("ar")}
+                    className={`rounded-lg ${language === "ar" ? "bg-primary/10 text-primary" : "hover:bg-primary/5"}`}
+                  >
                     العربية
                   </DropdownMenuItem>
                 </DropdownMenuContent>
               </DropdownMenu>
 
               {/* Theme Switcher */}
-              <Button variant="ghost" size="sm" onClick={() => setTheme(theme === "light" ? "dark" : "light")} className="p-2 rounded-lg hover:bg-primary/5">
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => setTheme(theme === "light" ? "dark" : "light")}
+                className="p-2 rounded-lg hover:bg-primary/5"
+              >
                 {theme === "light" ? <Moon className="h-4 w-4" /> : <Sun className="h-4 w-4" />}
               </Button>
 
@@ -177,27 +214,55 @@ const Navigation = () => {
 
             {/* Mobile menu button */}
             <div className="lg:hidden">
-              <Button variant="ghost" size="sm" onClick={() => setIsOpen(!isOpen)} className="p-2 rounded-lg">
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => setIsOpen(!isOpen)}
+                className="p-2 rounded-lg"
+              >
                 {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
               </Button>
             </div>
           </div>
 
           {/* Mobile Navigation */}
-          {isOpen && <div className="lg:hidden border-t border-border/30">
+          {isOpen && (
+            <div className="lg:hidden border-t border-border/30">
               <div className="px-2 pt-4 pb-6 space-y-2 bg-background/95 backdrop-blur-xl">
-                {navigation.map(item => <Link key={item.name} to={item.href} className={`block px-4 py-3 text-base font-medium rounded-xl transition-all duration-200 ${isActive(item.href) ? "text-primary bg-primary/10 border-l-4 border-primary" : "text-foreground hover:text-primary hover:bg-primary/5"}`} onClick={() => setIsOpen(false)}>
+                {navigation.map(item => (
+                  <Link
+                    key={item.name}
+                    to={item.href}
+                    className={`block px-4 py-3 text-base font-medium rounded-xl transition-all duration-200 ${
+                      isActive(item.href)
+                        ? "text-primary bg-primary/10 border-l-4 border-primary"
+                        : "text-foreground hover:text-primary hover:bg-primary/5"
+                    }`}
+                    onClick={() => setIsOpen(false)}
+                  >
                     {item.name}
-                  </Link>)}
+                  </Link>
+                ))}
                 
                 {/* Mobile Content Pages */}
                 <div className="border-t border-border/30 pt-4 mt-4">
                   <div className="px-4 py-2 text-xs font-semibold text-muted-foreground uppercase tracking-wider">
                     {language === "en" ? "More Pages" : "صفحات إضافية"}
                   </div>
-                  {contentPages.map(page => <Link key={page.name} to={page.href} className={`block px-4 py-3 text-base font-medium rounded-xl transition-all duration-200 ${isActive(page.href) ? "text-primary bg-primary/10 border-l-4 border-primary" : "text-foreground hover:text-primary hover:bg-primary/5"}`} onClick={() => setIsOpen(false)}>
+                  {contentPages.map(page => (
+                    <Link
+                      key={page.name}
+                      to={page.href}
+                      className={`block px-4 py-3 text-base font-medium rounded-xl transition-all duration-200 ${
+                        isActive(page.href)
+                          ? "text-primary bg-primary/10 border-l-4 border-primary"
+                          : "text-foreground hover:text-primary hover:bg-primary/5"
+                      }`}
+                      onClick={() => setIsOpen(false)}
+                    >
                       {page.name}
-                    </Link>)}
+                    </Link>
+                  ))}
                 </div>
                 
                 {/* Mobile Actions */}
@@ -214,20 +279,31 @@ const Navigation = () => {
                         </Button>
                       </DropdownMenuTrigger>
                       <DropdownMenuContent align="end" className="bg-background/95 backdrop-blur-xl border border-border/50 shadow-xl rounded-xl">
-                        <DropdownMenuItem onClick={() => handleLanguageChange("en")} className={`rounded-lg ${language === "en" ? "bg-primary/10 text-primary" : "hover:bg-primary/5"}`}>
+                        <DropdownMenuItem
+                          onClick={() => handleLanguageChange("en")}
+                          className={`rounded-lg ${language === "en" ? "bg-primary/10 text-primary" : "hover:bg-primary/5"}`}
+                        >
                           English
                         </DropdownMenuItem>
-                        <DropdownMenuItem onClick={() => handleLanguageChange("ar")} className={`rounded-lg ${language === "ar" ? "bg-primary/10 text-primary" : "hover:bg-primary/5"}`}>
+                        <DropdownMenuItem
+                          onClick={() => handleLanguageChange("ar")}
+                          className={`rounded-lg ${language === "ar" ? "bg-primary/10 text-primary" : "hover:bg-primary/5"}`}
+                        >
                           العربية
                         </DropdownMenuItem>
                       </DropdownMenuContent>
                     </DropdownMenu>
 
                     {/* Mobile Theme Switcher */}
-                    <Button variant="outline" size="sm" onClick={() => setTheme(theme === "light" ? "dark" : "light")} className="rounded-lg">
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={() => setTheme(theme === "light" ? "dark" : "light")}
+                      className="rounded-lg"
+                    >
                       {theme === "light" ? <Moon className="h-4 w-4" /> : <Sun className="h-4 w-4" />}
                       <span className="ml-2">
-                        {theme === "light" ? language === "en" ? "Dark" : "داكن" : language === "en" ? "Light" : "فاتح"}
+                        {theme === "light" ? (language === "en" ? "Dark" : "داكن") : (language === "en" ? "Light" : "فاتح")}
                       </span>
                     </Button>
                   </div>
@@ -240,12 +316,15 @@ const Navigation = () => {
                   </Link>
                 </div>
               </div>
-            </div>}
+            </div>
+          )}
         </div>
       </nav>
 
-      {/* Spacer for fixed navigation */}
+      {/* Spacer for navigation */}
       <div className="h-16 lg:h-[124px]"></div>
-    </>;
+    </>
+  );
 };
+
 export default Navigation;
