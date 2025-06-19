@@ -1,3 +1,4 @@
+
 import React from "react";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
@@ -5,8 +6,11 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ThemeProvider } from "@/components/theme-provider";
+import { AdminAuthProvider } from "@/hooks/useAdminAuth";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import ProtectedAdminRoute from "@/components/admin/ProtectedAdminRoute";
+import AdminLayout from "@/components/admin/AdminLayout";
 import Index from "./pages/Index";
 import DoctorsPage from "./pages/DoctorsPage";
 import DoctorProfile from "./pages/DoctorProfile";
@@ -21,6 +25,9 @@ import ActivitiesPage from "./pages/ActivitiesPage";
 import ProgramsPage from "./pages/ProgramsPage";
 import StoriesPage from "./pages/StoriesPage";
 import NotFound from "./pages/NotFound";
+import AdminLogin from "./pages/AdminLogin";
+import AdminDashboard from "./pages/AdminDashboard";
+import AdminDoctors from "./pages/AdminDoctors";
 
 const queryClient = new QueryClient();
 
@@ -28,34 +35,59 @@ const App: React.FC = () => {
   return (
     <QueryClientProvider client={queryClient}>
       <ThemeProvider defaultTheme="light" storageKey="serenity-theme">
-        <TooltipProvider>
-          <Toaster />
-          <Sonner />
-          <BrowserRouter>
-            <div className="min-h-screen bg-background flex flex-col">
-              <Navigation />
-              <main className="flex-1">
-                <Routes>
-                  <Route path="/" element={<Index />} />
-                  <Route path="/doctors" element={<DoctorsPage />} />
-                  <Route path="/doctors/:doctorSlug" element={<DoctorProfile />} />
-                  <Route path="/services" element={<ServicesPage />} />
-                  <Route path="/booking" element={<BookingPage />} />
-                  <Route path="/blog" element={<BlogPage />} />
-                  <Route path="/activities" element={<ActivitiesPage />} />
-                  <Route path="/programs" element={<ProgramsPage />} />
-                  <Route path="/stories" element={<StoriesPage />} />
-                  <Route path="/about" element={<AboutPage />} />
-                  <Route path="/contact" element={<ContactPage />} />
-                  <Route path="/testimonials" element={<TestimonialsPage />} />
-                  <Route path="/privacy" element={<PrivacyPage />} />
-                  <Route path="*" element={<NotFound />} />
-                </Routes>
-              </main>
-              <Footer />
-            </div>
-          </BrowserRouter>
-        </TooltipProvider>
+        <AdminAuthProvider>
+          <TooltipProvider>
+            <Toaster />
+            <Sonner />
+            <BrowserRouter>
+              <Routes>
+                {/* Admin Routes */}
+                <Route path="/admin/login" element={<AdminLogin />} />
+                <Route
+                  path="/admin/*"
+                  element={
+                    <ProtectedAdminRoute>
+                      <AdminLayout />
+                    </ProtectedAdminRoute>
+                  }
+                >
+                  <Route index element={<AdminDashboard />} />
+                  <Route path="doctors" element={<AdminDoctors />} />
+                  {/* More admin routes will be added here */}
+                </Route>
+
+                {/* Public Routes */}
+                <Route
+                  path="/*"
+                  element={
+                    <div className="min-h-screen bg-background flex flex-col">
+                      <Navigation />
+                      <main className="flex-1">
+                        <Routes>
+                          <Route path="/" element={<Index />} />
+                          <Route path="/doctors" element={<DoctorsPage />} />
+                          <Route path="/doctors/:doctorSlug" element={<DoctorProfile />} />
+                          <Route path="/services" element={<ServicesPage />} />
+                          <Route path="/booking" element={<BookingPage />} />
+                          <Route path="/blog" element={<BlogPage />} />
+                          <Route path="/activities" element={<ActivitiesPage />} />
+                          <Route path="/programs" element={<ProgramsPage />} />
+                          <Route path="/stories" element={<StoriesPage />} />
+                          <Route path="/about" element={<AboutPage />} />
+                          <Route path="/contact" element={<ContactPage />} />
+                          <Route path="/testimonials" element={<TestimonialsPage />} />
+                          <Route path="/privacy" element={<PrivacyPage />} />
+                          <Route path="*" element={<NotFound />} />
+                        </Routes>
+                      </main>
+                      <Footer />
+                    </div>
+                  }
+                />
+              </Routes>
+            </BrowserRouter>
+          </TooltipProvider>
+        </AdminAuthProvider>
       </ThemeProvider>
     </QueryClientProvider>
   );
